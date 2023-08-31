@@ -19272,3 +19272,33 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 .linear-icon-copyright:before {
 	content: "\a9";
 }
+
+/* Reset de estilos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos para el submenú */
+.rd-navbar-dropdown {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rd-navbar--has-dropdown:hover .rd-navbar-dropdown {
+  display: block;
+}
+
+.rd-navbar-dropdown li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.rd-navbar-dropdown li:last-child {
+  border-bottom: none;
+}
