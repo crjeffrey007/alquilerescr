@@ -6719,14 +6719,14 @@ html:not(.lt-ie10) .not-animated {
 
 .rd-navbar-static .rd-navbar-nav > li > a:hover,
 .rd-navbar-sidebar .rd-navbar-nav > li > a:hover {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static .rd-navbar-nav > li.opened > a,
 .rd-navbar-static .rd-navbar-nav > li.active > a,
 .rd-navbar-sidebar .rd-navbar-nav > li.opened > a,
 .rd-navbar-sidebar .rd-navbar-nav > li.active > a {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static .rd-navbar-nav > li > .rd-navbar-submenu-toggle,
@@ -6778,7 +6778,7 @@ html:not(.lt-ie10) .not-animated {
 .rd-navbar-sidebar .rd-navbar-nav > li.focus > .rd-navbar-submenu-toggle::after,
 .rd-navbar-sidebar .rd-navbar-nav > li.opened > .rd-navbar-submenu-toggle::after,
 .rd-navbar-sidebar .rd-navbar-nav > li > a:hover + .rd-navbar-submenu-toggle::after {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown a, .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown a:active, .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown a:focus,
@@ -6791,14 +6791,14 @@ html:not(.lt-ie10) .not-animated {
 .rd-navbar-fullwidth.rd-navbar_half-dark .rd-navbar-nav .rd-megamenu-list a,
 .rd-navbar-fullwidth.rd-navbar_half-dark .rd-navbar-nav .rd-megamenu-list a:active,
 .rd-navbar-fullwidth.rd-navbar_half-dark .rd-navbar-nav .rd-megamenu-list a:focus {
-	color: #888;
+	color: #0f3b77;
 }
 
 .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown a:hover,
 .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-megamenu-list a:hover,
 .rd-navbar-fullwidth.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown a:hover,
 .rd-navbar-fullwidth.rd-navbar_half-dark .rd-navbar-nav .rd-megamenu-list a:hover {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown,
@@ -6811,7 +6811,7 @@ html:not(.lt-ie10) .not-animated {
 
 .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown > li.focus > a,
 .rd-navbar-fullwidth.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-dropdown > li.focus > a {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static.rd-navbar_half-dark .rd-navbar-nav .rd-navbar-megamenu .rd-megamenu-header,
@@ -6833,7 +6833,7 @@ html:not(.lt-ie10) .not-animated {
 
 .rd-navbar-static.rd-navbar_dark .rd-navbar-nav > li > a:hover,
 .rd-navbar-fullwidth.rd-navbar_dark .rd-navbar-nav > li > a:hover {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static.rd-navbar_dark .rd-navbar-nav > li.focus > a,
@@ -6842,7 +6842,7 @@ html:not(.lt-ie10) .not-animated {
 .rd-navbar-fullwidth.rd-navbar_dark .rd-navbar-nav > li.focus > a,
 .rd-navbar-fullwidth.rd-navbar_dark .rd-navbar-nav > li.opened > a,
 .rd-navbar-fullwidth.rd-navbar_dark .rd-navbar-nav > li.active > a {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static.rd-navbar_dark .rd-navbar-nav > li > .rd-navbar-submenu-toggle,
@@ -6944,7 +6944,7 @@ html:not(.lt-ie10) .not-animated {
 
 .rd-navbar-static.rd-navbar_dark .rd-navbar-inner .rd-navbar-items-list a:hover,
 .rd-navbar-sidebar.rd-navbar_inverse .rd-navbar-inner .rd-navbar-items-list a:hover {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-static.rd-navbar_dark .rd-navbar-inner .rd-navbar-items-list > li + li::before,
