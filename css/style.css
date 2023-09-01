@@ -9487,13 +9487,16 @@ html.boxed .rd-navbar--is-clone {
 @media (min-width: 992px) {
 	.desktop .swiper-slider .swiper-button-prev {
 		transform: translateX(-100%);
+		display: none;
 	}
 	.desktop .swiper-slider .swiper-button-next {
 		transform: translateX(100%);
+		display: none;
 	}
 	.desktop .swiper-slider:hover .swiper-button-prev,
 	.desktop .swiper-slider:hover .swiper-button-next {
 		transform: translateX(0);
+		display: none;
 	}
 }
 
