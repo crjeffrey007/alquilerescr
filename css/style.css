@@ -167,11 +167,11 @@ a {
 }
 
 a, a:active, a:focus {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 a:hover, a:focus {
-	color: #1f957b;
+	color: #0f3b77;
 	text-decoration: none;
 }
 
