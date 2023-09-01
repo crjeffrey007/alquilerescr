@@ -12028,6 +12028,16 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
    readers do not read off random characters that represent icons */
+.fa-laptop-house:before {
+    content: "\e066";
+    color: #0f3b77;
+}
+
+.fa-user-xmark:before {
+    content: "\f235";
+    color: #0f3b77;
+}
+
 .fa-glass:before {
 	content: "\f000";
 }
@@ -12529,6 +12539,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 .fa-facebook-square:before {
 	content: "\f082";
+	color: #0f3b77;
 }
 
 .fa-camera-retro:before {
