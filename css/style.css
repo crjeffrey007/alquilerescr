@@ -8959,7 +8959,7 @@ html.boxed .rd-navbar--is-clone {
 
 .ui-to-top, .ui-to-top:active, .ui-to-top:focus {
 	color: #fff;
-	background: #27bb9a;
+	background: #0f3b77;
 }
 
 .ui-to-top:hover {
@@ -8982,7 +8982,7 @@ html.boxed .rd-navbar--is-clone {
 
 @media (min-width: 576px) {
 	.ui-to-top {
-		right: 40px;
+		left: 40px;
 		bottom: 40px;
 	}
 }
