@@ -652,26 +652,26 @@ span.button {
 
 .page .button-black {
 	color: #fff;
-	background-color: #000;
-	border-color: #000;
+	background-color: #0f3b77;
+	border-color: #0f3b77;
 }
 
 .page .button-black:hover, .page .button-black:focus, .page .button-black:active, .page .button-black:hover {
 	color: #fff;
-	background-color: #2ed3ae;
-	border-color: #2ed3ae;
+	background-color: #000;
+	border-color: #000;
 }
 
 .page .button-primary {
 	color: #fff;
-	background-color: #2ed3ae;
-	border-color: #2ed3ae;
+	background-color: #000;
+	border-color: #000;
 }
 
 .page .button-primary:hover, .page .button-primary:focus, .page .button-primary:active, .page .button-primary:hover {
 	color: #fff;
-	background-color: #000;
-	border-color: #000;
+	background-color: #0f3b77;
+	border-color: #0f3b77;
 }
 
 .page .button-gray-light-outline {
@@ -9199,6 +9199,7 @@ html.boxed .rd-navbar--is-clone {
 
 .swiper-container-horizontal > .swiper-pagination .swiper-pagination-bullet {
 	margin: 0 10px;
+	display: none;
 }
 
 /* 3D Container */
