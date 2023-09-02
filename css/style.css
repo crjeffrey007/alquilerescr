@@ -19317,3 +19317,15 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 .rd-navbar-dropdown li:last-child {
   border-bottom: none;
 }
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  .social-icons {
+    display: flex;
+    align-items: center;
+  }
+
+  .social-icons a {
+    margin-right: 10px; /* Ajusta el espaciado entre los iconos según sea necesario */
+  }
+}
