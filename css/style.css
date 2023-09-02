@@ -19326,6 +19326,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   }
 
   .social-icons a {
-    margin-right: 20px; /* Ajusta el espaciado entre los iconos según sea necesario */
+    margin-right: 10px; /* Ajusta el espaciado entre los iconos según sea necesario */
   }
+}
+
+.rd-navbar-nav li a.icon-primary {
+    margin-right: 10px; /* Ajusta el espaciado entre los iconos según sea necesario */
 }
