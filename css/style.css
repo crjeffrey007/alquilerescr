@@ -19349,3 +19349,42 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
             height: 100%;
             border: none;
         }
+
+.brandingWrapper .brandingTextCont {
+    margin-bottom: 15px;
+    display: none;
+}
+
+.new-Logo .power-Text {
+    color: #555;
+    font-size: 14px;
+    display: none;
+    margin-right: 5px;
+    position: relative;
+    top: -12px;
+}
+
+.new-Logo {
+    width: 100% !important;
+    box-sizing: border-box;
+    text-align: center !important;
+    display: none;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+}
+.brandingWrapper .brandingTextCont svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 2px;
+    position: relative;
+    top: 4px;
+    stroke-width: 0.3px;
+    display: none;
+}
+
+.brandingWrapper .brandingTextCont span {
+    line-height: 21px;
+    display: none;
+}
