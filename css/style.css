@@ -19388,3 +19388,35 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     line-height: 21px;
     display: none;
 }
+
+/* Estilo para la capa de superposición */
+.image-container {
+  position: relative; /* Posición relativa para que los elementos hijos se posicionen en relación con este contenedor */
+}
+
+.image-overlay {
+  position: absolute; /* Posición absoluta para que la capa se coloque sobre la imagen */
+  top: 0;
+  left: 0;
+  width: 100%; /* Tamaño completo del contenedor padre */
+  height: 100%; /* Tamaño completo del contenedor padre */
+  background: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente (ajusta el último valor para controlar la opacidad) */
+  display: none; /* Por defecto, la capa estará oculta */
+  justify-content: center;
+  align-items: center;
+  display: flex; /* Esto centrará el contenido vertical y horizontalmente */
+  opacity: 0; /* Por defecto, la opacidad está al 0% (invisible) */
+  transition: opacity 0.3s; /* Agregamos una transición suave de 0.3 segundos para el efecto de aparición */
+}
+
+/* Estilo para el título en la capa de superposición */
+.image-overlay h4 {
+  color: #fff; /* Color del texto del título */
+  font-size: 1.5rem; /* Tamaño de fuente del título */
+  margin: 0; /* Eliminamos márgenes para que el texto esté centrado */
+}
+
+/* Estilo para la aparición de la capa de superposición al pasar el cursor */
+.image-container:hover .image-overlay {
+  opacity: 1; /* Cambiamos la opacidad al 100% (visible) al pasar el cursor */
+}
