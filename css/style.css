@@ -19410,7 +19410,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 /* Estilo para el título en la capa de superposición */
-.image-overlay h4 {
+.image-overlay h5 {
   color: #fff; /* Color del texto del título */
   font-size: 1.5rem; /* Tamaño de fuente del título */
   margin: 0; /* Eliminamos márgenes para que el texto esté centrado */
