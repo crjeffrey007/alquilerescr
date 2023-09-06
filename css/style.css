@@ -19414,6 +19414,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   color: #fff; /* Color del texto del título */
   font-size: 1.5rem; /* Tamaño de fuente del título */
   margin: 0; /* Eliminamos márgenes para que el texto esté centrado */
+  text-align: center;
 }
 
 /* Estilo para la aparición de la capa de superposición al pasar el cursor */
