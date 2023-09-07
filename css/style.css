@@ -19436,3 +19436,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     content: "\f53a";
     color: #0f3b77;
 }
+
+.fa-magnifying-glass:before, .fa-search:before {
+    content: "\f002";
+    color: #0f3b77;
+}
