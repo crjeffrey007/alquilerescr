@@ -19426,3 +19426,13 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     content: "\f0e3";
     color: #0f3b77;
 }
+
+.fa-pencil-alt:before, .fa-pencil:before {
+    content: "\f303";
+    color: #0f3b77;
+}
+
+.fa-money-bill-wave:before {
+    content: "\f53a";
+    color: #0f3b77;
+}
