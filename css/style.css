@@ -19421,3 +19421,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 .image-container:hover .image-overlay {
   opacity: 1; /* Cambiamos la opacidad al 100% (visible) al pasar el cursor */
 }
+
+.fa-gavel:before, .fa-legal:before {
+    content: "\f0e3";
+    color: #0f3b77;
+}
