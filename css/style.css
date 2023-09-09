@@ -1641,7 +1641,7 @@ textarea.form-input {
 .list-linked a {
 	position: relative;
 	display: block;
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .list-linked a::after {
@@ -6167,20 +6167,20 @@ html:not(.lt-ie10) .not-animated {
 
 .rd-navbar-fullwidth .rd-navbar-dropdown > li > a:hover,
 .rd-navbar-static .rd-navbar-dropdown > li > a:hover {
-	color: #2ed3ae;
+	color: #0f3b77;
 	background: transparent;
 }
 
 .rd-navbar-fullwidth .rd-navbar-dropdown > li > a:hover ~ .rd-navbar-submenu-toggle,
 .rd-navbar-static .rd-navbar-dropdown > li > a:hover ~ .rd-navbar-submenu-toggle {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-fullwidth .rd-navbar-dropdown > li.focus > a,
 .rd-navbar-fullwidth .rd-navbar-dropdown > li.opened > a,
 .rd-navbar-static .rd-navbar-dropdown > li.focus > a,
 .rd-navbar-static .rd-navbar-dropdown > li.opened > a {
-	color: #2ed3ae;
+	color: #0f3b77;
 	background: transparent;
 }
 
@@ -6188,7 +6188,7 @@ html:not(.lt-ie10) .not-animated {
 .rd-navbar-fullwidth .rd-navbar-dropdown > li.opened > a ~ .rd-navbar-submenu-toggle,
 .rd-navbar-static .rd-navbar-dropdown > li.focus > a ~ .rd-navbar-submenu-toggle,
 .rd-navbar-static .rd-navbar-dropdown > li.opened > a ~ .rd-navbar-submenu-toggle {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 @media (min-width: 1200px) {
@@ -7584,13 +7584,13 @@ html:not(.lt-ie10) .not-animated {
 }
 
 .rd-navbar-fullwidth .rd-navbar-nav > li > a:hover {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-fullwidth .rd-navbar-nav > li.focus > a,
 .rd-navbar-fullwidth .rd-navbar-nav > li.opened > a,
 .rd-navbar-fullwidth .rd-navbar-nav > li.active > a {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .rd-navbar-fullwidth .rd-navbar-nav > li + li {
