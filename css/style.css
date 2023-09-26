@@ -2936,7 +2936,7 @@ a.thumbnail-classic-title:hover {
 }
 
 .post-inline__link a, .post-inline__link a:active, .post-inline__link a:focus {
-	color: #0f3b77;
+	color: inherit;
 }
 
 .post-inline__link a:hover {
