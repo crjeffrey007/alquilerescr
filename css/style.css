@@ -161,6 +161,10 @@ body {
 }
 
 a {
+  cursor: pointer; /* Manita */
+}
+
+a {
 	display: inline-block;
 	text-decoration: none;
 	transition: .33s all ease;
