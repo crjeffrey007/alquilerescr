@@ -2936,11 +2936,11 @@ a.thumbnail-classic-title:hover {
 }
 
 .post-inline__link a, .post-inline__link a:active, .post-inline__link a:focus {
-	color: inherit;
+	color: #0f3b77;
 }
 
 .post-inline__link a:hover {
-	color: #2ed3ae;
+	color: #0f3b77;
 }
 
 .post-inline__text {
