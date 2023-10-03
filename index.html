@@ -136,6 +136,21 @@
       </header>
 <!-- Swiper -->
 <section>
+  <style>
+    /* Estilos para dispositivos móviles */
+    @media (max-width: 767px) {
+      .swiper-slide-caption {
+        padding: 20px; /* Agrega espacio interno para el texto */
+        background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+        color: #fff; /* Texto en color blanco */
+      }
+      
+      /* Estilos para la imagen de respaldo en dispositivos móviles */
+      .swiper-slide-bg {
+        display: none; /* Oculta la imagen de respaldo en dispositivos móviles */
+      }
+    }
+  </style>
   <div class="swiper-container swiper-slider swiper-slider_fullheight" data-simulate-touch="false" data-loop="false" data-autoplay="false">
     <div class="swiper-wrapper">
       <div class="swiper-slide swiper-slide_video context-dark video-bg-overlay">
@@ -147,10 +162,6 @@
             <div class="container">
               <h1 data-caption-animate="fadeInUpSmall">Alquileres Costa Rica</h1>
               <h5 class="text-width-2 block-centered" data-caption-animate="fadeInUpSmall" data-caption-delay="200">Servicios Legales, Marketing y Publicidad</h5>
-              <div class="group-lg group-middle">
-                <a class="button button-black" data-caption-animate="fadeInUpSmall" data-caption-delay="350" href="alquileres.html" data-custom-scroll-to="section-see-features">Alquileres</a>
-                <a class="button button-primary" data-caption-animate="fadeInUpSmall" data-caption-delay="350" data-custom-scroll-to="section-subscribe" href="contacto.html">Contáctanos</a>
-              </div>
             </div>
           </div>
         </div>
