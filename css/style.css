@@ -20188,3 +20188,113 @@ p.newsletter_success_box{
 	margin-bottom:15px;
 }
 
+/* ========================================================== */
+/* 				            09. PRICING                       */
+/* ========================================================== */
+
+.pricing-box {
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:40px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+	background-color:#f9f9f9;
+	text-align: center;
+	border-left: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+	border-bottom: 2px solid #e5e5e5;
+}
+
+.pricing-box .pricing-top{
+	padding: 20px 0;
+	-webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.pricing-box .pricing-top{
+	background-color:#34b1c4;
+}
+
+.pricing-top h3 {
+	color: #fff;
+	font-size: 22px;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	font-weight: 700;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.pricing-top .price .currency {
+	color: #fff;
+	font-size: 24px;
+	line-height: 40px;
+	font-weight:600;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.pricing-top .price span.number {
+	color: #fff;
+	font-size: 36px;
+	line-height: 42px;
+	font-weight:700;
+}
+
+.pricing-top .price .month {
+	font-size:16px;
+	line-height:18px;
+	font-weight:600;
+}
+
+.pricing-top .price .month .blue {
+	color:#3498db;
+}
+
+.pricing-bottom {
+	padding: 0 35px 40px 35px;
+}
+
+.pricing-bottom ul {
+	list-style: none;
+	list-style-type: none;
+	margin: 35px 0px 40px;
+	padding: 0;
+}
+
+.pricing-bottom ul li {
+	text-align:center;
+	font-size:16px;
+	line-height:30px;
+}
+
+.btn-pricing-blue {
+  color: #34b1c4;
+  background-color: transparent;
+  border: 2px solid #34b1c4;
+  padding:14px 0;
+  font-weight:600;
+}
+
+.btn-pricing-blue:hover {
+  color: #fff;
+  background-color: #34b1c4;
+  border: 2px solid #34b1c4;
+}
+
+.btn-pricing-featured {
+  color: #fff;
+  background-color: #34b1c4;
+  border: 2px solid #34b1c4;
+  padding:14px 0;
+  font-weight:600;
+}
+
+.btn-pricing-featured:hover {
+  color: #34b1c4;
+  background-color: transparent;
+  border: 2px solid #34b1c4;
+}
