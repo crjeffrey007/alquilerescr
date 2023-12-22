@@ -19540,7 +19540,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 		margin:0;
 	}
 		
-	p.author-name{
+	h3.author-name{
 		float:none;
 		margin: 0;
 		padding-top:20px;
@@ -19585,6 +19585,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	position:relative;
 	background-color:#34b1c4;
 	padding:60px 0;
+	margin-top:60px
 }
 
 .testimonials-wrapper {
@@ -19611,7 +19612,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     border-radius: 50%;
 }
 
-p.author-name{
+h3.author-name{
 	float:left;
 	margin: 0;
 	padding-top:30px;
@@ -19917,4 +19918,177 @@ p.contact_success_box{
 	webkit-border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
+}
+
+/* carousel */
+.carousel.carousel1 .carousel-indicators {
+	position: inherit;
+	right: 0px;
+}
+
+.carousel.carousel1 .item .lead {
+	font-size: 20px;
+}
+
+.carousel.carousel1 .carousel-indicators li {
+	background-color: #e0e0e0;
+	width: 16px;
+	height: 16px;
+}
+
+.carousel.carousel1 .carousel-indicators li.active {
+	background-color: #34b1c4;
+}
+
+.carousel.carousel3 .carousel-indicators {
+	position: inherit;
+	right: 0px;
+}
+
+.carousel.carousel3 .item .lead {
+	font-size: 20px;
+}
+
+.carousel.carousel3 .carousel-indicators li {
+	background-color: #f9f9f9;
+	width: 16px;
+	height: 16px;
+}
+
+.carousel.carousel3 .carousel-indicators li.active {
+	background-color: #34b1c4;
+}
+
+.carousel.carousel-fade .item {
+	-webkit-transition: opacity 0.5s ease-in-out;
+	-moz-transition: opacity 0.5s ease-in-out;
+	-ms-transition: opacity 0.5s ease-in-out;
+	-o-transition: opacity 0.5s ease-in-out;
+	transition: opacity 0.5s ease-in-out;
+	opacity:0;
+}
+
+.carousel.carousel-fade .active.item {
+	opacity:1;
+}
+
+.carousel.carousel-fade .active.left,
+.carousel.carousel-fade .active.right {
+	left: 0;
+	z-index: 2;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.carousel.carousel-fade .next,
+.carousel.carousel-fade .prev {
+	left: 0;
+	z-index: 1;
+}
+
+.carousel.carousel-fade .carousel-control {
+	z-index: 3;
+}
+
+.carousel-indicators {
+  bottom: auto;
+  left: auto;
+  margin: 0;
+  right: 16px;
+  top: 16px;
+  width: auto;
+  line-height: 8px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.carousel-indicators li {
+  vertical-align: top;
+  border: none;
+  width: 8px;
+  height: 8px;
+  margin: 0 0 0 6px;
+  background-color: #2c3e50;
+  background-color: rgba(44, 62, 80, 0.5);
+}
+.carousel-indicators li.active {
+  background-color: #fff;
+  width: 8px;
+  height: 8px;
+  margin: 0 0 0 6px;
+}
+/* end carousel */
+
+/* ========================================================== */
+/* 			                02. FOOTER                        */
+/* ========================================================== */
+
+.footer {
+	z-index:900;
+	background-color: #2f3539;
+    border-top: 1px solid #393f43;
+	padding: 55px 0;
+	font-weight: 300;
+}
+
+.footer p {
+	font-size: 16px;
+	color: #cecece;
+}
+
+.footer p a {
+	font-size: 16px;
+	color: #34b1c4;
+	text-decoration:underline;
+}
+
+/* ----- 2. Footer Social Icons ----- */
+ul.footer_social{
+	width:100%;
+	max-width:1140px;
+	display:block;
+	margin:0 auto;
+	padding-top:5px;
+	text-align:center;
+}
+
+ul.footer_social li{
+	display:inline-block;
+    margin:0 ;
+	line-height:100%!important;
+}
+
+ul.footer_social li a i {
+  display: inline-block;
+  margin:0 8px;
+  width: 36px;
+  height: 36px;
+  padding: 8px 8px;
+  border: 1px solid #8d8d8d;
+  border-radius: 50%;
+  font-size:18px!important;
+  color: #8d8d8d;
+  background-color: transparent;
+  transition: all .5s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+}
+
+ul.footer_social li a i:hover {
+  color:#fff;
+  background-color: #34b1c4;
+  border: 1px solid #34b1c4;
+  transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+}
+
+p.footer-logo{
+	margin-bottom: 21px;
+	font-size: 34px;
+	font-weight: 700;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
 }
