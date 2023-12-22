@@ -19650,7 +19650,7 @@ p.testimonials-text {
 
 .testimonials-wrapper {
 	position:relative;
-	max-width:960px;
+	max-width:1050px;
 }
 
 .testimonials-info{
@@ -19672,7 +19672,7 @@ p.testimonials-text {
     border-radius: 50%;
 }
 
-p.author-name{
+h2.author-name{
 	float:left;
 	margin: 0;
 	padding-top:30px;
@@ -19684,7 +19684,7 @@ p.author-name{
 	font-family: 'Roboto', sans-serif;
 }
 
-p.author-name span{
+h2.author-name span{
 	font-size:18px;
 	font-weight:400;
 	font-style:italic;
@@ -20020,78 +20020,6 @@ p.contact_success_box{
   margin: 0 0 0 6px;
 }
 /* end carousel */
-
-/* ========================================================== */
-/* 			                02. FOOTER                        */
-/* ========================================================== */
-
-.footer {
-	z-index:900;
-	background-color: #2f3539;
-    border-top: 1px solid #393f43;
-	padding: 55px 0;
-	font-weight: 300;
-}
-
-.footer p {
-	font-size: 16px;
-	color: #cecece;
-}
-
-.footer p a {
-	font-size: 16px;
-	color: #34b1c4;
-	text-decoration:underline;
-}
-
-/* ----- 2. Footer Social Icons ----- */
-ul.footer_social{
-	width:100%;
-	max-width:1140px;
-	display:block;
-	margin:0 auto;
-	padding-top:5px;
-	text-align:center;
-}
-
-ul.footer_social li{
-	display:inline-block;
-    margin:0 ;
-	line-height:100%!important;
-}
-
-ul.footer_social li a i {
-  display: inline-block;
-  margin:0 8px;
-  width: 36px;
-  height: 36px;
-  padding: 8px 8px;
-  border: 1px solid #8d8d8d;
-  border-radius: 50%;
-  font-size:18px!important;
-  color: #8d8d8d;
-  background-color: transparent;
-  transition: all .5s ease-in-out;
-  -moz-transition: all .25s ease-in-out;
-  -webkit-transition: all .25s ease-in-out;
-}
-
-ul.footer_social li a i:hover {
-  color:#fff;
-  background-color: #34b1c4;
-  border: 1px solid #34b1c4;
-  transition: all .25s ease-in-out;
-  -moz-transition: all .25s ease-in-out;
-  -webkit-transition: all .25s ease-in-out;
-}
-
-p.footer-logo{
-	margin-bottom: 21px;
-	font-size: 34px;
-	font-weight: 700;
-	color: #fff;
-	font-family: 'Roboto', sans-serif;
-}
 
 /* ========================================================== */
 /* 				  		   04. SERVICES                       */
