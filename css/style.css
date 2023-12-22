@@ -19699,3 +19699,222 @@ p.testimonials-text {
 	font-weight: 400;
 	color:#fff;
 }
+
+/* ========================================================== */
+/* 					       08. REGISTER                       */
+/* ========================================================== */
+
+.register-inner{
+	width:100%;
+	max-width:585px;
+	padding:50px 0 50px 35px;
+}
+
+#register-form{
+	padding:25px 0 20px 0;
+}
+
+input.register-input{
+	width:100%;
+	height:52px;
+    padding-left:2%;
+    padding-right:2%;
+	margin-bottom:20px;
+	color: #fff;
+	border: 1px solid #fff;
+	background-color: transparent;
+    font-size:14px;
+	float:left;
+	-webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+select.register-input{
+	width:100%;
+	height:52px;
+    padding-left:2%;
+    padding-right:2%;
+	margin-bottom:20px;
+	color: #fff;
+	border: 1px solid #fff;
+	background-color: transparent;
+    font-size:14px;
+	float:left;
+	-webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+input.register-submit{
+	color: #34b1c4;
+	border: 1px solid #fff;
+	background-color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+	font-weight:700;
+	width:100%;
+	max-width:535px;
+    padding: 16px 0;
+    text-transform: uppercase;
+	-webkit-border-radius: 3px 3px;
+    -moz-border-radius: 3px 3px;
+    border-radius: 3px 3px;
+	transition: all .50s ease-in-out;
+	-moz-transition: all .50s ease-in-out;
+	-webkit-transition: all .50s ease-in-out;
+}
+
+input.register-submit:hover{
+	color:#fff;
+	background-color: transparent;
+	border:1px solid #fff;
+	transition: all .50s ease-in-out;
+	-moz-transition: all .50s ease-in-out;
+	-webkit-transition: all .50s ease-in-out;
+}
+
+input.white-input::-webkit-input-placeholder,
+select.white-input::-webkit-input-placeholder { /* WebKit browsers */
+    color:#fff!important;
+}
+input.white-input:-moz-placeholder,
+select.white-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#fff!important;
+}
+input.white-input::-moz-placeholder,
+select.white-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#fff!important;
+}
+input.white-input:-ms-input-placeholder,
+select.white-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:#fff;
+}
+
+#register-form input.register-input:focus, #register-form select.register-input:focus {
+  border-color:#fff!important;
+  outline: none;
+}
+
+p.register_success_box{
+	display:inline-block;
+	color:#fff;
+	font-size:16px;
+	font-style:italic;
+	margin:20px 0 30px 0;
+	padding:20px 20px;
+	border:1px solid #fff;
+	webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+/* ========================================================== */
+/* 						    10. CONTACT                       */
+/* ========================================================== */
+
+#contact-form{
+	margin:0 auto;
+	width:100%;
+	max-width:960px;
+	text-align:center;
+	margin-bottom:10px;
+}
+
+input.contact-input{
+	width:100%;
+	height:55px;
+    padding-left:2%;
+    padding-right:2%;
+	margin-bottom:20px;
+	color: #fff;
+	border: 1px solid #757575;
+	background-color: transparent;
+    font-size:14px;
+	float:left;
+	-webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+textarea{
+	height:205px;
+	margin-bottom:20px;
+	width:100%;
+    padding-left:2%;
+    padding-right:2%;
+    padding-top:10px;
+    padding-bottom:10px;
+	color: #fff;
+	border: 1px solid #757575;
+	background-color: transparent;
+    font-size:14px;
+	float:left;
+	-webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+input.contact-submit{
+	color: #fff;
+	border: 2px solid #34b1c4;
+	background-color: #34b1c4;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+	font-weight:700;
+	margin-top:10px;
+    padding: 16px 30px;
+    position: relative;
+    text-transform: uppercase;
+	-webkit-border-radius: 3px 3px;
+    -moz-border-radius: 3px 3px;
+    border-radius: 3px 3px;
+	transition: all .50s ease-in-out;
+	-moz-transition: all .50s ease-in-out;
+	-webkit-transition: all .50s ease-in-out;
+}
+
+input.contact-submit:hover{
+	color:#34b1c4;
+	background-color: transparent;
+	border:2px solid #34b1c4;
+	transition: all .50s ease-in-out;
+	-moz-transition: all .50s ease-in-out;
+	-webkit-transition: all .50s ease-in-out;
+}
+
+input.white-input::-webkit-input-placeholder,
+textarea.white-input::-webkit-input-placeholder { /* WebKit browsers */
+    color:#fff;
+}
+input.white-input:-moz-placeholder,
+textarea.white-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#fff;
+}
+input.white-input::-moz-placeholder,
+textarea.white-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#fff;
+}
+input.white-input:-ms-input-placeholder,
+textarea.white-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:#fff;
+}
+
+#contact-form input.contact-input:focus, #contact-form textarea.contact-commnent:focus {
+  border-color:#fff;
+  outline: none;
+}
+
+p.contact_success_box{
+	display:inline-block;
+	color:#fff;
+	font-size:20px;
+	font-style:italic;
+	padding:20px 20px;
+	border:1px solid #fff;
+	webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
