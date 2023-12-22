@@ -19519,3 +19519,62 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	background-color: #34b1c4!important;
 	border:1px solid #34b1c4!important;
 }
+
+/* ========================================================== */
+/* 					    12. MOBILE DEVICES                    */
+/* ========================================================== */
+
+@media handheld, only screen and (max-width: 800px) {
+	
+	.testimonials-info{
+		border-right: none;
+		padding:0;
+	}
+					
+	.testimonials-wrapper{
+		text-align:center;
+	}
+	
+	img.author-pic{
+		float:none;
+		margin:0;
+	}
+		
+	p.author-name{
+		float:none;
+		margin: 0;
+		padding-top:20px;
+		padding-bottom:10px;
+	}
+
+	p.testimonials-text {
+	  float:none;
+	  padding: 10px 0 0 0;
+	  font-size: 18px;
+	  line-height: 28px;
+	}
+		
+	.fun-facts-box{
+		width:50%;
+	}
+	
+	.team-item{
+		margin-bottom:30px;
+	}
+	
+	.wrapper-inner {
+		max-width: none;
+		padding:40px 0 80px 35px;
+	}
+	
+	.partners-item{
+		padding:10px 0;
+		border-right: none;
+		border-bottom: none;
+	}
+	
+	.col-md-4.small-padding-right, .col-md-6.small-padding-right{
+		padding-right:15px!important;
+	}
+	
+}
