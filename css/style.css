@@ -20298,3 +20298,26 @@ p.newsletter_success_box{
   background-color: transparent;
   border: 2px solid #0f3b77;
 }
+
+/* Estilos para los íconos de redes sociales */
+.custom-social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.custom-social-icons li:last-child {
+    margin-right: 0;
+}
+
+.custom-social-icon {
+    color: white; /* Color blanco para los íconos */
+    font-size: 24px; /* Tamaño del ícono */
+}
+
+/* Estilos adicionales según sea necesario */
