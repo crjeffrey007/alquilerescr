@@ -20201,9 +20201,9 @@ p.newsletter_success_box{
     border-radius: 5px 5px 5px 5px;
 	background-color:#f9f9f9;
 	text-align: center;
-	border-left: 1px solid #e5e5e5;
-	border-right: 1px solid #e5e5e5;
-	border-bottom: 2px solid #e5e5e5;
+	border-left: 1px solid #0f3b77;
+	border-right: 1px solid #0f3b77;
+	border-bottom: 2px solid #0f3b77;
 }
 
 .pricing-box .pricing-top{
@@ -20214,7 +20214,7 @@ p.newsletter_success_box{
 }
 
 .pricing-box .pricing-top{
-	background-color:#34b1c4;
+	background-color:#0f3b77;
 }
 
 .pricing-top h3 {
@@ -20251,7 +20251,7 @@ p.newsletter_success_box{
 }
 
 .pricing-top .price .month .blue {
-	color:#3498db;
+	color:#0f3b77;
 }
 
 .pricing-bottom {
@@ -20272,29 +20272,29 @@ p.newsletter_success_box{
 }
 
 .btn-pricing-blue {
-  color: #34b1c4;
+  color: #0f3b77;
   background-color: transparent;
-  border: 2px solid #34b1c4;
+  border: 2px solid #0f3b77;
   padding:14px 0;
   font-weight:600;
 }
 
 .btn-pricing-blue:hover {
   color: #fff;
-  background-color: #34b1c4;
-  border: 2px solid #34b1c4;
+  background-color: #0f3b77;
+  border: 2px solid #0f3b77;
 }
 
 .btn-pricing-featured {
   color: #fff;
-  background-color: #34b1c4;
-  border: 2px solid #34b1c4;
+  background-color: #0f3b77;
+  border: 2px solid #0f3b77;
   padding:14px 0;
   font-weight:600;
 }
 
 .btn-pricing-featured:hover {
-  color: #34b1c4;
+  color: #0f3b77;
   background-color: transparent;
-  border: 2px solid #34b1c4;
+  border: 2px solid #0f3b77;
 }
