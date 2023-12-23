@@ -20320,4 +20320,7 @@ p.newsletter_success_box{
     font-size: 24px; /* Tamaño del ícono */
 }
 
-/* Estilos adicionales según sea necesario */
+.custom-social-icon:hover {
+    color: #ff0000; /* Cambia el color a rojo (#ff0000) al pasar el mouse */
+}
+
