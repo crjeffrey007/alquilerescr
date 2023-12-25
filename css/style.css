@@ -20324,3 +20324,12 @@ p.newsletter_success_box{
     color: #ff0000; /* Cambia el color a rojo (#ff0000) al pasar el mouse */
 }
 
+.fa-house-laptop:before, .fa-laptop-house:before {
+    content: "\e066";
+    color: #0f3b77;
+}
+
+.fa-volume-high:before, .fa-volume-up:before {
+    content: "\f028";
+    color: #0f3b77;
+}
