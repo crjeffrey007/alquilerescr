@@ -1,48 +1,53 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-$field_first_name = $_POST['names'];
+require 'path/to/PHPMailer/src/Exception.php';
+require 'path/to/PHPMailer/src/PHPMailer.php';
+require 'path/to/PHPMailer/src/SMTP.php';
 
-$field_subject = $_POST['subject'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $field_first_name = $_POST['contact_names'];
+    $field_subject = $_POST['contact_subject'];
+    $field_email = $_POST['contact_email'];
+    $field_phone = $_POST['contact_phone'];
+    $field_message = $_POST['contact_message'];
 
-$field_email = $_POST['email'];
+    // Configuración de PHPMailer
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.brevo.com'; // Cambia esto por la configuración correcta de Brevo
+    $mail->SMTPAuth = true;
+    $mail->Username = 'crjeffrey7@gmail.com'; // Reemplaza con tu usuario SMTP
+    $mail->Password = 'KW6p4Gdbx72M5H9n'; // Reemplaza con tu clave SMTP
+    $mail->SMTPSecure = 'tls'; // O 'ssl' dependiendo de la configuración de Brevo
+    $mail->Port = 587; // O el puerto que esté configurado en Brevo
 
-$field_phone = $_POST['phone'];
+    $mail->setFrom($field_email, $field_first_name);
+    $mail->addAddress('to@email.com'); // Reemplaza con tu dirección de correo electrónico real
 
-$field_message = $_POST['message'];
+    $mail->Subject = 'Mensaje de un visitante del sitio: '.$field_first_name;
+    $mail->Body = 'De: '.$field_first_name."\n".
+                  'Asunto: '.$field_subject."\n".
+                  'Correo Electrónico: '.$field_email."\n".
+                  'Número de Teléfono: '.$field_phone."\n".
+                  'Mensaje: '.$field_message;
 
-$mail_to = 'to@email.com';
-
-$subject = 'Message from a site visitor '.$field_first_name;
-
-$body_message = 'From: '.$field_first_name."\n";
-
-$body_message .= 'Subject: '.$field_subject."\n";
-
-$body_message .= 'E-mail: '.$field_email."\n";
-
-$body_message .= 'Phone: '.$field_phone."\n";
-
-$body_message .= 'Message: '.$field_message;
-
-$headers = 'From: '.$field_email."\r\n";
-
-$headers .= 'Reply-To: '.$field_email."\r\n";
-
-$mail_status = mail($mail_to, $subject, $body_message, $headers);
-
-
-if ($mail_status) { ?>
-	<script language="javascript" type="text/javascript">
-		//alert('Thank you for the message. We will contact you shortly.');
-		window.location = 'index.html';
-	</script>
-<?php
-}
-else { ?>
-	<script language="javascript" type="text/javascript">
-		//alert('Message failed. Please, send an email to gordon@template-help.com');
-		window.location = 'index.html';
-	</script>
-<?php
+    try {
+        $mail->send();
+        ?>
+        <script language="javascript" type="text/javascript">
+            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+            window.location = 'index.html';
+        </script>
+        <?php
+    } catch (Exception $e) {
+        ?>
+        <script language="javascript" type="text/javascript">
+            alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
+            window.location = 'index.html';
+        </script>
+        <?php
+    }
 }
 ?>
