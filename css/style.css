@@ -20348,3 +20348,19 @@ p.newsletter_success_box{
   width: 100%;
   height: 100%;
 }
+
+.tempHeadBdr, .footerWrapper {
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+.new-Logo {
+    width: 100% !important;
+    box-sizing: border-box;
+    text-align: center !important;
+    display: none;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
