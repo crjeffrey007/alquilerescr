@@ -20333,3 +20333,18 @@ p.newsletter_success_box{
     content: "\f028";
     color: #0f3b77;
 }
+
+/* Add this to your CSS stylesheet */
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* Aspect ratio (height:width) for 16:9 display */
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
