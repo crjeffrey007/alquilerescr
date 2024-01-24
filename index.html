@@ -731,14 +731,21 @@
         </div>
         <!--end row-->
 <!--begin row-->
+      <form action="https://plataforma.alquileres-cr.com/procesar.php" method="post">
+        
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
 
-<div id="formio"></div>
-      <script type="text/javascript">
-  window.onload = function() {
-    Formio.createForm(document.getElementById('formio'), 'https://henzkuuhubzcbqx.form.io/contactoalquilerescr');
-  };
-</script>
-<!--end row-->
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
+
+        <input type="submit" value="Enviar">
+
+    </form>
+      <!--end row-->
 
         <!--begin row for icons-->
         <div class="row text-center">
