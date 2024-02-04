@@ -1029,6 +1029,15 @@
 			}
 		});
 
+
+      // Puedes agregar funciones JavaScript personalizadas aquí si es necesario
+// Por ejemplo, seguimiento de errores o análisis de registros
+
+// Redirigir a la página principal después de unos segundos (opcional)
+setTimeout(function () {
+    window.location.href = "404.html";
+}, 5000); // Redirige después de 5 segundos (5000 milisegundos)
+		
 		// Custom Waypoints
 		initPlugin( plugins.customWaypoints.length && !isNoviBuilder, function () {
 			for (var i = 0; i < plugins.customWaypoints.length; i++) {
