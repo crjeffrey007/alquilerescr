@@ -20258,6 +20258,7 @@ p.newsletter_success_box{
 .pricing-bottom {
 	padding: 0 35px 40px 35px;
 	background: #0f3b77;
+	color: white;
 }
 
 .pricing-bottom ul {
@@ -20380,11 +20381,4 @@ p.newsletter_success_box{
     background-color: #000000;
     border-color: #000000;
     margin-top: 20px;
-}
-
-.btn-block {
-    display: block;
-    width: 100%;
-    background: #0f3b77;
-    color: white;
 }
