@@ -20201,9 +20201,9 @@ p.newsletter_success_box{
     border-radius: 5px 5px 5px 5px;
 	background-color:#f9f9f9;
 	text-align: center;
-	border-left: 1px solid #0f3b77;
-	border-right: 1px solid #0f3b77;
-	border-bottom: 2px solid #0f3b77;
+	border-left: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+	border-bottom: 2px solid #e5e5e5;
 }
 
 .pricing-box .pricing-top{
@@ -20214,7 +20214,7 @@ p.newsletter_success_box{
 }
 
 .pricing-box .pricing-top{
-	background-color:#0f3b77;
+	background-color:#34b1c4;
 }
 
 .pricing-top h3 {
@@ -20248,17 +20248,14 @@ p.newsletter_success_box{
 	font-size:16px;
 	line-height:18px;
 	font-weight:600;
-	color: #fff;
 }
 
 .pricing-top .price .month .blue {
-	color:#0f3b77;
+	color:#3498db;
 }
 
 .pricing-bottom {
 	padding: 0 35px 40px 35px;
-	background: #0f3b77;
-	color: #fff;
 }
 
 .pricing-bottom ul {
@@ -20275,31 +20272,31 @@ p.newsletter_success_box{
 }
 
 .btn-pricing-blue {
-  color: #fff;
-  background-color: #ffffff;
-  border: 2px solid #000000;
+  color: #34b1c4;
+  background-color: transparent;
+  border: 2px solid #34b1c4;
   padding:14px 0;
   font-weight:600;
 }
 
 .btn-pricing-blue:hover {
-  color: #000000;
-  background-color: #ffffff;
-  border: 2px solid #000000;
+  color: #fff;
+  background-color: #34b1c4;
+  border: 2px solid #34b1c4;
 }
 
 .btn-pricing-featured {
-  color: #ffffff;
-  background-color: #ffffff;
-  border: 2px solid #000000;
+  color: #fff;
+  background-color: #34b1c4;
+  border: 2px solid #34b1c4;
   padding:14px 0;
   font-weight:600;
 }
 
 .btn-pricing-featured:hover {
-  color: #fff;
+  color: #34b1c4;
   background-color: transparent;
-  border: 2px solid #0f3b77;
+  border: 2px solid #34b1c4;
 }
 
 /* Estilos para los íconos de redes sociales */
@@ -20376,43 +20373,4 @@ p.newsletter_success_box{
     color: white;
 }
 
-.btn-secondary.disabled, .btn-secondary:disabled {
-    color: #000000;
-    background-color: #fff;
-    border-color: #000000;
-    margin-top: 20px;
-}
 
-.btn btn-md btn-block btn-pricing-blue {
-    background: white;
-}
-
-.btn {
-    display: inline-block;
-    font-weight: 400;
-    color: #ffffff;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid white;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-/* Estilo para el botón */
-.btn-pricing-white {
-    background-color: white;
-    color: #333; /* Cambiar si es necesario */
-}
-
-/* Estilo para el texto */
-.pricing-bottom ul {
-    color: white; /* Color del texto */
-}
