@@ -2257,7 +2257,8 @@ select.form-input-lg:not([size]):not([multiple]), .input-group-lg > select.form-
 	white-space: nowrap;
 	vertical-align: middle;
 	user-select: none;
-	border: 1px solid transparent;
+	border: 1px solid white;
+	color: white;
 	padding: 11px 35px;
 	font-size: 18px;
 	line-height: 1.25;
