@@ -20405,3 +20405,14 @@ p.newsletter_success_box{
     border-radius: .25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
+/* Estilo para el botón */
+.btn-pricing-white {
+    background-color: white;
+    color: #333; /* Cambiar si es necesario */
+}
+
+/* Estilo para el texto */
+.pricing-bottom ul {
+    color: white; /* Color del texto */
+}
