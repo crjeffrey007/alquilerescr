@@ -20257,6 +20257,7 @@ p.newsletter_success_box{
 
 .pricing-bottom {
 	padding: 0 35px 40px 35px;
+	background: #0f3b77;
 }
 
 .pricing-bottom ul {
@@ -20281,13 +20282,13 @@ p.newsletter_success_box{
 }
 
 .btn-pricing-blue:hover {
-  color: #fff;
+  color: #ffffff;
   background-color: #000000;
   border: 2px solid #000000;
 }
 
 .btn-pricing-featured {
-  color: #fff;
+  color: #ffffff;
   background-color: #0f3b77;
   border: 2px solid #0f3b77;
   padding:14px 0;
@@ -20379,4 +20380,11 @@ p.newsletter_success_box{
     background-color: #000000;
     border-color: #000000;
     margin-top: 20px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    background: #0f3b77;
+    color: white;
 }
