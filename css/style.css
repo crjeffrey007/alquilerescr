@@ -20382,3 +20382,7 @@ p.newsletter_success_box{
     border-color: #000000;
     margin-top: 20px;
 }
+
+.btn btn-md btn-block btn-pricing-blue {
+    background: white;
+}
