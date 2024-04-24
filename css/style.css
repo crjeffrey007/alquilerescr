@@ -20213,8 +20213,9 @@ p.newsletter_success_box{
     border-radius: 5px 5px 0 0;
 }
 
-.pricing-box .pricing-top{
-	background-color:#34b1c4;
+.pricing-box .pricing-top {
+    background-color: #0f3b77;
+    color: white;
 }
 
 .pricing-top h3 {
