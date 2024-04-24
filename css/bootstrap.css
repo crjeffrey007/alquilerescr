@@ -2808,8 +2808,10 @@ fieldset[disabled] a.btn {
 }
 
 .btn-block {
-	display: block;
-	width: 100%;
+    display: block;
+    width: 100%;
+    background: #0f3b77;
+    color: white;
 }
 
 .btn-block + .btn-block {
