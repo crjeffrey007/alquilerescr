@@ -20377,13 +20377,14 @@ p.newsletter_success_box{
 
     /* Style the form */
     #my-form {
-      color: white;
-      background-color: #333;
+      color: #0f3b77;
+      background-color: white;
       padding: 20px;
       border-radius: 10px;
       width: 60%; /* Make the form wider */
       max-width: 600px; /* Max width */
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: auto;
     }
 
     #my-form label {
@@ -20412,7 +20413,7 @@ p.newsletter_success_box{
     }
 
     #my-form-button:hover {
-      background-color: black;
+      background-color: #010101;
     }
 
     #my-form-status {
