@@ -20374,4 +20374,38 @@ p.newsletter_success_box{
     color: white;
 }
 
-
+    /* Style for the form */
+    #my-form {
+      color: white; /* Sets the text color to white */
+    }
+    
+    #my-form label {
+      display: block; /* Ensures each label is on its own line */
+      margin-bottom: 5px; /* Adds some space below each label */
+      color: white; /* Sets the label text color to white */
+    }
+    
+    #my-form input {
+      display: block; /* Ensures each input is on its own line */
+      margin-bottom: 10px; /* Adds some space below each input */
+      padding: 8px; /* Adds some padding inside each input */
+      width: 100%; /* Makes inputs take the full width of their container */
+      max-width: 300px; /* Limits the maximum width of inputs */
+    }
+    
+    #my-form-button {
+      background-color: #4CAF50; /* Button background color */
+      color: white; /* Button text color */
+      padding: 10px 20px; /* Button padding */
+      border: none; /* Removes button border */
+      cursor: pointer; /* Changes cursor to pointer on hover */
+    }
+    
+    #my-form-button:hover {
+      background-color: #45a049; /* Darkens button on hover */
+    }
+    
+    #my-form-status {
+      margin-top: 10px; /* Adds some space above the status message */
+      color: white; /* Sets the status message color to white */
+    }
