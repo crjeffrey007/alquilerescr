@@ -791,23 +791,23 @@
       method: form.method,
       body: data,
       headers: {
-          'Accept': 'application/json'
+        'Accept': 'application/json'
       }
     }).then(response => {
       if (response.ok) {
         status.innerHTML = "Gracias por tu envío!";
-        form.reset()
+        form.reset();
       } else {
         response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+          if (Object.prototype.hasOwnProperty.call(data, 'errors')) {
+            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
           } else {
-            status.innerHTML = "¡Ups! Hubo un problema al enviar tu formulario"
+            status.innerHTML = "¡Ups! Hubo un problema al enviar tu formulario";
           }
-        })
+        });
       }
     }).catch(error => {
-      status.innerHTML = "¡Ups! Hubo un problema al enviar tu formulario"
+      status.innerHTML = "¡Ups! Hubo un problema al enviar tu formulario";
     });
   }
 
