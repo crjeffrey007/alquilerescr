@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Acceso Alquileres CR</title>
-  <script type="module" src="./js/auth.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/auth.js" defer></script>
 </head>
 <body>
-  <h2>Iniciar Sesión</h2>
-  <input type="email" id="email" placeholder="Correo">
-  <input type="password" id="password" placeholder="Contraseña">
-  <button id="loginBtn">Entrar</button>
-  <button id="registerBtn">Registrar</button>
-
-  <p id="mensaje"></p>
+  <div class="container">
+    <h2>Iniciar sesión / Registro</h2>
+    <input type="email" id="email" placeholder="Correo">
+    <input type="password" id="password" placeholder="Contraseña">
+    <div class="buttons">
+      <button id="loginBtn">Entrar</button>
+      <button id="registerBtn">Registrarse</button>
+    </div>
+    <p id="mensaje"></p>
+  </div>
 </body>
 </html>
