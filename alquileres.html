@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propiedades en Alquiler | Alquileres CR</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script type="module" src="js/listar-anuncios.js" defer></script>
-</head>
-<body>
-
-<header class="header">
-  <h1>Propiedades en Alquiler</h1>
-</header>
-
-<main class="container">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Alquileres</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="header"><a href="/">Inmobiliaria CR</a></header>
+<div class="container">
+  <h2>Propiedades en Alquiler</h2>
+  <div class="form-card">
+    <div class="filters">
+      <select id="filterProvincia" class="small"></select>
+      <select id="filterCanton" class="small"></select>
+      <select id="filterTipo" class="small"><option value="">Todos</option><option>Casa</option><option>Apartamento</option></select>
+      <input id="filterMin" class="small" placeholder="Precio min" type="number">
+      <input id="filterMax" class="small" placeholder="Precio max" type="number">
+      <button id="btnFilter" class="small btn">Filtrar</button>
+    </div>
+  </div>
   <div id="anunciosContainer" class="grid-container"></div>
-</main>
-
-<footer><p>© 2025 Alquileres CR</p></footer>
-
-</body>
-</html>
+</div>
+<script type="module">
+  import './js/filters.js';
+  import './js/listar-anuncios.js';
+  window.addEventListener('DOMContentLoaded', ()=>{
+    import('./js/filters.js').then(m=>m.populateFilterProvinces());
+  });
+</script>
+</body></html>

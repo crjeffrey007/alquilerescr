@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Publicar artículo</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="header"><a href="/">Admin</a></header>
+<div class="container">
+  <div class="form-card">
+    <h2>Publicar artículo (solo admin)</h2>
+    <form id="formBlog">
+      <label>Título</label><input id="titulo" required>
+      <label>Categoría</label><select id="categoria"><option>Consejos</option><option>Recomendaciones</option><option>Noticias</option><option>Documentos</option></select>
+      <label>Resumen</label><input id="resumen">
+      <label>Contenido</label><textarea id="contenido" required></textarea>
+      <label>Imagen</label><input id="imagen" type="file" accept="image/*">
+      <button class="btn" id="btnBlog">Publicar</button>
+    </form>
+  </div>
+</div>
+<script type="module" src="js/publicar-blog.js"></script>
+</body></html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publicar negocio</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="header"><a href="/">Inmobiliaria CR</a></header>
+<div class="container">
+  <div class="form-card">
+    <h2>Publicar negocio</h2>
+    <form id="formNegocio" class="form-grid">
+      <div class="full"><label>Nombre comercial</label><input id="nombre_comercial" required></div>
+      <div><label>Tipo de negocio</label><select id="categoria_negocio"><option>Restaurante</option><option>Tienda</option><option>Servicios</option><option>Gimnasio</option></select></div>
+      <div><label>Provincia</label><select id="provincia"></select></div>
+      <div><label>Cantón</label><select id="canton"></select></div>
+      <div class="full"><label>Distrito</label><select id="distrito"></select></div>
+      <div class="full"><label>Descripción</label><textarea id="descripcion"></textarea></div>
+      <div><label>Teléfono</label><input id="telefono" required></div>
+      <div><label>Web / redes</label><input id="web" type="url"></div>
+      <div class="full"><label>Imágenes (máx 6)</label><input id="imagenes" type="file" accept="image/*" multiple></div>
+      <div class="full"><button class="btn" id="btnNegocio">Enviar para aprobación</button></div>
+    </form>
+  </div>
+</div>
+<script type="module">
+  import './js/filters.js';
+  import './js/negocios.js';
+  window.addEventListener('DOMContentLoaded', ()=>{
+    import('./js/filters.js').then(m=>m.populateProvinces());
+  });
+</script>
+</body></html>
