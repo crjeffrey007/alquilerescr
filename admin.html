@@ -1,10 +1,13 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Admin</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"></head><body>
-<header class="header"><a href="/">Admin Panel</a></header>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel Admin</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="header"><a href="/">Admin</a></header>
 <div class="container">
-  <h2>Anuncios pendientes</h2>
-  <div id="pendientes"></div>
-  <h2>Anuncios aprobados</h2>
-  <div id="aprobados"></div>
+<h2>Panel de Administración</h2>
+<div class="form-card">
+  <label>Filtrar por plan</label>
+  <select id="filterPlan"><option value="">Todos</option><option>Gratis</option><option>Básico</option><option>Intermedio</option><option>Comisión</option></select>
+</div>
+<div id="contenedor"></div>
 </div>
 <script type="module" src="js/admin.js"></script>
-</body></html>
+</body>
+</html>
