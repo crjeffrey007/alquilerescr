@@ -6005,7 +6005,10 @@ html:not(.lt-ie10) .not-animated {
 .rd-navbar-static .rd-navbar-nav .rd-navbar-submenu.opened > .rd-navbar-megamenu,
 .rd-navbar-static .rd-navbar-nav .rd-navbar-submenu.focus > .rd-navbar-dropdown,
 .rd-navbar-static .rd-navbar-nav .rd-navbar-submenu.focus > .rd-navbar-megamenu {
-	transform: translateY(0);
+	    transform: translateY(0);
+        padding-top: 0px;
+        padding-bottom: 0px;
+}
 }
 
 .rd-navbar-fullwidth .rd-navbar-nav .rd-navbar-submenu .rd-navbar-submenu.focus > .rd-navbar-dropdown,
@@ -20435,4 +20438,5 @@ form { margin: 1rem auto; padding: 1rem; background: white; border-radius: 10px;
 .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1rem; padding: 1rem; }
 .card { background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .card img { width: 100%; border-radius: 10px; height: 180px; object-fit: cover; }
+
 
