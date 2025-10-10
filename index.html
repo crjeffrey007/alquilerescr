@@ -85,18 +85,54 @@
           </div>
         </div>
         <!-- Navbar -->
-        <div id="navbar-collapse-02" class="rd-navbar-nav-wrap">
-          <ul class="rd-navbar-nav">
-            <!-- Tus elementos del menú -->
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Alquileres</a></li>
-            <li><a href="#servicios-legales">Venta de Propiedades</a></li>
-            <li><a href="#">Anuncios Clasificados</a></li>
-            <li><a href="#contacto">Servicios</a></li>
-            <li><a href="#contacto">Blog</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+<div id="navbar-collapse-02" class="rd-navbar-nav-wrap">
+  <ul class="rd-navbar-nav">
+    <li><a href="#inicio">Inicio</a></li>
+
+    <!-- Alquileres con submenú -->
+    <li class="rd-navbar--has-dropdown">
+      <a href="#servicios">Alquileres</a>
+      <ul class="rd-navbar-dropdown">
+        <li><a href="#anunciar-alquiler">Anunciar Alquiler</a></li>
+      </ul>
+    </li>
+
+    <!-- Venta de Propiedades con submenú -->
+    <li class="rd-navbar--has-dropdown">
+      <a href="#servicios-legales">Venta de Propiedades</a>
+      <ul class="rd-navbar-dropdown">
+        <li><a href="#anunciar-propiedad">Anunciar Propiedades en Venta</a></li>
+        <li><a href="#anuncios">Anuncios</a></li>
+      </ul>
+    </li>
+
+    <!-- Anuncios Clasificados con submenú -->
+    <li class="rd-navbar--has-dropdown">
+      <a href="#">Anuncios Clasificados</a>
+      <ul class="rd-navbar-dropdown">
+        <li><a href="#anunciar-anuncio">Anunciar Anuncio</a></li>
+      </ul>
+    </li>
+
+    <!-- Servicios con submenú -->
+    <li class="rd-navbar--has-dropdown">
+      <a href="#contacto">Servicios</a>
+      <ul class="rd-navbar-dropdown">
+        <li><a href="#marketing-publicidad">Marketing y Publicidad</a></li>
+        <li class="rd-navbar--has-dropdown">
+          <a href="#servicios-legales">Servicios Legales</a>
+          <ul class="rd-navbar-dropdown">
+            <li><a href="#notariado">Notariado</a></li>
+            <li><a href="#derecho-civil">Derecho Civil</a></li>
           </ul>
-        </div>
+        </li>
+      </ul>
+    </li>
+
+    <li><a href="#contacto">Blog</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</div>
         <!-- Botón después del menú con icono de casa -->
         <div class="button-wrap">
           <a href="#" target="_blank" class="button button-primary">
