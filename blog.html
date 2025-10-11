@@ -1,10 +1,64 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blog - Alquileres CR</title><link rel="stylesheet" href="css/style.css"></head><body>
-<header class="header"><a href="/">Alquileres CR</a></header>
-<div class="container">
-<h2>Blog</h2>
-<div id="blogContainer" class="grid-container"></div>
-<a class="btn" href="publicar-blog.html">Publicar artículo (admin)</a>
-</div>
-<script type="module" src="js/listar-blog.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Inmobiliario | Alquileres CR</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="module" src="js/firebase.js" defer></script>
+  <script type="module" src="js/blogHandler.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <img src="assets/logo.png" class="logo" alt="Alquileres CR" />
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="alquileres.html">Alquileres</a></li>
+        <li><a href="ventas.html">Ventas</a></li>
+        <li><a href="anuncios.html">Negocios</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero hero-page" style="background-image: url('assets/hero/blog.jpg');">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <h1>Blog Inmobiliario</h1>
+      <p>Consejos, noticias y tendencias del mercado costarricense</p>
+    </div>
+  </section>
+
+  <!-- Contenedor principal -->
+  <section class="blog-section">
+    <h2>Últimos artículos</h2>
+    <div id="blogList" class="grid"></div>
+  </section>
+
+  <!-- Solo para el administrador -->
+  <section id="adminEditor" class="editor-section" style="display: none;">
+    <h2>✏️ Crear o editar artículo</h2>
+    <form id="formBlog" enctype="multipart/form-data">
+      <input type="text" id="titulo" placeholder="Título del artículo" required />
+      <select id="categoria" required>
+        <option value="">Seleccionar categoría</option>
+        <option>Consejos inmobiliarios</option>
+        <option>Recomendaciones de alquiler y venta</option>
+        <option>Noticias del sector</option>
+      </select>
+      <textarea id="contenido" placeholder="Contenido del artículo" required></textarea>
+      <label>Imagen destacada:</label>
+      <input type="file" id="imagenDestacada" accept="image/*" required />
+      <button type="submit">Publicar artículo</button>
+    </form>
+    <p id="mensajeBlog"></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Alquileres CR</p>
+  </footer>
 </body>
 </html>
