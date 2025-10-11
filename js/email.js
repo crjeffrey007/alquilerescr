@@ -1,0 +1,2 @@
+// js/email.js - EmailJS wrapper
+(function(){ if(window.emailjs) emailjs.init('REPLACE_EMAILJS_PUBLIC_KEY'); })(); export async function notifyAdmin(data){ if(!window.emailjs) return; try{ await emailjs.send('REPLACE_SERVICE_ID','template_new_post', data); }catch(e){console.error(e);} }
