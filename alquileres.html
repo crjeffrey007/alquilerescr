@@ -6,7 +6,125 @@
     <div class="filters">
       <select id="filterProvincia" class="small"></select>
       <select id="filterCanton" class="small"></select>
-      <select id="filterTipo" class="small"><option value="">Todos</option><option>Casa</option><option>Apartamento</option></select>
+      <select id="filterTipo" class="small"><<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alquileres en Costa Rica | Alquileres CR</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/firebase.js" defer></script>
+  <script type="module" src="js/formHandler.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <img src="assets/logo.png" class="logo" alt="Alquileres CR">
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="alquileres.html" class="active">Alquileres</a></li>
+        <li><a href="ventas.html">Ventas</a></li>
+        <li><a href="anuncios.html">Negocios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero hero-page" style="background-image: url('assets/hero/hero.jpg');">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <h1>Alquileres en toda Costa Rica</h1>
+      <p>Publicá tu propiedad o buscá entre cientos de opciones disponibles.</p>
+    </div>
+  </section>
+
+  <!-- Filtros -->
+  <section class="filters">
+    <h2>Filtrar alquileres</h2>
+    <div class="filter-grid">
+      <select id="filterProvincia">
+        <option value="">Provincia</option>
+        <option>San José</option>
+        <option>Alajuela</option>
+        <option>Cartago</option>
+        <option>Heredia</option>
+        <option>Guanacaste</option>
+        <option>Puntarenas</option>
+        <option>Limón</option>
+      </select>
+      <select id="filterTipo">
+        <option value="">Tipo de propiedad</option>
+        <option>Casa</option>
+        <option>Apartamento</option>
+        <option>Edificio</option>
+        <option>Local comercial</option>
+        <option>Bodega</option>
+        <option>Terreno</option>
+      </select>
+      <input type="number" id="filterPrecio" placeholder="Precio máximo">
+      <button id="btnFiltrar">Aplicar</button>
+    </div>
+  </section>
+
+  <!-- Listado -->
+  <section class="listings">
+    <h2>Últimos alquileres publicados</h2>
+    <div id="alquileresGrid" class="grid"></div>
+  </section>
+
+  <!-- Formulario para publicar -->
+  <section class="form-section">
+    <h2>Publicar un anuncio de alquiler</h2>
+    <form id="formAlquiler" enctype="multipart/form-data">
+      <input type="text" id="titulo" placeholder="Título del anuncio" required>
+      <textarea id="descripcion" placeholder="Descripción del inmueble" required></textarea>
+
+      <select id="tipo" required>
+        <option value="">Tipo de propiedad</option>
+        <option>Casa</option>
+        <option>Apartamento</option>
+        <option>Edificio</option>
+        <option>Local comercial</option>
+        <option>Bodega</option>
+        <option>Terreno</option>
+      </select>
+
+      <input type="number" id="precio" placeholder="Precio mensual (₡)" required>
+
+      <div class="location-fields">
+        <select id="provincia" required>
+          <option value="">Provincia</option>
+          <option>San José</option>
+          <option>Alajuela</option>
+          <option>Cartago</option>
+          <option>Heredia</option>
+          <option>Guanacaste</option>
+          <option>Puntarenas</option>
+          <option>Limón</option>
+        </select>
+        <input type="text" id="canton" placeholder="Cantón" required>
+        <input type="text" id="distrito" placeholder="Distrito" required>
+      </div>
+
+      <input type="url" id="mapa" placeholder="URL de mapa (Google Maps)">
+      <label>Imagen destacada:</label>
+      <input type="file" id="imagenDestacada" accept="image/*" required>
+      <label>Galería (opcional):</label>
+      <input type="file" id="galeria" accept="image/*" multiple>
+
+      <button type="submit">Enviar para aprobación</button>
+    </form>
+    <p id="mensajeForm"></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Alquileres CR</p>
+  </footer>
+</body>
+</html>
+ value="">Todos</option><option>Casa</option><option>Apartamento</option></select>
       <input id="filterMin" class="small" placeholder="Precio min" type="number">
       <input id="filterMax" class="small" placeholder="Precio max" type="number">
       <button id="btnFilter" class="small btn">Filtrar</button>
