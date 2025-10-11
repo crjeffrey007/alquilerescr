@@ -1,13 +1,41 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel Admin</title><link rel="stylesheet" href="css/style.css"></head><body>
-<header class="header"><a href="/">Admin</a></header>
-<div class="container">
-<h2>Panel de Administración</h2>
-<div class="form-card">
-  <label>Filtrar por plan</label>
-  <select id="filterPlan"><option value="">Todos</option><option>Gratis</option><option>Básico</option><option>Intermedio</option><option>Comisión</option></select>
-</div>
-<div id="contenedor"></div>
-</div>
-<script type="module" src="js/admin.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin - Alquileres CR</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="module" src="js/admin.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">🏡 Alquileres CR</a>
+      <ul class="nav-links">
+        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero hero-admin">
+    <h1>Panel de Administración</h1>
+    <p>Control total de usuarios, publicaciones y blog.</p>
+  </section>
+
+  <main class="panel-admin">
+    <h2>Publicaciones</h2>
+    <div id="adminPublicaciones" class="grid"></div>
+
+    <h2>Usuarios</h2>
+    <div id="adminUsuarios" class="grid"></div>
+
+    <h2>Entradas del Blog</h2>
+    <div id="adminBlog" class="grid"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 Alquileres CR | Panel Admin</p>
+  </footer>
 </body>
 </html>
