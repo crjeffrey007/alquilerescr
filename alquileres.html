@@ -1,1 +1,16 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Alquileres</title><link rel="stylesheet" href="css/style.css"></head><body><header class="site-header"><div class="container"><h1 class="logo">Alquileres CR</h1></div></header><main class="container"><section class="hero hero-alquileres"><h1>Alquileres en Costa Rica</h1></section><section class="filtros"><form id="filtrosForm"><select id="provinciaFilter"><option value=''>Provincia</option><option>San José</option><option>Alajuela</option></select><select id="tipoFilter"><option value=''>Tipo</option><option>Casa</option><option>Apartamento</option></select><input id="precioMax" type="number" placeholder="Precio máximo (₡)"><button id="applyFilters">Aplicar</button></form></section><section id="listado" class="grid"></section></main><script type="module" src="js/firebase.js"></script><script type="module" src="js/listHandler.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Alquileres</title><link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+<div class="container"><h1 class="logo">Alquileres CR</h1></div></header><main class="container"><section class="hero hero-alquileres"><h1>Alquileres en Costa Rica</h1></section>
+<section class="filtros"><form id="filtrosForm"><select id="provinciaFilter"><option value=''>Provincia</option><option>San José</option><option>Alajuela</option></select><select id="tipoFilter"><option value=''>Tipo</option><option>Casa</option><option>Apartamento</option></select><input id="precioMax" type="number" placeholder="Precio máximo (₡)"><button id="applyFilters">Aplicar</button></form></section><section id="listado" class="grid"></section>
+</main>
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/listHandler.js"></script>
+
+</body>
+</html>
