@@ -1,1 +1,0 @@
-Reemplaza js/firebase.js con tu configuracion y pon tus claves EmailJS en js/notifications.js
