@@ -1,1 +1,6 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Blog</title><link rel="stylesheet" href="css/style.css"></head><body><header class="site-header"><div class="container"><h1 class="logo">Alquileres CR</h1></div></header><main class="container"><section class="hero hero-blog"><h1>Blog Inmobiliario</h1></section><section id="posts" class="grid"></section></main><script type="module" src="js/firebase.js"></script><script type="module" src="js/blog.js"></script></body></html>
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Blog - Alquileres CR</title><link rel='stylesheet' href='css/style.css'></head><body>
+<header class="header container"><div class="logo">Alquileres CR</div></header>
+<main class="container"><h1>Blog</h1>
+<form id="blogForm" class="form-container"><label>Título</label><input name="titulo" required><label>Categoría</label><select name="categoria"><option>Consejos</option><option>Noticias</option></select><label>Contenido</label><textarea name="contenido" required></textarea><button type="submit" class="btn btn-primary">Publicar</button></form>
+<div id="posts" class="grid"></div></main>
+<script src="js/firebase.js"></script><script src="js/blogHandler.js"></script></body></html>

@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Registro - Alquileres CR</title><link rel='stylesheet' href='css/style.css'></head><body>
+<main class="container"><div class="form-container"><h2>Crear cuenta</h2>
+<form id="registerForm"><label>Email</label><input id="regEmail" type="email" required><label>Contraseña</label><input id="regPass" type="password" required><label>Nombre</label><input id="regName" type="text"></form><button id="btnReg" class="btn btn-primary">Registrarse</button></div></main>
+<script src="js/firebase.js"></script>
+<script>
+document.getElementById('btnReg').addEventListener('click', async ()=>{ try{ const cred = await firebase.auth().createUserWithEmailAndPassword(regEmail.value, regPass.value); await db.collection('usuarios').doc(cred.user.uid).set({nombre: regName.value, email: regEmail.value, rol:'usuario'}); window.location.href='panel.html'; }catch(e){alert(e.message);} });
+</script></body></html>

@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Login - Alquileres CR</title><link rel='stylesheet' href='css/style.css'></head><body>
+<main class="container"><div class="form-container"><h2>Iniciar sesión</h2>
+<form id="loginForm"><label>Email</label><input id="email" type="email" required><label>Contraseña</label><input id="password" type="password" required><button id="btnLogin" class="btn btn-primary" type="submit">Entrar</button></form>
+<p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p></div></main>
+<script src="js/firebase.js"></script>
+<script>
+document.getElementById('loginForm').addEventListener('submit', async (e)=>{ e.preventDefault(); try{ await firebase.auth().signInWithEmailAndPassword(email.value,password.value); window.location.href='panel.html'; }catch(err){ alert(err.message); }});
+</script></body></html>

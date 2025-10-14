@@ -1,1 +1,21 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Anuncios</title><link rel="stylesheet" href="css/style.css"></head><body><header class="site-header"><div class="container"><h1 class="logo">Alquileres CR</h1></div></header><main class="container"><section class="hero hero-negocios"><h1>Anuncios Comerciales</h1></section><section class="filtros"><form id="filtrosFormNeg"><select id="provinciaFilterAnuncios"><option value=''>Provincia</option><option>San José</option></select></form></section><section id="listado-negocios" class="grid"></section></main><script type="module" src="js/firebase.js"></script><script type="module" src="js/listHandler.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anuncios Comerciales - Alquileres CR</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="header container"><div class="logo"><img src="assets/logo.png" alt="logo" style="height:40px"> Alquileres CR</div></header>
+<main class="container"><section class="hero"><h1>Anunciar en Directorio Comercial</h1></section>
+<div class="form-container"><form id="formAnuncio" data-collection="anuncios">
+<label>Tipo de anuncio</label><select name="tipo"><option>Negocio</option><option>Servicio</option></select>
+<label>Título *</label><input name="titulo" required>
+<label>Descripción *</label><textarea name="descripcion" required></textarea>
+<label>Logo</label><input type="file" name="logo" accept="image/*">
+<label>Imágenes</label><input type="file" name="imagenes" multiple accept="image/*">
+<label>Dirección</label><input name="direccion" placeholder="Dirección exacta">
+<div class="field-row"><input name="distrito" placeholder="Distrito"><input name="canton" placeholder="Cantón"></div>
+<div class="field-row"><input name="provincia" placeholder="Provincia"><input name="pais" placeholder="País" value="Costa Rica"></div>
+<h3>Contacto</h3><div class="field-row"><input name="nombre" placeholder="Nombre"><input name="apellidos" placeholder="Apellidos"></div>
+<input name="email" type="email" placeholder="Email"><input name="telefono" placeholder="Teléfono">
+<label><input type="checkbox" required> Confirmo que la información es verídica</label>
+<button class="btn btn-primary" type="submit">Enviar anuncio</button></form></div></main>
+<footer class="site-footer">© 2025 Alquileres CR</footer>
+<script src="js/firebase.js"></script><script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script><script src="js/notifications.js"></script><script src="js/publicar.js"></script>
+</body></html>
