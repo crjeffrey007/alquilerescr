@@ -1,7 +1,31 @@
-// js/admin.js - admin: ver y aprobar/rechazar publicaciones (estado 'pendiente')
-import { db } from './firebase.js';
-import { collection, query, where, getDocs, updateDoc, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
-import { initAuth } from './auth.js';
-const adminList = document.getElementById('adminList'); const pendingCount = document.getElementById('pendingCount');
-async function loadPending(){ if(!adminList) return; adminList.innerHTML='Cargando...'; const q = query(collection(db,'publicaciones'), where('estado','==','pendiente')); const snap = await getDocs(q); adminList.innerHTML=''; pendingCount.textContent = snap.size || 0; snap.forEach(s=>{ const d=s.data(); const id=s.id; const card=document.createElement('div'); card.className='card'; card.innerHTML = `<h4>${d.titulo}</h4><p>${d.provincia||''}</p><p>${d.tipo}</p><div><button data-id="${id}" class="apro">Aprobar</button><button data-id="${id}" class="rej">Rechazar</button><button data-id="${id}" class="del">Eliminar</button></div>`; adminList.appendChild(card); }); adminList.querySelectorAll('.apro').forEach(b=>b.addEventListener('click', async ()=>{ await updateDoc(doc(db,'publicaciones',b.dataset.id), { estado:'aprobado' }); loadPending(); })); adminList.querySelectorAll('.rej').forEach(b=>b.addEventListener('click', async ()=>{ await updateDoc(doc(db,'publicaciones',b.dataset.id), { estado:'rechazado' }); loadPending(); })); adminList.querySelectorAll('.del').forEach(b=>b.addEventListener('click', async ()=>{ if(!confirm('Eliminar?')) return; await deleteDoc(doc(db,'publicaciones',b.dataset.id)); loadPending(); })); }
-initAuth(user=>{ if(!user || user.email !== 'crjeffrey7@gmail.com'){ document.body.innerHTML = '<p>Acceso restringido</p>'; return; } loadPending(); });
+// js/admin.js - admin panel actions
+async function loadPending(){
+  const container = document.getElementById('pendingListings');
+  container.innerHTML = '';
+  const cols = ['alquileres','ventas','anuncios'];
+  for(const c of cols){
+    const snap = await db.collection(c).where('estado','==','pendiente').get();
+    snap.forEach(d=>{
+      const data = d.data();
+      const div = document.createElement('div');
+      div.className='card';
+      div.innerHTML = `<div class="card-body"><h3>${data.titulo||''}</h3><p>Tipo: ${c}</p><p>${data.descripcion?data.descripcion.slice(0,140):''}</p>
+        <button onclick="approve('${c}','${d.id}','${data.email||''}')">Aprobar</button>
+        <button onclick="reject('${c}','${d.id}','${data.email||''}')">Rechazar</button></div>`;
+      container.appendChild(div);
+    });
+  }
+}
+async function approve(col,id,email){
+  const ref = db.collection(col).doc(id);
+  const exp = new Date(Date.now()+30*24*60*60*1000).toISOString();
+  await ref.update({estado:'aprobado', fecha_aprobacion:new Date().toISOString(), fecha_expiracion:exp});
+  notifyAdmin('YOUR_EMAILJS_SERVICE','YOUR_EMAILJS_TEMPLATE_APPROVE',{email:email});
+  loadPending();
+}
+async function reject(col,id,email){
+  await db.collection(col).doc(id).update({estado:'rechazado'});
+  notifyAdmin('YOUR_EMAILJS_SERVICE','YOUR_EMAILJS_TEMPLATE_REJECT',{email:email});
+  loadPending();
+}
+window.loadPending = loadPending;
