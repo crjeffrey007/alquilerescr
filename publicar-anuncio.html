@@ -2,64 +2,71 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publicar Anuncio Comercial | Alquileres CR</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Publicar Anuncio Comercial</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="js/firebase.js"></script>
+  <script defer src="js/form-anuncio.js"></script>
 </head>
 <body>
-  <header>
-    <h1>🛍️ Publicar Anuncio Comercial</h1>
-  </header>
+  <h1>Publicar Anuncio Comercial</h1>
+  <form id="form-anuncio">
 
-  <main class="form-container">
-    <form id="negocioForm" data-form-type="negocio">
-      <label>Nombre del negocio *</label>
-      <input type="text" name="nombre_negocio" required>
+    <label>Tipo de Anuncio *</label>
+    <input type="text" id="tipo" required><br>
 
-      <label>Descripción *</label>
-      <textarea name="descripcion" required></textarea>
+    <label>Título del Anuncio *</label>
+    <input type="text" id="titulo" required><br>
 
-      <label>Categoría *</label>
-      <select name="categoria" required>
-        <option value="">Seleccionar...</option>
-        <option value="Restaurante">Restaurante</option>
-        <option value="Tienda">Tienda</option>
-        <option value="Servicio">Servicio</option>
-        <option value="Otro">Otro</option>
-      </select>
+    <label>Descripción *</label>
+    <textarea id="descripcion" required></textarea><br>
 
-      <label>Horario</label>
-      <input type="text" name="horario" placeholder="Lunes a viernes, 8am - 5pm">
+    <label>Nombre del Negocio *</label>
+    <input type="text" id="nombre_negocio" required><br>
 
-      <label>Servicio a domicilio</label>
-      <select name="servicio_a_domicilio">
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-      </select>
+    <label>Teléfono *</label>
+    <input type="tel" id="telefono" required><br>
 
-      <label>Imagen destacada *</label>
-      <input type="file" name="imagen_destacada" accept="image/*" required>
+    <label>Email de contacto *</label>
+    <input type="email" id="email" required><br>
 
-      <label>Galería de fotos</label>
-      <input type="file" name="imagenes[]" accept="image/*" multiple>
+    <label>Subir Logo</label>
+    <input type="file" id="logo" accept="image/*"><br>
 
-      <label>Provincia</label>
-      <input type="text" name="provincia">
+    <label>Subir Imágenes</label>
+    <input type="file" id="imagenes" multiple accept="image/*"><br>
 
-      <label>Cantón</label>
-      <input type="text" name="canton">
+    <label>Nombre de quien anuncia *</label>
+    <input type="text" id="nombre" required><br>
 
-      <label>Teléfono *</label>
-      <input type="tel" name="telefono" required>
+    <label>Horario de atención *</label>
+    <input type="text" id="horario" required><br>
 
-      <label>Email *</label>
-      <input type="email" name="email" required>
+    <label>Dirección *</label>
+    <input type="text" id="direccion" required><br>
 
-      <button type="submit">Enviar anuncio</button>
-    </form>
-  </main>
+    <label>Provincia</label>
+    <input type="text" id="provincia"><br>
 
-  <script src="js/firebase.js"></script>
-  <script src="js/formHandler.js"></script>
+    <label>País</label>
+    <input type="text" id="pais"><br>
+
+    <label>Ofrece servicio a domicilio</label>
+    <select id="servicio_domicilio">
+      <option value="Si">Sí</option>
+      <option value="No">No</option>
+    </select><br>
+
+    <label>
+      <input type="checkbox" id="veridico" required>
+      Acepta que la información enviada es verídica
+    </label><br>
+
+    <button type="submit">Enviar Anuncio</button>
+  </form>
+
+  <p id="mensaje"></p>
 </body>
 </html>
