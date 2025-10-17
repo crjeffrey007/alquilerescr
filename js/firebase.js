@@ -1,4 +1,4 @@
-// Configuración de Firebase
+// firebase.js
 const firebaseConfig = {
   apiKey: "AIzaSyBKdQaX27zlOWU0xwCRJPscaQR5FiqjD80",
   authDomain: "inmobiliaria-cr.firebaseapp.com",
