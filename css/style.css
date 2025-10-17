@@ -20486,3 +20486,55 @@ opacity: 0;
 .card .card-body {
   padding: 12px;
 }
+
+/* === Panel de administración === */
+.admin-header {
+  background: #003580;
+  padding: 15px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-container {
+  padding: 20px;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card h3 {
+  margin: 10px 0;
+  color: #004aad;
+}
+
+.card button {
+  display: inline-block;
+  margin: 8px;
+  padding: 8px 14px;
+}
+
+.card button:first-child {
+  background: #2ecc71;
+}
+
+.card button:last-child {
+  background: #e74c3c;
+}
+
+/* === Responsivo === */
+@media (max-width: 600px) {
+  .form-container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .grid-cards {
+    grid-template-columns: 1fr;
+  }
+}
