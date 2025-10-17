@@ -1,22 +1,25 @@
-// js/auth.js
-// Requires firebase.js loaded
-function registerWithEmail(email, password, displayName){
-  return firebase.auth().createUserWithEmailAndPassword(email,password).then(cred=>{
-    return firebase.firestore().collection('usuarios').doc(cred.user.uid).set({
-      nombre: displayName||"",
-      email: email,
-      rol: "usuario",
-      plan: "gratis",
-      fechaRegistro: new Date().toISOString(),
-      fechaExpiracion: new Date(Date.now()+30*24*60*60*1000).toISOString(),
-      limitePublicaciones: 5,
-      publicacionesActuales:0
+// Registro
+async function registrar(email, password) {
+  try {
+    const user = await auth.createUserWithEmailAndPassword(email, password);
+    alert("✅ Registro exitoso. Espera aprobación del administrador.");
+    await db.collection("usuarios").doc(user.user.uid).set({
+      email,
+      rol: "pendiente",
+      fecha: firebase.firestore.FieldValue.serverTimestamp()
     });
-  });
+  } catch (err) {
+    alert(err.message);
+  }
 }
-function loginWithEmail(email,password){
-  return firebase.auth().signInWithEmailAndPassword(email,password);
-}
-function logout(){
-  return firebase.auth().signOut();
+
+// Login
+async function login(email, password) {
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+    alert("✅ Bienvenido");
+    window.location.href = "panel.html";
+  } catch (err) {
+    alert("❌ " + err.message);
+  }
 }
