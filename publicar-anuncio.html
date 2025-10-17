@@ -2,71 +2,56 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Publicar Anuncio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Anuncio Comercial</title>
+  <link rel="stylesheet" href="css/estilos.css">
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="js/firebase.js"></script>
-  <script defer src="js/form-anuncio.js"></script>
+  <script src="js/publicar-anuncio.js" defer></script>
 </head>
 <body>
-  <h1>Publicar Anuncio Comercial</h1>
-  <form id="form-anuncio">
+  <header>
+    <h1>Publicar Anuncio Comercial</h1>
+  </header>
 
-    <label>Tipo de Anuncio *</label>
-    <input type="text" id="tipo" required><br>
+  <main class="contenedor">
+    <form id="form-anuncio">
+      <label>Título del anuncio *</label>
+      <input type="text" id="titulo" required>
 
-    <label>Título del Anuncio *</label>
-    <input type="text" id="titulo" required><br>
+      <label>Descripción *</label>
+      <textarea id="descripcion" required></textarea>
 
-    <label>Descripción *</label>
-    <textarea id="descripcion" required></textarea><br>
+      <label>Subir imágenes</label>
+      <input type="file" id="imagenes" multiple accept="image/*">
 
-    <label>Nombre del Negocio *</label>
-    <input type="text" id="nombre_negocio" required><br>
+      <label>Categoría *</label>
+      <select id="categoria" required>
+        <option value="Comercio">Comercio</option>
+        <option value="Servicios">Servicios</option>
+        <option value="Profesionales">Profesionales</option>
+        <option value="Otros">Otros</option>
+      </select>
 
-    <label>Teléfono *</label>
-    <input type="tel" id="telefono" required><br>
+      <label>Ubicación *</label>
+      <input type="text" id="ubicacion" required>
 
-    <label>Email de contacto *</label>
-    <input type="email" id="email" required><br>
+      <label>Teléfono *</label>
+      <input type="tel" id="telefono" required>
 
-    <label>Subir Logo</label>
-    <input type="file" id="logo" accept="image/*"><br>
+      <label>Email *</label>
+      <input type="email" id="email" required>
 
-    <label>Subir Imágenes</label>
-    <input type="file" id="imagenes" multiple accept="image/*"><br>
+      <label>Nombre del anunciante *</label>
+      <input type="text" id="nombre" required>
 
-    <label>Nombre de quien anuncia *</label>
-    <input type="text" id="nombre" required><br>
+      <label><input type="checkbox" id="acepta" required> Acepta que la información es verídica</label>
 
-    <label>Horario de atención *</label>
-    <input type="text" id="horario" required><br>
-
-    <label>Dirección *</label>
-    <input type="text" id="direccion" required><br>
-
-    <label>Provincia</label>
-    <input type="text" id="provincia"><br>
-
-    <label>País</label>
-    <input type="text" id="pais"><br>
-
-    <label>Ofrece servicio a domicilio</label>
-    <select id="servicio_domicilio">
-      <option value="Si">Sí</option>
-      <option value="No">No</option>
-    </select><br>
-
-    <label>
-      <input type="checkbox" id="veridico" required>
-      Acepta que la información enviada es verídica
-    </label><br>
-
-    <button type="submit">Enviar Anuncio</button>
-  </form>
-
-  <p id="mensaje"></p>
+      <button type="submit">Enviar Anuncio</button>
+    </form>
+  </main>
 </body>
 </html>
