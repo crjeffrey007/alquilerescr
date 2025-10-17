@@ -3,25 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Panel - Alquileres CR</title>
+  <title>Mi Panel de Usuario</title>
   <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  <script src="js/firebase.js" defer></script>
+  <script src="js/firebase.js"></script>
+
+  <!-- Panel -->
   <script src="js/panel.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Mi Panel de Publicaciones</h1>
+    <h1>Mi Panel de Usuario</h1>
   </header>
 
   <main class="contenedor">
-    <div id="panel" class="panel">
+    <section id="perfil">
+      <h2>Información del Usuario</h2>
+      <p id="user-info">Cargando...</p>
+      <button id="logout-btn">Cerrar Sesión</button>
+    </section>
+
+    <hr>
+
+    <section id="publicaciones">
       <h2>Mis Publicaciones</h2>
-      <div id="mis-publicaciones" class="grid-listado"></div>
-    </div>
+      <div id="mis-publicaciones"></div>
+    </section>
   </main>
 </body>
 </html>
