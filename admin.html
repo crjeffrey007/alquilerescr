@@ -1,4 +1,51 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Admin - Alquileres CR</title><link rel='stylesheet' href='css/style.css'></head><body>
-<header class="header container"><div class="logo">Alquileres CR - Admin</div></header>
-<main class="container"><h1>Panel Admin</h1><div id="pendingListings"></div></main>
-<script src="js/firebase.js"></script><script src="js/notifications.js"></script><script src="js/admin.js"></script><script>loadPending();</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="js/firebase.js"></script>
+
+  <!-- Script del panel -->
+  <script src="js/admin.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Panel de Administración</h1>
+  </header>
+
+  <main class="contenedor">
+    <section>
+      <h2>Filtrar publicaciones</h2>
+      <select id="filtroTipo">
+        <option value="todos">Todos los tipos</option>
+        <option value="alquileres">Alquileres</option>
+        <option value="ventas">Ventas</option>
+        <option value="anunciosComerciales">Anuncios Comerciales</option>
+      </select>
+
+      <select id="filtroEstado">
+        <option value="todos">Todos los estados</option>
+        <option value="pendiente">Pendiente</option>
+        <option value="aprobado">Aprobado</option>
+        <option value="rechazado">Rechazado</option>
+      </select>
+      <button id="btnFiltrar">Aplicar filtros</button>
+    </section>
+
+    <hr />
+
+    <section id="listadoPublicaciones">
+      <h2>Publicaciones</h2>
+      <div id="admin-publicaciones"></div>
+    </section>
+  </main>
+</body>
+</html>
