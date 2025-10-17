@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publicar Venta - Alquileres CR</title><link rel="stylesheet" href="css/style.css"></head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propiedades en Venta - Alquileres CR</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="js/firebase.js" defer></script>
+  <script src="js/listar-ventas.js" defer></script>
+</head>
 <body>
-<header class="header container"><div class="logo"><img src="assets/logo.png" alt="logo" style="height:40px"> Alquileres CR</div></header>
-<main class="container"><section class="hero"><h1>Anunciar Propiedad en Venta</h1></section>
-<div class="form-container"><form id="formVenta" data-collection="ventas">
-<label>Título *</label><input name="titulo" required>
-<label>Descripción *</label><textarea name="descripcion" required></textarea>
-<label>Imágenes / Videos</label><input type="file" name="imagenes" multiple accept="image/*,video/*">
-<div class="field-row"><input name="area_terreno" placeholder="Área terreno m²"><input name="area_construccion" placeholder="Área construida m²"></div>
-<label>Precio</label><input name="precio" placeholder="Precio">
-<div class="field-row"><input name="direccion" placeholder="Dirección"><input name="distrito" placeholder="Distrito"></div>
-<div class="field-row"><input name="canton" placeholder="Cantón"><input name="provincia" placeholder="Provincia"></div>
-<h3>Contacto</h3><div class="field-row"><input name="nombre" placeholder="Nombre"><input name="apellidos" placeholder="Apellidos"></div>
-<input name="email" type="email" placeholder="Email"><input name="telefono" placeholder="Teléfono">
-<label><input type="checkbox" required> Confirmo que la información es verídica</label>
-<button class="btn btn-primary" type="submit">Enviar anuncio</button></form></div></main>
-<footer class="site-footer">© 2025 Alquileres CR</footer>
-<script src="js/firebase.js"></script><script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script><script src="js/notifications.js"></script><script src="js/publicar.js"></script>
-</body></html>
+  <header>
+    <h1>Propiedades en Venta</h1>
+  </header>
+
+  <main class="contenedor">
+    <div id="lista-ventas" class="grid-listado"></div>
+  </main>
+</body>
+</html>
