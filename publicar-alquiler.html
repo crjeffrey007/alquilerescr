@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anunciar Propiedad en Alquiler | Alquileres CR</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>🏡 Publicar Alquiler</h1>
+  </header>
+
+  <main class="form-container">
+    <form id="alquilerForm" data-form-type="alquiler">
+      <label>Título del anuncio *</label>
+      <input type="text" name="titulo" required>
+
+      <label>Descripción del anuncio *</label>
+      <textarea name="descripcion" required></textarea>
+
+      <label>Imagen destacada *</label>
+      <input type="file" name="imagen_destacada" accept="image/*" required>
+
+      <label>Galería de fotos</label>
+      <input type="file" name="imagenes[]" accept="image/*" multiple>
+
+      <label>Área del terreno (m²)</label>
+      <input type="number" name="area_terreno">
+
+      <label>Área de construcción (m²)</label>
+      <input type="number" name="area_construccion">
+
+      <label>Número de habitaciones</label>
+      <input type="number" name="habitaciones">
+
+      <label>Número de baños</label>
+      <input type="number" name="banos">
+
+      <label>Provincia</label>
+      <input type="text" name="provincia">
+
+      <label>Cantón</label>
+      <input type="text" name="canton">
+
+      <label>Distrito</label>
+      <input type="text" name="distrito">
+
+      <label>Dirección exacta</label>
+      <input type="text" name="direccion">
+
+      <label>Ubicación en mapa (Google Maps)</label>
+      <input type="url" name="mapa_url" placeholder="https://maps.google.com/...">
+
+      <label>Precio mensual (₡ o $)</label>
+      <input type="number" name="precio">
+
+      <label>Nombre del anunciante *</label>
+      <input type="text" name="nombre" required>
+
+      <label>Email *</label>
+      <input type="email" name="email" required>
+
+      <label>Teléfono *</label>
+      <input type="tel" name="telefono" required>
+
+      <label>Acepta los términos *</label>
+      <input type="checkbox" required>
+
+      <button type="submit">Enviar anuncio</button>
+    </form>
+  </main>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/formHandler.js"></script>
+</body>
+</html>
