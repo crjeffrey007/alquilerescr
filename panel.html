@@ -1,38 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración | Alquileres CR</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Panel - Alquileres CR</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="js/firebase.js" defer></script>
+  <script src="js/panel.js" defer></script>
 </head>
 <body>
-  <header class="admin-header">
-    <h1>🧩 Panel de Administración</h1>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="#" onclick="logout()">Cerrar sesión</a>
-    </nav>
+  <header>
+    <h1>Mi Panel de Publicaciones</h1>
   </header>
 
-  <main class="panel-container">
-    <section>
-      <h2>📦 Publicaciones Pendientes</h2>
-      <div id="pendientes" class="grid-cards"></div>
-    </section>
-
-    <section>
-      <h2>✅ Publicaciones Aprobadas</h2>
-      <div id="aprobadas" class="grid-cards"></div>
-    </section>
+  <main class="contenedor">
+    <div id="panel" class="panel">
+      <h2>Mis Publicaciones</h2>
+      <div id="mis-publicaciones" class="grid-listado"></div>
+    </div>
   </main>
-
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-
-  <script src="js/firebase.js"></script>
-  <script src="js/panelHandler.js"></script>
 </body>
 </html>
