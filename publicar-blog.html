@@ -4,7 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicar en el Blog | Alquileres CR</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Publicar en Blog</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="js/firebase.js"></script>
+  <script defer src="js/form-blog.js"></script>
+</head>
+<body>
+  <h1>Publicar Artículo en el Blog</h1>
+
+  <div id="no-access" style="display:none; color:red;">
+    ⚠️ Solo el administrador puede publicar artículos en el blog.
+  </div>
+
+  <form id="form-blog" style="display:none;">
+    <label>Título del artículo *</label><br>
+    <input type="text" id="titulo" required><br><br>
+
+    <label>Contenido *</label><br>
+    <textarea id="contenido" rows="8" required></textarea><br><br>
+
+    <label>Subir imagen destacada</label><br>
+    <input type="file" id="imagen" accept="image/*"><br><br>
+
+    <label>Categoría</label><br>
+    <input type="text" id="categoria"><br><br>
+
+    <button type="submit">Publicar Artículo</button>
+  </form>
+
+  <p id="mensaje"></p>
+</body>
+</html>
+/styles.css">
 </head>
 <body>
   <header>
