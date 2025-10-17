@@ -3,73 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anunciar Propiedad en Alquiler | Alquileres CR</title>
+  <title>Anunciar Propiedad en Alquiler</title>
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 </head>
 <body>
-  <header>
-    <h1>🏡 Publicar Alquiler</h1>
-  </header>
+  <h1>Anunciar Propiedad en Alquiler</h1>
 
-  <main class="form-container">
-    <form id="alquilerForm" data-form-type="alquiler">
-      <label>Título del anuncio *</label>
-      <input type="text" name="titulo" required>
+  <form id="alquilerForm" data-form-type="alquiler">
+    <!-- Información básica -->
+    <label>Título del anuncio *</label>
+    <input type="text" name="titulo" required>
 
-      <label>Descripción del anuncio *</label>
-      <textarea name="descripcion" required></textarea>
+    <label>Descripción del anuncio *</label>
+    <textarea name="descripcion" required></textarea>
 
-      <label>Imagen destacada *</label>
-      <input type="file" name="imagen_destacada" accept="image/*" required>
+    <!-- Subida de imágenes -->
+    <label>Subir fotografías (máximo 5 imágenes)</label>
+    <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple required>
 
-      <label>Galería de fotos</label>
-      <input type="file" name="imagenes[]" accept="image/*" multiple>
+    <!-- Detalles de la propiedad -->
+    <label>Área de la propiedad (m²)</label>
+    <input type="number" name="area_propiedad">
 
-      <label>Área del terreno (m²)</label>
-      <input type="number" name="area_terreno">
+    <label>Área de construcción (m²)</label>
+    <input type="number" name="area_construccion">
 
-      <label>Área de construcción (m²)</label>
-      <input type="number" name="area_construccion">
+    <label>¿Alquila amoblado? *</label>
+    <select name="amoblado" required>
+      <option value="Si">Sí</option>
+      <option value="No">No</option>
+    </select>
 
-      <label>Número de habitaciones</label>
-      <input type="number" name="habitaciones">
+    <fieldset>
+      <legend>El inmueble tiene:</legend>
+      <label><input type="checkbox" name="tiene[]" value="Sala"> Sala</label>
+      <label><input type="checkbox" name="tiene[]" value="Cocina"> Cocina</label>
+      <label><input type="checkbox" name="tiene[]" value="Habitaciones"> Habitaciones</label>
+      <label><input type="checkbox" name="tiene[]" value="Corredor"> Corredor</label>
+      <label><input type="checkbox" name="tiene[]" value="Patio de pilas"> Patio de pilas</label>
+      <label><input type="checkbox" name="tiene[]" value="Sótano"> Sótano</label>
+      <label><input type="checkbox" name="tiene[]" value="Piscina"> Piscina</label>
+      <label><input type="checkbox" name="tiene[]" value="Jardín"> Jardín</label>
+    </fieldset>
 
-      <label>Número de baños</label>
-      <input type="number" name="banos">
+    <label>Número de habitaciones *</label>
+    <input type="number" name="habitaciones" required>
 
-      <label>Provincia</label>
-      <input type="text" name="provincia">
+    <label>Número de baños *</label>
+    <input type="number" name="banos" required>
 
-      <label>Cantón</label>
-      <input type="text" name="canton">
+    <fieldset>
+      <legend>Muebles y artefactos que tiene el inmueble:</legend>
+      <label><input type="checkbox" name="muebles[]" value="TV"> TV</label>
+      <label><input type="checkbox" name="muebles[]" value="Sofá"> Sofá</label>
+      <label><input type="checkbox" name="muebles[]" value="Cocina"> Cocina</label>
+      <label><input type="checkbox" name="muebles[]" value="Refrigerador"> Refrigerador</label>
+      <label><input type="checkbox" name="muebles[]" value="Microondas"> Microondas</label>
+      <label><input type="checkbox" name="muebles[]" value="Horno"> Horno</label>
+      <label><input type="checkbox" name="muebles[]" value="Cofeemaker"> Cofeemaker</label>
+      <label><input type="checkbox" name="muebles[]" value="Licuadora"> Licuadora</label>
+      <label><input type="checkbox" name="muebles[]" value="Lavadora"> Lavadora</label>
+      <label><input type="checkbox" name="muebles[]" value="Mesa"> Mesa</label>
+      <label><input type="checkbox" name="muebles[]" value="Sillas"> Sillas</label>
+      <label><input type="checkbox" name="muebles[]" value="Cama"> Cama</label>
+      <label><input type="checkbox" name="muebles[]" value="Lámparas"> Lámparas</label>
+    </fieldset>
 
-      <label>Distrito</label>
-      <input type="text" name="distrito">
+    <label>¿Incluye servicios?</label>
+    <select name="incluye_servicios">
+      <option value="No">No</option>
+      <option value="Si">Sí</option>
+    </select>
 
-      <label>Dirección exacta</label>
-      <input type="text" name="direccion">
+    <fieldset>
+      <legend>Servicios que incluye:</legend>
+      <label><input type="checkbox" name="servicios[]" value="Electricidad"> Electricidad</label>
+      <label><input type="checkbox" name="servicios[]" value="Agua"> Agua</label>
+      <label><input type="checkbox" name="servicios[]" value="Internet"> Internet</label>
+      <label><input type="checkbox" name="servicios[]" value="Wifi"> Wifi</label>
+      <label><input type="checkbox" name="servicios[]" value="Canales de cable"> Canales de cable</label>
+      <label><input type="checkbox" name="servicios[]" value="Netflix"> Netflix</label>
+      <label><input type="checkbox" name="servicios[]" value="Prime"> Prime</label>
+      <label><input type="checkbox" name="servicios[]" value="Basura"> Basura</label>
+    </fieldset>
 
-      <label>Ubicación en mapa (Google Maps)</label>
-      <input type="url" name="mapa_url" placeholder="https://maps.google.com/...">
+    <!-- Ubicación -->
+    <h3>Dirección del inmueble</h3>
+    <input type="text" name="direccion" placeholder="Dirección exacta" required>
+    <input type="text" name="distrito" placeholder="Distrito" required>
+    <input type="text" name="canton" placeholder="Cantón" required>
+    <input type="text" name="provincia" placeholder="Provincia">
+    <input type="text" name="pais" placeholder="País" value="Costa Rica">
 
-      <label>Precio mensual (₡ o $)</label>
-      <input type="number" name="precio">
+    <!-- Moneda -->
+    <label>Moneda para cobrar *</label>
+    <select name="moneda" required>
+      <option value="Colones">Colones</option>
+      <option value="Dólares">Dólares</option>
+    </select>
 
-      <label>Nombre del anunciante *</label>
-      <input type="text" name="nombre" required>
+    <!-- Datos del anunciante -->
+    <h3>Datos del anunciante</h3>
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="text" name="apellidos" placeholder="Apellidos" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
+    <input type="text" name="telefono" placeholder="Teléfono" required>
 
-      <label>Email *</label>
-      <input type="email" name="email" required>
+    <label>
+      <input type="checkbox" name="acepta_comision">
+      Acepta negociar comisión en caso de que tengamos su comprador y se haga efectiva la venta
+    </label>
 
-      <label>Teléfono *</label>
-      <input type="tel" name="telefono" required>
+    <label>
+      <input type="checkbox" name="veridico" required>
+      Acepta que la información que está enviando es verídica *
+    </label>
 
-      <label>Acepta los términos *</label>
-      <input type="checkbox" required>
-
-      <button type="submit">Enviar anuncio</button>
-    </form>
-  </main>
+    <button type="submit">Enviar Anuncio</button>
+  </form>
 
   <script src="js/firebase.js"></script>
   <script src="js/formHandler.js"></script>
