@@ -2,133 +2,82 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anunciar Propiedad en Alquiler</title>
-  <link rel="stylesheet" href="css/styles.css">
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="js/firebase.js"></script>
+  <script defer src="js/form-alquiler.js"></script>
 </head>
 <body>
   <h1>Anunciar Propiedad en Alquiler</h1>
-
-  <form id="alquilerForm" data-form-type="alquiler">
-    <!-- Información básica -->
+  <form id="form-alquiler">
     <label>Título del anuncio *</label>
-    <input type="text" name="titulo" required>
+    <input type="text" id="titulo" required><br>
 
     <label>Descripción del anuncio *</label>
-    <textarea name="descripcion" required></textarea>
+    <textarea id="descripcion" required></textarea><br>
 
-    <!-- Subida de imágenes -->
-    <label>Subir fotografías (máximo 5 imágenes)</label>
-    <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple required>
+    <label>Subir fotografías *</label>
+    <input type="file" id="imagenes" multiple accept="image/*"><br>
 
-    <!-- Detalles de la propiedad -->
-    <label>Área de la propiedad (m²)</label>
-    <input type="number" name="area_propiedad">
+    <label>Área de la propiedad</label>
+    <input type="text" id="area"><br>
 
-    <label>Área de construcción (m²)</label>
-    <input type="number" name="area_construccion">
+    <label>Área de construcción</label>
+    <input type="text" id="construccion"><br>
 
-    <label>¿Alquila amoblado? *</label>
-    <select name="amoblado" required>
+    <label>Alquila amoblado?</label>
+    <select id="amoblado">
       <option value="Si">Sí</option>
       <option value="No">No</option>
-    </select>
-
-    <fieldset>
-      <legend>El inmueble tiene:</legend>
-      <label><input type="checkbox" name="tiene[]" value="Sala"> Sala</label>
-      <label><input type="checkbox" name="tiene[]" value="Cocina"> Cocina</label>
-      <label><input type="checkbox" name="tiene[]" value="Habitaciones"> Habitaciones</label>
-      <label><input type="checkbox" name="tiene[]" value="Corredor"> Corredor</label>
-      <label><input type="checkbox" name="tiene[]" value="Patio de pilas"> Patio de pilas</label>
-      <label><input type="checkbox" name="tiene[]" value="Sótano"> Sótano</label>
-      <label><input type="checkbox" name="tiene[]" value="Piscina"> Piscina</label>
-      <label><input type="checkbox" name="tiene[]" value="Jardín"> Jardín</label>
-    </fieldset>
+    </select><br>
 
     <label>Número de habitaciones *</label>
-    <input type="number" name="habitaciones" required>
+    <input type="number" id="habitaciones" required><br>
 
     <label>Número de baños *</label>
-    <input type="number" name="banos" required>
+    <input type="number" id="banos" required><br>
 
-    <fieldset>
-      <legend>Muebles y artefactos que tiene el inmueble:</legend>
-      <label><input type="checkbox" name="muebles[]" value="TV"> TV</label>
-      <label><input type="checkbox" name="muebles[]" value="Sofá"> Sofá</label>
-      <label><input type="checkbox" name="muebles[]" value="Cocina"> Cocina</label>
-      <label><input type="checkbox" name="muebles[]" value="Refrigerador"> Refrigerador</label>
-      <label><input type="checkbox" name="muebles[]" value="Microondas"> Microondas</label>
-      <label><input type="checkbox" name="muebles[]" value="Horno"> Horno</label>
-      <label><input type="checkbox" name="muebles[]" value="Cofeemaker"> Cofeemaker</label>
-      <label><input type="checkbox" name="muebles[]" value="Licuadora"> Licuadora</label>
-      <label><input type="checkbox" name="muebles[]" value="Lavadora"> Lavadora</label>
-      <label><input type="checkbox" name="muebles[]" value="Mesa"> Mesa</label>
-      <label><input type="checkbox" name="muebles[]" value="Sillas"> Sillas</label>
-      <label><input type="checkbox" name="muebles[]" value="Cama"> Cama</label>
-      <label><input type="checkbox" name="muebles[]" value="Lámparas"> Lámparas</label>
-    </fieldset>
-
-    <label>¿Incluye servicios?</label>
-    <select name="incluye_servicios">
-      <option value="No">No</option>
+    <label>Incluye servicios?</label>
+    <select id="servicios_incluidos">
       <option value="Si">Sí</option>
-    </select>
+      <option value="No">No</option>
+    </select><br>
 
-    <fieldset>
-      <legend>Servicios que incluye:</legend>
-      <label><input type="checkbox" name="servicios[]" value="Electricidad"> Electricidad</label>
-      <label><input type="checkbox" name="servicios[]" value="Agua"> Agua</label>
-      <label><input type="checkbox" name="servicios[]" value="Internet"> Internet</label>
-      <label><input type="checkbox" name="servicios[]" value="Wifi"> Wifi</label>
-      <label><input type="checkbox" name="servicios[]" value="Canales de cable"> Canales de cable</label>
-      <label><input type="checkbox" name="servicios[]" value="Netflix"> Netflix</label>
-      <label><input type="checkbox" name="servicios[]" value="Prime"> Prime</label>
-      <label><input type="checkbox" name="servicios[]" value="Basura"> Basura</label>
-    </fieldset>
+    <label>Dirección del inmueble *</label>
+    <input type="text" id="direccion" required><br>
 
-    <!-- Ubicación -->
-    <h3>Dirección del inmueble</h3>
-    <input type="text" name="direccion" placeholder="Dirección exacta" required>
-    <input type="text" name="distrito" placeholder="Distrito" required>
-    <input type="text" name="canton" placeholder="Cantón" required>
-    <input type="text" name="provincia" placeholder="Provincia">
-    <input type="text" name="pais" placeholder="País" value="Costa Rica">
+    <label>Provincia</label>
+    <input type="text" id="provincia"><br>
 
-    <!-- Moneda -->
-    <label>Moneda para cobrar *</label>
-    <select name="moneda" required>
-      <option value="Colones">Colones</option>
-      <option value="Dólares">Dólares</option>
-    </select>
+    <label>País</label>
+    <input type="text" id="pais"><br>
 
-    <!-- Datos del anunciante -->
-    <h3>Datos del anunciante</h3>
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <input type="text" name="apellidos" placeholder="Apellidos" required>
-    <input type="email" name="email" placeholder="Correo electrónico" required>
-    <input type="text" name="telefono" placeholder="Teléfono" required>
+    <label>Moneda para cobrar</label>
+    <select id="moneda">
+      <option value="CRC">Colones</option>
+      <option value="USD">Dólares</option>
+    </select><br>
+
+    <label>Nombre del anunciante *</label>
+    <input type="text" id="nombre" required><br>
+
+    <label>Email *</label>
+    <input type="email" id="email" required><br>
+
+    <label>Teléfono *</label>
+    <input type="tel" id="telefono" required><br>
 
     <label>
-      <input type="checkbox" name="acepta_comision">
-      Acepta negociar comisión en caso de que tengamos su comprador y se haga efectiva la venta
-    </label>
-
-    <label>
-      <input type="checkbox" name="veridico" required>
-      Acepta que la información que está enviando es verídica *
-    </label>
+      <input type="checkbox" id="veridico" required>
+      Acepta que la información enviada es verídica
+    </label><br>
 
     <button type="submit">Enviar Anuncio</button>
   </form>
 
-  <script src="js/firebase.js"></script>
-  <script src="js/formHandler.js"></script>
+  <p id="mensaje"></p>
 </body>
 </html>
