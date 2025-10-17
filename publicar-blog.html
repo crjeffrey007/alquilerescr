@@ -3,63 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publicar Anuncio Comercial | Alquileres CR</title>
+  <title>Publicar en el Blog | Alquileres CR</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
-    <h1>🛍️ Publicar Anuncio Comercial</h1>
+    <h1>📝 Publicar Artículo del Blog</h1>
   </header>
 
   <main class="form-container">
-    <form id="negocioForm" data-form-type="negocio">
-      <label>Nombre del negocio *</label>
-      <input type="text" name="nombre_negocio" required>
+    <form id="blogForm" data-form-type="blog">
+      <label>Título *</label>
+      <input type="text" name="titulo" required>
 
-      <label>Descripción *</label>
-      <textarea name="descripcion" required></textarea>
+      <label>Resumen *</label>
+      <textarea name="resumen" required></textarea>
 
-      <label>Categoría *</label>
-      <select name="categoria" required>
-        <option value="">Seleccionar...</option>
-        <option value="Restaurante">Restaurante</option>
-        <option value="Tienda">Tienda</option>
-        <option value="Servicio">Servicio</option>
-        <option value="Otro">Otro</option>
-      </select>
-
-      <label>Horario</label>
-      <input type="text" name="horario" placeholder="Lunes a viernes, 8am - 5pm">
-
-      <label>Servicio a domicilio</label>
-      <select name="servicio_a_domicilio">
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-      </select>
+      <label>Contenido completo *</label>
+      <textarea name="contenido" required></textarea>
 
       <label>Imagen destacada *</label>
       <input type="file" name="imagen_destacada" accept="image/*" required>
 
-      <label>Galería de fotos</label>
-      <input type="file" name="imagenes[]" accept="image/*" multiple>
-
-      <label>Provincia</label>
-      <input type="text" name="provincia">
-
-      <label>Cantón</label>
-      <input type="text" name="canton">
-
-      <label>Teléfono *</label>
-      <input type="tel" name="telefono" required>
-
-      <label>Email *</label>
-      <input type="email" name="email" required>
-
-      <button type="submit">Enviar anuncio</button>
+      <button type="submit">Publicar artículo</button>
     </form>
   </main>
 
   <script src="js/firebase.js"></script>
-  <script src="js/formHandler.js"></script>
+  <script src="js/blogHandler.js"></script>
 </body>
 </html>
