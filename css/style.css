@@ -20487,6 +20487,36 @@ opacity: 0;
   padding: 12px;
 }
 
+.card img.miniatura {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+  margin-top: .5rem;
+}
+
+.card .acciones {
+  display: flex;
+  gap: .5rem;
+  margin-top: .8rem;
+}
+
+.card button {
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card button.editar {
+  background: #ffcc00;
+  color: #333;
+}
+
+.card button.eliminar {
+  background: #e63946;
+  color: white;
+}
 /* === Panel de administración === */
 .admin-header {
   background: #003580;
