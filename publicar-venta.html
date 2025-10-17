@@ -2,101 +2,75 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicar Propiedad en Venta</title>
+  <link rel="stylesheet" href="css/estilos.css">
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="js/firebase.js"></script>
-  <script defer src="js/form-venta.js"></script>
+  <script src="js/publicar-venta.js" defer></script>
 </head>
 <body>
-  <h1>Publicar Propiedad en Venta</h1>
-  <form id="form-venta">
+  <header>
+    <h1>Publicar Propiedad en Venta</h1>
+  </header>
 
-    <label>Título del anuncio *</label>
-    <input type="text" id="titulo" required><br>
+  <main class="contenedor">
+    <form id="form-venta">
+      <label>Título del anuncio *</label>
+      <input type="text" id="titulo" required>
 
-    <label>Descripción del anuncio *</label>
-    <textarea id="descripcion" required></textarea><br>
+      <label>Descripción *</label>
+      <textarea id="descripcion" required></textarea>
 
-    <label>Subir fotografías *</label>
-    <input type="file" id="imagenes" multiple accept="image/*"><br>
+      <label>Subir fotografías</label>
+      <input type="file" id="imagenes" multiple accept="image/*">
 
-    <label>Tipo de propiedad *</label>
-    <select id="tipo_propiedad" required>
-      <option value="">Seleccione...</option>
-      <option>Lote</option>
-      <option>Finca</option>
-      <option>Quinta</option>
-      <option>Casa</option>
-      <option>Apartamento</option>
-      <option>Apartamento en Edificio</option>
-      <option>Apartamento en Condominio</option>
-      <option>Cabaña</option>
-      <option>Bodega</option>
-      <option>Otro</option>
-    </select><br>
+      <label>Área total</label>
+      <input type="text" id="areaTotal">
 
-    <label>Área de la propiedad</label>
-    <input type="text" id="area"><br>
+      <label>Área de construcción</label>
+      <input type="text" id="areaConstruccion">
 
-    <label>Área de construcción</label>
-    <input type="text" id="construccion"><br>
+      <label>Precio *</label>
+      <input type="number" id="precio" required>
 
-    <label>Amoblado</label>
-    <select id="amoblado">
-      <option value="Si">Sí</option>
-      <option value="No">No</option>
-    </select><br>
+      <label>Moneda</label>
+      <select id="moneda">
+        <option value="Colones">Colones</option>
+        <option value="Dólares">Dólares</option>
+      </select>
 
-    <label>Número de habitaciones *</label>
-    <input type="number" id="habitaciones" required><br>
+      <label>Número de habitaciones</label>
+      <input type="number" id="habitaciones">
 
-    <label>Número de baños *</label>
-    <input type="number" id="banos" required><br>
+      <label>Número de baños</label>
+      <input type="number" id="banos">
 
-    <label>Incluye servicios?</label>
-    <select id="servicios_incluidos">
-      <option value="Si">Sí</option>
-      <option value="No">No</option>
-    </select><br>
+      <label>Dirección *</label>
+      <input type="text" id="direccion" required>
 
-    <label>Dirección *</label>
-    <input type="text" id="direccion" required><br>
+      <label>Provincia</label>
+      <input type="text" id="provincia">
 
-    <label>Provincia</label>
-    <input type="text" id="provincia"><br>
+      <label>País</label>
+      <input type="text" id="pais">
 
-    <label>País</label>
-    <input type="text" id="pais"><br>
+      <label>Nombre del anunciante *</label>
+      <input type="text" id="nombre" required>
 
-    <label>Moneda</label>
-    <select id="moneda">
-      <option value="CRC">Colones</option>
-      <option value="USD">Dólares</option>
-    </select><br>
+      <label>Email *</label>
+      <input type="email" id="email" required>
 
-    <label>Valor de la propiedad *</label>
-    <input type="text" id="valor" required><br>
+      <label>Teléfono *</label>
+      <input type="tel" id="telefono" required>
 
-    <label>Nombre del anunciante *</label>
-    <input type="text" id="nombre" required><br>
+      <label><input type="checkbox" id="acepta" required> Acepta que la información enviada es verídica</label>
 
-    <label>Email *</label>
-    <input type="email" id="email" required><br>
-
-    <label>Teléfono *</label>
-    <input type="tel" id="telefono" required><br>
-
-    <label>
-      <input type="checkbox" id="veridico" required>
-      Acepta que la información enviada es verídica
-    </label><br>
-
-    <button type="submit">Enviar Propiedad</button>
-  </form>
-
-  <p id="mensaje"></p>
+      <button type="submit">Enviar Anuncio</button>
+    </form>
+  </main>
 </body>
 </html>
