@@ -1,4 +1,38 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Panel - Alquileres CR</title><link rel='stylesheet' href='css/style.css'></head><body>
-<header class="header container"><div class="logo">Alquileres CR</div></header>
-<main class="container"><h1 id="welcome">Panel</h1><div id="userListings"></div></main>
-<script src="js/firebase.js"></script><script src="js/panel.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración | Alquileres CR</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="admin-header">
+    <h1>🧩 Panel de Administración</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="#" onclick="logout()">Cerrar sesión</a>
+    </nav>
+  </header>
+
+  <main class="panel-container">
+    <section>
+      <h2>📦 Publicaciones Pendientes</h2>
+      <div id="pendientes" class="grid-cards"></div>
+    </section>
+
+    <section>
+      <h2>✅ Publicaciones Aprobadas</h2>
+      <div id="aprobadas" class="grid-cards"></div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/panelHandler.js"></script>
+</body>
+</html>
