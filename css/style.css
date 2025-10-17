@@ -20538,3 +20538,85 @@ opacity: 0;
     grid-template-columns: 1fr;
   }
 }
+
+/* ======== FORMULARIOS ======== */
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+input[type="file"] {
+  border: none;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.checkbox-group label {
+  font-weight: normal;
+}
+
+input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+/* ======== PANEL ======== */
+.panel {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.estado {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  color: white;
+}
+
+.estado.aprobada {
+  background: #28a745;
+}
+
+.estado.pendiente {
+  background: #ffc107;
+  color: #333;
+}
+
+.estado.rechazada {
+  background: #dc3545;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+
+  .card-body h3 {
+    font-size: 1rem;
+  }
+}
