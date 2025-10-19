@@ -1,6 +1,6 @@
 // cloudinary.js
-const cloudName = "malos-inquilinos";
-const uploadPreset = "malos-inquilinos";
+const cloudName = "media-anuncios";
+const uploadPreset = "alquilerescr";
 
 // Función para subir archivos a Cloudinary
 async function uploadImages(files) {
