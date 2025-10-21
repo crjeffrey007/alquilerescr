@@ -2,40 +2,63 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Publicar Anuncio Comercial</title>
-  <link rel="stylesheet" href="estilos.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <h2>Publicar Anuncio Comercial</h2>
+  <h2>🛍️ Anunciar en Directorio Comercial</h2>
 
   <form id="form-anuncio">
-    <label>Nombre del Negocio:</label>
-    <input type="text" name="negocio" required />
+    <label>Título del Anuncio *</label>
+    <input type="text" name="titulo" required>
 
-    <label>Email de Contacto:</label>
-    <input type="email" name="email" required />
+    <label>Descripción *</label>
+    <textarea name="descripcion" required></textarea>
 
-    <label>Teléfono:</label>
-    <input type="text" name="telefono" required />
+    <label>Nombre del Negocio</label>
+    <input type="text" name="nombreNegocio">
 
-    <label>Sitio Web o Red Social:</label>
-    <input type="url" name="web" placeholder="https://..." />
+    <label>Teléfono *</label>
+    <input type="tel" name="telefono" required>
 
-    <label>Logo del Negocio:</label>
-    <input type="file" id="logo" accept="image/*" />
-    <div id="preview-logo" class="preview"></div>
+    <label>Email</label>
+    <input type="email" name="email">
 
-    <label>Descripción del Servicio:</label>
-    <textarea name="descripcion" rows="5" required></textarea>
+    <label>Subir Logo (máx 1)</label>
+    <input type="file" id="logo" accept="image/*">
 
-    <label>Imágenes Promocionales:</label>
-    <input type="file" id="imagenes" multiple accept="image/*" />
-    <div id="preview" class="preview"></div>
+    <label>Subir Imágenes (máx 5)</label>
+    <input type="file" id="imagenes" accept="image/*" multiple>
+
+    <label>Nombre del anunciante *</label>
+    <input type="text" name="anunciante" required>
+
+    <label>Horario de Atención *</label>
+    <input type="text" name="horario" placeholder="Ej: Lunes a Domingo 8am - 8pm" required>
+
+    <label>Dirección del Negocio *</label>
+    <input type="text" name="direccion" required>
+
+    <label>Servicio a Domicilio</label>
+    <select name="domicilio">
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select>
+
+    <label>
+      <input type="checkbox" required>
+      Acepta que la información enviada es verídica *
+    </label>
 
     <button type="submit">Publicar Anuncio</button>
   </form>
 
-  <script src="js/publicar-anuncio.js"></script>
+  <h3>Mis Anuncios</h3>
+  <div id="mis-anuncios"></div>
+
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/cloudinary-upload.js"></script>
+  <script type="module" src="js/anuncios.js"></script>
 </body>
 </html>
