@@ -1,62 +1,129 @@
-// === CONFIGURACIÓN GENERAL ===
-const CLOUD_NAME = "media-anuncios";
-const UPLOAD_PRESET = "malos-inquilinos";
-const WEB3_ACCESS_KEY = "36e1e635-e0fa-4b58-adba-4daf2694b7dd";
+// --- CONFIGURACIÓN PRINCIPAL ---
+import { db, auth } from "./firebase.js";
+import { 
+  collection, addDoc, getDocs, updateDoc, doc 
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 const form = document.getElementById("form-alquiler");
-const inputImagenes = document.getElementById("imagenes");
-const preview = document.getElementById("preview");
-let imagenesSubidas = [];
+const misAnunciosDiv = document.getElementById("mis-anuncios");
 
-// === SUBIR IMÁGENES A CLOUDINARY ===
-inputImagenes.addEventListener("change", async (e) => {
-  const archivos = e.target.files;
-  preview.innerHTML = "";
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/media-anuncios/image/upload";
+const CLOUDINARY_UPLOAD_PRESET = "alquilerescr";
 
-  for (const archivo of archivos) {
-    const data = new FormData();
-    data.append("file", archivo);
-    data.append("upload_preset", UPLOAD_PRESET);
+const WEB3FORMS_ACCESS_KEY = "36e1e635-e0fa-4b58-adba-4daf2694b7dd";
 
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
+
+// --- SUBIR IMÁGENES A CLOUDINARY ---
+async function uploadImages(files) {
+  const urls = [];
+  for (let file of files) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+    const res = await fetch(CLOUDINARY_URL, {
       method: "POST",
-      body: data,
+      body: formData
     });
 
-    const file = await res.json();
-    imagenesSubidas.push(file.secure_url);
-
-    const img = document.createElement("img");
-    img.src = file.secure_url;
-    img.classList.add("preview-img");
-    preview.appendChild(img);
+    const data = await res.json();
+    if (data.secure_url) urls.push(data.secure_url);
   }
-});
+  return urls;
+}
 
-// === ENVIAR FORMULARIO A WEB3FORMS ===
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
 
-  const formData = new FormData(form);
-  formData.append("access_key", WEB3_ACCESS_KEY);
-  formData.append("imagenes", imagenesSubidas.join(", "));
+// --- GUARDAR ANUNCIO EN FIRESTORE ---
+async function saveAnuncio(data) {
+  const docRef = await addDoc(collection(db, "alquileres"), data);
+  return docRef.id;
+}
 
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
 
-  const response = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: json,
+// --- CARGAR ANUNCIOS DEL USUARIO ---
+async function loadMisAnuncios() {
+  misAnunciosDiv.innerHTML = "<p>Cargando tus anuncios...</p>";
+
+  const querySnap = await getDocs(collection(db, "alquileres"));
+  let html = "";
+
+  querySnap.forEach(docSnap => {
+    const anuncio = docSnap.data();
+    html += `
+      <div class="anuncio-card" data-id="${docSnap.id}">
+        <h4>${anuncio.titulo}</h4>
+        <p><strong>Estado:</strong> ${anuncio.activo ? "✅ Activo" : "⛔ Desactivado"}</p>
+        <p>${anuncio.descripcion}</p>
+        <button class="btn-toggle">${anuncio.activo ? "Desactivar" : "Activar"}</button>
+      </div>
+    `;
   });
 
-  if (response.ok) {
-    alert("✅ Tu anuncio de alquiler fue enviado correctamente.");
+  misAnunciosDiv.innerHTML = html || "<p>No has publicado anuncios todavía.</p>";
+
+  document.querySelectorAll(".btn-toggle").forEach(btn => {
+    btn.addEventListener("click", async (e) => {
+      const id = e.target.closest(".anuncio-card").dataset.id;
+      const isActive = e.target.textContent === "Desactivar";
+      await updateDoc(doc(db, "alquileres", id), { activo: !isActive });
+      loadMisAnuncios();
+    });
+  });
+}
+
+
+// --- ENVIAR NOTIFICACIÓN A WEB3FORMS ---
+async function sendNotification(data) {
+  const formData = new FormData();
+  formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+  formData.append("subject", "📢 Nuevo anuncio de alquiler publicado");
+  formData.append("from_name", data.nombre + " " + data.apellidos);
+  formData.append("from_email", data.email);
+  formData.append("message", `
+Nuevo anuncio publicado:
+Título: ${data.titulo}
+Descripción: ${data.descripcion}
+Teléfono: ${data.telefono}
+Dirección: ${data.direccion}, ${data.canton}, ${data.provincia}, ${data.pais}
+  `);
+
+  await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: formData
+  });
+}
+
+
+// --- MANEJO DEL FORMULARIO ---
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  form.querySelector("button").disabled = true;
+
+  try {
+    const imagenes = await uploadImages(document.getElementById("imagenes").files);
+
+    const formData = Object.fromEntries(new FormData(form).entries());
+    const data = {
+      ...formData,
+      imagenes,
+      activo: true,
+      fecha: new Date().toISOString()
+    };
+
+    await saveAnuncio(data);
+    await sendNotification(data);
+
+    alert("✅ Tu anuncio se ha publicado con éxito.");
     form.reset();
-    imagenesSubidas = [];
-    preview.innerHTML = "";
-    window.location.href = "gracias.html";
-  } else {
-    alert("❌ Error al enviar el formulario. Intenta nuevamente.");
+    loadMisAnuncios();
+  } catch (err) {
+    console.error(err);
+    alert("❌ Error al publicar el anuncio.");
   }
+
+  form.querySelector("button").disabled = false;
 });
+
+
+// --- CARGAR AL INICIAR ---
+loadMisAnuncios();
