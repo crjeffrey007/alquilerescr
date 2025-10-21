@@ -2,98 +2,152 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anunciar en Directorio Comercial</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <title>Publicar Propiedad en Alquiler</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <h2>Anunciar en Directorio Comercial</h2>
 
-  <form id="form-anuncio">
-    <!-- Tipo de anuncio -->
-    <label for="tipo">Tipo de Anuncio *</label>
-    <select id="tipo" name="tipo" required>
-      <option value="">Seleccioná una opción</option>
-      <option value="servicio">Servicio</option>
-      <option value="negocio">Negocio</option>
-      <option value="profesional">Profesional</option>
-      <option value="otro">Otro</option>
-    </select>
+  <h2>🏠 Publicar Propiedad en Alquiler</h2>
 
-    <!-- Título y descripción -->
-    <label for="titulo">Título del Anuncio *</label>
-    <input type="text" id="titulo" name="titulo" required />
+  <form id="form-alquiler">
 
-    <label for="descripcion">Descripción del Anuncio *</label>
-    <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+    <fieldset>
+      <legend>📄 Detalles del Anuncio</legend>
 
-    <!-- Datos de contacto -->
-    <label for="negocio">Nombre del Negocio</label>
-    <input type="text" id="negocio" name="negocio" />
+      <label>Título del anuncio *</label>
+      <input type="text" name="titulo" required>
 
-    <label for="telefono">Teléfono de contacto *</label>
-    <input type="text" id="telefono" name="telefono" required />
+      <label>Descripción del anuncio *</label>
+      <textarea name="descripcion" rows="4" required></textarea>
 
-    <label for="email">Email de contacto</label>
-    <input type="email" id="email" name="email" />
+      <label>Subir fotografías *</label>
+      <input type="file" id="imagenes" accept="image/*" multiple required>
+      <small>Puedes subir varias imágenes</small>
+    </fieldset>
 
-    <!-- Subida de logo -->
-    <label>Subir Logo (máx. 1 imagen)</label>
-    <input type="file" id="logo" accept="image/*" />
-    <div id="preview-logo" class="preview"></div>
+    <fieldset>
+      <legend>🏡 Detalles de la Propiedad</legend>
 
-    <!-- Subida de imágenes -->
-    <label>Subir Imágenes (máx. 5)</label>
-    <input type="file" id="imagenes" accept="image/*" multiple />
-    <div id="preview" class="preview"></div>
+      <label>Área de la propiedad (m²)</label>
+      <input type="number" name="areaPropiedad">
 
-    <!-- Nombre de quien anuncia -->
-    <h3>Información de quien publica</h3>
-    <label>Nombre *</label>
-    <input type="text" id="nombre" name="nombre" required />
+      <label>Área de construcción (m²)</label>
+      <input type="number" name="areaConstruccion">
 
-    <label>Apellidos *</label>
-    <input type="text" id="apellidos" name="apellidos" required />
+      <label>¿Alquila amoblado?</label>
+      <select name="amoblado">
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
 
-    <!-- Horario -->
-    <h3>Horario de Atención *</h3>
-    <label><input type="radio" name="horario" value="todos" checked /> Abierto todos los días</label><br>
-    <label><input type="radio" name="horario" value="personalizado" /> Personalizar horario</label>
-    <textarea id="detalleHorario" name="detalleHorario" rows="3" placeholder="Ej: Lunes a Viernes de 8am a 6pm"></textarea>
+      <div class="checkbox-group">
+        <p>El inmueble tiene:</p>
+        <label><input type="checkbox" name="tiene" value="Sala"> Sala</label>
+        <label><input type="checkbox" name="tiene" value="Cocina"> Cocina</label>
+        <label><input type="checkbox" name="tiene" value="Habitaciones"> Habitaciones</label>
+        <label><input type="checkbox" name="tiene" value="Corredor"> Corredor</label>
+        <label><input type="checkbox" name="tiene" value="Patio de pilas"> Patio de pilas</label>
+        <label><input type="checkbox" name="tiene" value="Sótano"> Sótano</label>
+        <label><input type="checkbox" name="tiene" value="Piscina"> Piscina</label>
+        <label><input type="checkbox" name="tiene" value="Jardín"> Jardín</label>
+      </div>
 
-    <!-- Dirección -->
-    <h3>Dirección del Negocio *</h3>
-    <label>Dirección exacta *</label>
-    <input type="text" id="direccion" name="direccion" required />
+      <label>Número de habitaciones *</label>
+      <input type="number" name="habitaciones" required>
 
-    <label>Distrito *</label>
-    <input type="text" id="distrito" name="distrito" required />
+      <label>Número de baños *</label>
+      <input type="number" name="banos" required>
 
-    <label>Cantón *</label>
-    <input type="text" id="canton" name="canton" required />
+      <div class="checkbox-group">
+        <p>Muebles y artefactos incluidos:</p>
+        <label><input type="checkbox" name="muebles" value="TV"> TV</label>
+        <label><input type="checkbox" name="muebles" value="Sofá"> Sofá</label>
+        <label><input type="checkbox" name="muebles" value="Cocina"> Cocina</label>
+        <label><input type="checkbox" name="muebles" value="Refrigerador"> Refrigerador</label>
+        <label><input type="checkbox" name="muebles" value="Microondas"> Microondas</label>
+        <label><input type="checkbox" name="muebles" value="Horno"> Horno</label>
+        <label><input type="checkbox" name="muebles" value="Cofeemaker"> Cofeemaker</label>
+        <label><input type="checkbox" name="muebles" value="Licuadora"> Licuadora</label>
+        <label><input type="checkbox" name="muebles" value="Lavadora"> Lavadora</label>
+        <label><input type="checkbox" name="muebles" value="Mesa"> Mesa</label>
+        <label><input type="checkbox" name="muebles" value="Sillas"> Sillas</label>
+        <label><input type="checkbox" name="muebles" value="Cama"> Cama</label>
+        <label><input type="checkbox" name="muebles" value="Lámparas"> Lámparas</label>
+      </div>
 
-    <label>Provincia *</label>
-    <input type="text" id="provincia" name="provincia" required />
+      <label>¿Incluye servicios?</label>
+      <select name="incluyeServicios">
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
 
-    <label>País *</label>
-    <input type="text" id="pais" name="pais" required value="Costa Rica" />
+      <div class="checkbox-group">
+        <p>Servicios incluidos:</p>
+        <label><input type="checkbox" name="servicios" value="Electricidad"> Electricidad</label>
+        <label><input type="checkbox" name="servicios" value="Agua"> Agua</label>
+        <label><input type="checkbox" name="servicios" value="Internet"> Internet</label>
+        <label><input type="checkbox" name="servicios" value="Wifi"> Wifi</label>
+        <label><input type="checkbox" name="servicios" value="Cable"> Canales de cable</label>
+        <label><input type="checkbox" name="servicios" value="Netflix"> Netflix</label>
+        <label><input type="checkbox" name="servicios" value="Prime"> Prime Video</label>
+        <label><input type="checkbox" name="servicios" value="Basura"> Basura</label>
+      </div>
+    </fieldset>
 
-    <!-- Servicio a domicilio -->
-    <h3>Servicio a Domicilio *</h3>
-    <label><input type="radio" name="domicilio" value="sí" required /> Sí</label>
-    <label><input type="radio" name="domicilio" value="no" required /> No</label>
+    <fieldset>
+      <legend>📍 Ubicación</legend>
+      <label>Dirección exacta *</label>
+      <input type="text" name="direccion" required>
 
-    <!-- Aceptación -->
-    <div class="confirmacion">
-      <label>
-        <input type="checkbox" required />
-        Acepto que la información que estoy enviando es verídica *
-      </label>
-    </div>
+      <label>Distrito *</label>
+      <input type="text" name="distrito" required>
 
-    <button type="submit">Enviar Anuncio</button>
+      <label>Cantón *</label>
+      <input type="text" name="canton" required>
+
+      <label>Provincia *</label>
+      <input type="text" name="provincia" required>
+
+      <label>País *</label>
+      <input type="text" name="pais" required>
+
+      <label>Moneda *</label>
+      <select name="moneda" required>
+        <option value="Colones">Colones</option>
+        <option value="Dólares">Dólares</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>👤 Datos del anunciante</legend>
+      <label>Nombre *</label>
+      <input type="text" name="nombre" required>
+
+      <label>Apellidos *</label>
+      <input type="text" name="apellidos" required>
+
+      <label>Email *</label>
+      <input type="email" name="email" required>
+
+      <label>Teléfono *</label>
+      <input type="tel" name="telefono" required>
+    </fieldset>
+
+    <label>
+      <input type="checkbox" required>
+      Acepta que la información enviada es verídica *
+    </label>
+
+    <button type="submit">📤 Publicar Propiedad</button>
   </form>
 
-  <script src="js/publicar-anuncio.js"></script>
+  <h3>Mis Propiedades</h3>
+  <div id="mis-anuncios"></div>
+
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/cloudinary-upload.js"></script>
+  <script type="module" src="js/web3form.js"></script>
+  <script type="module" src="js/alquileres.js"></script>
 </body>
 </html>
