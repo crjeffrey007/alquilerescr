@@ -1,37 +1,84 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const db = firebase.firestore();
-  const contenedor = document.getElementById("lista-anuncios");
+// === CONFIGURACIÓN GENERAL ===
+const CLOUD_NAME = "media-anuncios";
+const UPLOAD_PRESET = "malos-inquilinos";
+const WEB3_ACCESS_KEY = "36e1e635-e0fa-4b58-adba-4daf2694b7dd";
 
-  try {
-    const snapshot = await db.collection("anuncios")
-      .where("estado", "==", "aprobada")
-      .orderBy("fechaPublicacion", "desc")
-      .get();
+const form = document.getElementById("form-anuncio");
+const inputLogo = document.getElementById("logo");
+const inputImagenes = document.getElementById("imagenes");
+const previewLogo = document.getElementById("preview-logo");
+const preview = document.getElementById("preview");
+let logoSubido = "";
+let imagenesSubidas = [];
 
-    if (snapshot.empty) {
-      contenedor.innerHTML = "<p>No hay anuncios comerciales disponibles.</p>";
-      return;
-    }
+// === SUBIR LOGO ===
+inputLogo.addEventListener("change", async (e) => {
+  const archivo = e.target.files[0];
+  const data = new FormData();
+  data.append("file", archivo);
+  data.append("upload_preset", UPLOAD_PRESET);
 
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const logo = data.logo || "img/sin-logo.jpg";
-      const card = `
-        <div class="card">
-          <img src="${logo}" alt="${data.titulo}">
-          <div class="card-body">
-            <h3>${data.titulo}</h3>
-            <p>${data.descripcion.substring(0, 100)}...</p>
-            <p><strong>Negocio:</strong> ${data.nombre_negocio}</p>
-            <p><strong>Teléfono:</strong> ${data.telefono}</p>
-            <p><strong>Servicio a domicilio:</strong> ${data.servicio_domicilio ? "Sí" : "No"}</p>
-          </div>
-        </div>
-      `;
-      contenedor.innerHTML += card;
+  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
+    method: "POST",
+    body: data,
+  });
+
+  const file = await res.json();
+  logoSubido = file.secure_url;
+  previewLogo.innerHTML = `<img src="${logoSubido}" class="preview-img">`;
+});
+
+// === SUBIR IMÁGENES ===
+inputImagenes.addEventListener("change", async (e) => {
+  const archivos = e.target.files;
+  preview.innerHTML = "";
+
+  for (const archivo of archivos) {
+    const data = new FormData();
+    data.append("file", archivo);
+    data.append("upload_preset", UPLOAD_PRESET);
+
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
+      method: "POST",
+      body: data,
     });
-  } catch (e) {
-    console.error("Error al cargar los anuncios:", e);
-    contenedor.innerHTML = "<p>Error al cargar los datos.</p>";
+
+    const file = await res.json();
+    imagenesSubidas.push(file.secure_url);
+
+    const img = document.createElement("img");
+    img.src = file.secure_url;
+    img.classList.add("preview-img");
+    preview.appendChild(img);
+  }
+});
+
+// === ENVIAR FORMULARIO A WEB3FORMS ===
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  formData.append("access_key", WEB3_ACCESS_KEY);
+  formData.append("logo", logoSubido);
+  formData.append("imagenes", imagenesSubidas.join(", "));
+
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+
+  const response = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: json,
+  });
+
+  if (response.ok) {
+    alert("✅ Tu anuncio comercial fue enviado correctamente.");
+    form.reset();
+    previewLogo.innerHTML = "";
+    preview.innerHTML = "";
+    imagenesSubidas = [];
+    window.location.href = "gracias.html";
+  } else {
+    alert("❌ Error al enviar el formulario. Intenta nuevamente.");
   }
 });
