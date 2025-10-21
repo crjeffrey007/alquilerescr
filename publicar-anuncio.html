@@ -1,64 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Publicar Anuncio Comercial</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anunciar en Directorio Comercial</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="js/firebase.js" defer></script>
+  <script src="js/anuncios.js" defer></script>
 </head>
 <body>
-  <h2>🛍️ Anunciar en Directorio Comercial</h2>
+  <main class="form-container">
+    <h1>🧩 Anunciar en Directorio Comercial</h1>
+    <form id="formAnuncio" enctype="multipart/form-data">
+      
+      <label>Tipo de Anuncio *</label>
+      <select name="tipoAnuncio" required>
+        <option value="">Selecciona</option>
+        <option value="servicio">Servicio</option>
+        <option value="negocio">Negocio</option>
+        <option value="profesional">Profesional</option>
+      </select>
 
-  <form id="form-anuncio">
-    <label>Título del Anuncio *</label>
-    <input type="text" name="titulo" required>
+      <label>Título del Anuncio *</label>
+      <input type="text" name="titulo" required>
 
-    <label>Descripción *</label>
-    <textarea name="descripcion" required></textarea>
+      <label>Descripción *</label>
+      <textarea name="descripcion" required></textarea>
 
-    <label>Nombre del Negocio</label>
-    <input type="text" name="nombreNegocio">
+      <label>Nombre del Negocio *</label>
+      <input type="text" name="nombreNegocio" required>
 
-    <label>Teléfono *</label>
-    <input type="tel" name="telefono" required>
+      <label>Teléfono de contacto *</label>
+      <input type="tel" name="telefono" required>
 
-    <label>Email</label>
-    <input type="email" name="email">
+      <label>Email de contacto</label>
+      <input type="email" name="email">
 
-    <label>Subir Logo (máx 1)</label>
-    <input type="file" id="logo" accept="image/*">
+      <label>Subir Logo (máximo 1)</label>
+      <input type="file" id="logo" accept="image/*">
 
-    <label>Subir Imágenes (máx 5)</label>
-    <input type="file" id="imagenes" accept="image/*" multiple>
+      <label>Subir Imágenes (sin límite)</label>
+      <input type="file" id="imagenes" accept="image/*" multiple>
 
-    <label>Nombre del anunciante *</label>
-    <input type="text" name="anunciante" required>
+      <label>Nombre de quien anuncia *</label>
+      <input type="text" name="nombre" required>
+      <input type="text" name="apellidos" required>
 
-    <label>Horario de Atención *</label>
-    <input type="text" name="horario" placeholder="Ej: Lunes a Domingo 8am - 8pm" required>
+      <label>Horario de atención *</label>
+      <select name="horario" required>
+        <option value="abierto_todos">Abierto todos los días</option>
+        <option value="personalizado">Personalizar horario</option>
+      </select>
 
-    <label>Dirección del Negocio *</label>
-    <input type="text" name="direccion" required>
+      <label>Dirección exacta *</label>
+      <input type="text" name="direccion" required>
 
-    <label>Servicio a Domicilio</label>
-    <select name="domicilio">
-      <option value="Sí">Sí</option>
-      <option value="No">No</option>
-    </select>
+      <label>Provincia *</label>
+      <select id="selectProvincia" required></select>
 
-    <label>
-      <input type="checkbox" required>
-      Acepta que la información enviada es verídica *
-    </label>
+      <label>Cantón *</label>
+      <select id="selectCanton" required></select>
 
-    <button type="submit">Publicar Anuncio</button>
-  </form>
+      <label>Categoría del negocio *</label>
+      <select id="selectCategoria" required></select>
 
-  <h3>Mis Anuncios</h3>
-  <div id="mis-anuncios"></div>
+      <label>Ofrece servicio a domicilio *</label>
+      <div>
+        <label><input type="radio" name="domicilio" value="sí" required> Sí</label>
+        <label><input type="radio" name="domicilio" value="no"> No</label>
+      </div>
 
-  <script type="module" src="js/firebase.js"></script>
-  <script type="module" src="js/auth.js"></script>
-  <script type="module" src="js/cloudinary-upload.js"></script>
-  <script type="module" src="js/anuncios.js"></script>
+      <label><input type="checkbox" name="veracidad" required> Acepto que la información es verídica *</label>
+
+      <button type="submit">📤 Publicar Anuncio</button>
+    </form>
+
+    <div id="mensajeExito" class="oculto">✅ Tu anuncio fue enviado y está pendiente de aprobación.</div>
+  </main>
 </body>
 </html>
