@@ -1,25 +1,34 @@
-// Registro
-async function registrar(email, password) {
-  try {
-    const user = await auth.createUserWithEmailAndPassword(email, password);
-    alert("✅ Registro exitoso. Espera aprobación del administrador.");
-    await db.collection("usuarios").doc(user.user.uid).set({
-      email,
-      rol: "pendiente",
-      fecha: firebase.firestore.FieldValue.serverTimestamp()
-    });
-  } catch (err) {
-    alert(err.message);
-  }
+// auth.js
+import { auth } from "./firebase.js";
+import {
+  onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+const provider = new GoogleAuthProvider();
+const loginBtn = document.getElementById("login-btn");
+const logoutBtn = document.getElementById("logout-btn");
+
+if (loginBtn) {
+  loginBtn.addEventListener("click", async () => {
+    await signInWithPopup(auth, provider);
+  });
 }
 
-// Login
-async function login(email, password) {
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-    alert("✅ Bienvenido");
-    window.location.href = "panel.html";
-  } catch (err) {
-    alert("❌ " + err.message);
-  }
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+  });
 }
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.body.classList.add("logged-in");
+    localStorage.setItem("uid", user.uid);
+  } else {
+    document.body.classList.remove("logged-in");
+    localStorage.removeItem("uid");
+  }
+});
