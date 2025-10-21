@@ -3,135 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publicar Alquiler</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <title>Publicar Alquiler - Inmobiliaria CR</title>
+  <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
+  <h2>Publicar Propiedad en Alquiler</h2>
 
-  <h1>Publicar Anuncio de Alquiler</h1>
+  <form id="form-alquiler">
+    <label>Nombre Completo:</label>
+    <input type="text" name="nombre" required />
 
-  <form id="form-alquiler" enctype="multipart/form-data">
-    <input type="hidden" name="access_key" value="36e1e635-e0fa-4b58-adba-4daf2694b7dd">
+    <label>Email:</label>
+    <input type="email" name="email" required />
 
-    <label>Título del anuncio *</label>
-    <input type="text" name="titulo" required>
+    <label>Teléfono:</label>
+    <input type="text" name="telefono" required />
 
-    <label>Descripción del anuncio *</label>
-    <textarea name="descripcion" required></textarea>
+    <label>Título del Anuncio:</label>
+    <input type="text" name="titulo" required />
 
-    <label>Subir fotografías (ilimitadas)</label>
-    <input type="file" id="imagenes" multiple accept="image/*">
+    <label>Descripción:</label>
+    <textarea name="descripcion" rows="5" required></textarea>
 
-    <div id="preview"></div>
-    <input type="hidden" name="imagenes_urls" id="imagenes_urls">
+    <label>Provincia:</label>
+    <input type="text" name="provincia" placeholder="Ej: San José" required />
 
-    <label>Área de la propiedad</label>
-    <input type="text" name="area_propiedad">
+    <label>Precio (₡):</label>
+    <input type="number" name="precio" required />
 
-    <label>Área de construcción</label>
-    <input type="text" name="area_construccion">
-
-    <label>¿Amoblado?</label>
-    <select name="amoblado">
-      <option value="Sí">Sí</option>
-      <option value="No">No</option>
-    </select>
-
-    <label>Número de habitaciones *</label>
-    <input type="number" name="habitaciones" required>
-
-    <label>Número de baños *</label>
-    <input type="number" name="banos" required>
-
-    <label>Dirección del inmueble *</label>
-    <input type="text" name="direccion" required>
-
-    <label>Provincia</label>
-    <input type="text" name="provincia">
-
-    <label>Moneda para cobrar *</label>
-    <select name="moneda" required>
-      <option value="Colones">Colones</option>
-      <option value="Dólares">Dólares</option>
-    </select>
-
-    <label>Nombre del anunciante *</label>
-    <input type="text" name="nombre" required>
-
-    <label>Email *</label>
-    <input type="email" name="email" required>
-
-    <label>Teléfono *</label>
-    <input type="tel" name="telefono" required>
-
-    <label>
-      <input type="checkbox" name="veracidad" required>
-      Acepta que la información enviada es verídica
-    </label>
+    <label>Imágenes de la Propiedad:</label>
+    <input type="file" id="imagenes" multiple accept="image/*" />
+    <div id="preview" class="preview"></div>
 
     <button type="submit">Enviar Anuncio</button>
   </form>
 
-  <div id="status"></div>
-
-  <script>
-    const cloudName = "media-anuncios";
-    const uploadPreset = "malos-inquilinos";
-
-    const form = document.getElementById("form-alquiler");
-    const inputImagenes = document.getElementById("imagenes");
-    const preview = document.getElementById("preview");
-    const statusDiv = document.getElementById("status");
-    const imagenesUrlsInput = document.getElementById("imagenes_urls");
-
-    let imagenesUrls = [];
-
-    inputImagenes.addEventListener("change", async (e) => {
-      preview.innerHTML = "<p>Subiendo imágenes...</p>";
-
-      const files = e.target.files;
-      imagenesUrls = [];
-
-      for (const file of files) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", uploadPreset);
-
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-          method: "POST",
-          body: formData
-        });
-
-        const data = await res.json();
-        imagenesUrls.push(data.secure_url);
-      }
-
-      imagenesUrlsInput.value = imagenesUrls.join(", ");
-      preview.innerHTML = imagenesUrls.map(url => `<img src="${url}" style="width:100px;height:100px;margin:5px;border-radius:8px;">`).join("");
-    });
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      statusDiv.innerHTML = "📤 Enviando anuncio...";
-
-      const formData = new FormData(form);
-      formData.append("imagenes_urls", imagenesUrls.join(", "));
-
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      });
-
-      const result = await res.json();
-
-      if (result.success) {
-        statusDiv.innerHTML = "✅ Anuncio enviado correctamente. Será revisado antes de publicarse.";
-        form.reset();
-        preview.innerHTML = "";
-      } else {
-        statusDiv.innerHTML = "❌ Error al enviar el anuncio. Intente de nuevo.";
-      }
-    });
-  </script>
+  <script src="js/publicar-alquiler.js"></script>
 </body>
 </html>
