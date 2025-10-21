@@ -1,154 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publicar Venta de Propiedad</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publicar Venta - Inmobiliaria CR</title>
+  <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
+  <h2>Publicar Propiedad en Venta</h2>
 
-  <h1>Publicar Propiedad en Venta</h1>
+  <form id="form-venta">
+    <label>Nombre Completo:</label>
+    <input type="text" name="nombre" required />
 
-  <form id="form-venta" enctype="multipart/form-data">
-    <input type="hidden" name="access_key" value="36e1e635-e0fa-4b58-adba-4daf2694b7dd">
+    <label>Email:</label>
+    <input type="email" name="email" required />
 
-    <label>Título del anuncio *</label>
-    <input type="text" name="titulo" required>
+    <label>Teléfono:</label>
+    <input type="text" name="telefono" required />
 
-    <label>Descripción del anuncio *</label>
-    <textarea name="descripcion" required></textarea>
+    <label>Título del Anuncio:</label>
+    <input type="text" name="titulo" required />
 
-    <label>Subir fotografías</label>
-    <input type="file" id="imagenes" multiple accept="image/*">
-    <div id="preview"></div>
-    <input type="hidden" name="imagenes_urls" id="imagenes_urls">
+    <label>Descripción:</label>
+    <textarea name="descripcion" rows="5" required></textarea>
 
-    <label>Tipo de propiedad *</label>
-    <select name="tipo_propiedad" required>
-      <option value="Lote">Lote</option>
-      <option value="Finca">Finca</option>
-      <option value="Casa">Casa</option>
-      <option value="Apartamento">Apartamento</option>
-      <option value="Condominio">Condominio</option>
-      <option value="Cabaña">Cabaña</option>
-      <option value="Bodega">Bodega</option>
-      <option value="Otro">Otro</option>
-    </select>
+    <label>Ubicación:</label>
+    <input type="text" name="ubicacion" required />
 
-    <label>Área de la propiedad</label>
-    <input type="text" name="area_propiedad">
+    <label>Precio (₡):</label>
+    <input type="number" name="precio" required />
 
-    <label>Área de construcción</label>
-    <input type="text" name="area_construccion">
+    <label>Imágenes de la Propiedad:</label>
+    <input type="file" id="imagenes" multiple accept="image/*" />
+    <div id="preview" class="preview"></div>
 
-    <label>¿Amoblado?</label>
-    <select name="amoblado">
-      <option value="Sí">Sí</option>
-      <option value="No">No</option>
-    </select>
-
-    <label>Número de habitaciones *</label>
-    <input type="number" name="habitaciones" required>
-
-    <label>Número de baños *</label>
-    <input type="number" name="banos" required>
-
-    <label>Incluye servicios?</label>
-    <select name="servicios_incluidos">
-      <option value="Sí">Sí</option>
-      <option value="No">No</option>
-    </select>
-
-    <label>Dirección del inmueble *</label>
-    <input type="text" name="direccion" required>
-
-    <label>Provincia</label>
-    <input type="text" name="provincia">
-
-    <label>País</label>
-    <input type="text" name="pais">
-
-    <label>Moneda *</label>
-    <select name="moneda" required>
-      <option value="Colones">Colones</option>
-      <option value="Dólares">Dólares</option>
-    </select>
-
-    <label>Valor de la propiedad *</label>
-    <input type="number" name="valor" required>
-
-    <label>Nombre del anunciante *</label>
-    <input type="text" name="nombre" required>
-
-    <label>Email *</label>
-    <input type="email" name="email" required>
-
-    <label>Teléfono *</label>
-    <input type="tel" name="telefono" required>
-
-    <label><input type="checkbox" name="veracidad" required> Acepta que la información es verídica</label>
-
-    <button type="submit">Enviar Anuncio</button>
+    <button type="submit">Publicar Anuncio</button>
   </form>
 
-  <div id="status"></div>
-
-  <script>
-    const cloudName = "media-anuncios";
-    const uploadPreset = "malos-inquilinos";
-
-    const form = document.getElementById("form-venta");
-    const inputImagenes = document.getElementById("imagenes");
-    const preview = document.getElementById("preview");
-    const statusDiv = document.getElementById("status");
-    const imagenesUrlsInput = document.getElementById("imagenes_urls");
-
-    let imagenesUrls = [];
-
-    inputImagenes.addEventListener("change", async (e) => {
-      preview.innerHTML = "<p>Subiendo imágenes...</p>";
-      const files = e.target.files;
-      imagenesUrls = [];
-
-      for (const file of files) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", uploadPreset);
-
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-          method: "POST",
-          body: formData
-        });
-        const data = await res.json();
-        imagenesUrls.push(data.secure_url);
-      }
-
-      imagenesUrlsInput.value = imagenesUrls.join(", ");
-      preview.innerHTML = imagenesUrls.map(url => `<img src="${url}" style="width:100px;height:100px;margin:5px;border-radius:8px;">`).join("");
-    });
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      statusDiv.innerHTML = "📤 Enviando anuncio...";
-
-      const formData = new FormData(form);
-      formData.append("imagenes_urls", imagenesUrls.join(", "));
-
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      });
-      const result = await res.json();
-
-      if (result.success) {
-        statusDiv.innerHTML = "✅ Enviado correctamente. Será revisado antes de publicarse.";
-        form.reset();
-        preview.innerHTML = "";
-      } else {
-        statusDiv.innerHTML = "❌ Error al enviar. Intente de nuevo.";
-      }
-    });
-  </script>
+  <script src="js/publicar-venta.js"></script>
 </body>
 </html>
