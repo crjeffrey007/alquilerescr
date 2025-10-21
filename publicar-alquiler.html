@@ -1,119 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anunciar Propiedad en Alquiler</title>
-  <link rel="stylesheet" href="css/estilos.css">
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  <script src="js/firebase.js"></script>
-  <script src="js/publicar-alquiler.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publicar Alquiler</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Publicar Propiedad en Alquiler</h1>
-  </header>
 
-  <main class="contenedor">
-    <form id="form-alquiler">
-      <label>Título del anuncio *</label>
-      <input type="text" id="titulo" required>
+  <h1>Publicar Anuncio de Alquiler</h1>
 
-      <label>Descripción *</label>
-      <textarea id="descripcion" required></textarea>
+  <form id="form-alquiler" enctype="multipart/form-data">
+    <input type="hidden" name="access_key" value="36e1e635-e0fa-4b58-adba-4daf2694b7dd">
 
-      <label>Subir fotografías</label>
-      <input type="file" id="imagenes" multiple accept="image/*">
+    <label>Título del anuncio *</label>
+    <input type="text" name="titulo" required>
 
-      <label>Área de la propiedad</label>
-      <input type="text" id="areaPropiedad">
+    <label>Descripción del anuncio *</label>
+    <textarea name="descripcion" required></textarea>
 
-      <label>Área de construcción</label>
-      <input type="text" id="areaConstruccion">
+    <label>Subir fotografías (ilimitadas)</label>
+    <input type="file" id="imagenes" multiple accept="image/*">
 
-      <label>Alquila amoblado?</label>
-      <select id="amoblado">
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-      </select>
+    <div id="preview"></div>
+    <input type="hidden" name="imagenes_urls" id="imagenes_urls">
 
-      <label>El inmueble tiene:</label>
-      <div class="checkbox-group" id="inmuebleTiene">
-        <label><input type="checkbox" value="Sala">Sala</label>
-        <label><input type="checkbox" value="Cocina">Cocina</label>
-        <label><input type="checkbox" value="Habitaciones">Habitaciones</label>
-        <label><input type="checkbox" value="Corredor">Corredor</label>
-        <label><input type="checkbox" value="Patio de pilas">Patio de pilas</label>
-        <label><input type="checkbox" value="Piscina">Piscina</label>
-        <label><input type="checkbox" value="Jardín">Jardín</label>
-      </div>
+    <label>Área de la propiedad</label>
+    <input type="text" name="area_propiedad">
 
-      <label>Número de habitaciones *</label>
-      <input type="number" id="habitaciones" required>
+    <label>Área de construcción</label>
+    <input type="text" name="area_construccion">
 
-      <label>Número de baños *</label>
-      <input type="number" id="banos" required>
+    <label>¿Amoblado?</label>
+    <select name="amoblado">
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select>
 
-      <label>Muebles y artefactos del inmueble:</label>
-      <div class="checkbox-group" id="muebles">
-        <label><input type="checkbox" value="TV">TV</label>
-        <label><input type="checkbox" value="Sofá">Sofá</label>
-        <label><input type="checkbox" value="Cocina">Cocina</label>
-        <label><input type="checkbox" value="Refrigerador">Refrigerador</label>
-        <label><input type="checkbox" value="Microondas">Microondas</label>
-        <label><input type="checkbox" value="Mesa">Mesa</label>
-        <label><input type="checkbox" value="Cama">Cama</label>
-      </div>
+    <label>Número de habitaciones *</label>
+    <input type="number" name="habitaciones" required>
 
-      <label>Incluye servicios?</label>
-      <select id="incluyeServicios">
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-      </select>
+    <label>Número de baños *</label>
+    <input type="number" name="banos" required>
 
-      <label>Servicios que incluye:</label>
-      <div class="checkbox-group" id="servicios">
-        <label><input type="checkbox" value="Electricidad">Electricidad</label>
-        <label><input type="checkbox" value="Agua">Agua</label>
-        <label><input type="checkbox" value="Internet">Internet</label>
-        <label><input type="checkbox" value="Wifi">Wifi</label>
-        <label><input type="checkbox" value="Basura">Basura</label>
-      </div>
+    <label>Dirección del inmueble *</label>
+    <input type="text" name="direccion" required>
 
-      <label>Dirección</label>
-      <input type="text" id="direccion">
+    <label>Provincia</label>
+    <input type="text" name="provincia">
 
-      <label>Provincia</label>
-      <input type="text" id="provincia">
+    <label>Moneda para cobrar *</label>
+    <select name="moneda" required>
+      <option value="Colones">Colones</option>
+      <option value="Dólares">Dólares</option>
+    </select>
 
-      <label>País</label>
-      <input type="text" id="pais">
+    <label>Nombre del anunciante *</label>
+    <input type="text" name="nombre" required>
 
-      <label>Moneda</label>
-      <select id="moneda">
-        <option value="Colones">Colones</option>
-        <option value="Dólares">Dólares</option>
-      </select>
+    <label>Email *</label>
+    <input type="email" name="email" required>
 
-      <label>Nombre del anunciante *</label>
-      <input type="text" id="nombre" required>
+    <label>Teléfono *</label>
+    <input type="tel" name="telefono" required>
 
-      <label>Apellidos *</label>
-      <input type="text" id="apellidos" required>
+    <label>
+      <input type="checkbox" name="veracidad" required>
+      Acepta que la información enviada es verídica
+    </label>
 
-      <label>Email *</label>
-      <input type="email" id="email" required>
+    <button type="submit">Enviar Anuncio</button>
+  </form>
 
-      <label>Teléfono *</label>
-      <input type="tel" id="telefono" required>
+  <div id="status"></div>
 
-      <label><input type="checkbox" id="acepta" required> Acepta que la información es verídica</label>
+  <script>
+    const cloudName = "media-anuncios";
+    const uploadPreset = "malos-inquilinos";
 
-      <button type="submit">Enviar Anuncio</button>
-    </form>
-  </main>
+    const form = document.getElementById("form-alquiler");
+    const inputImagenes = document.getElementById("imagenes");
+    const preview = document.getElementById("preview");
+    const statusDiv = document.getElementById("status");
+    const imagenesUrlsInput = document.getElementById("imagenes_urls");
+
+    let imagenesUrls = [];
+
+    inputImagenes.addEventListener("change", async (e) => {
+      preview.innerHTML = "<p>Subiendo imágenes...</p>";
+
+      const files = e.target.files;
+      imagenesUrls = [];
+
+      for (const file of files) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", uploadPreset);
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        imagenesUrls.push(data.secure_url);
+      }
+
+      imagenesUrlsInput.value = imagenesUrls.join(", ");
+      preview.innerHTML = imagenesUrls.map(url => `<img src="${url}" style="width:100px;height:100px;margin:5px;border-radius:8px;">`).join("");
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusDiv.innerHTML = "📤 Enviando anuncio...";
+
+      const formData = new FormData(form);
+      formData.append("imagenes_urls", imagenesUrls.join(", "));
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        statusDiv.innerHTML = "✅ Anuncio enviado correctamente. Será revisado antes de publicarse.";
+        form.reset();
+        preview.innerHTML = "";
+      } else {
+        statusDiv.innerHTML = "❌ Error al enviar el anuncio. Intente de nuevo.";
+      }
+    });
+  </script>
 </body>
 </html>
