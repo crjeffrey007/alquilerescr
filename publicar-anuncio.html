@@ -4,54 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicar Anuncio Comercial</title>
-  <link rel="stylesheet" href="css/estilos.css">
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  <script src="js/firebase.js"></script>
-  <script src="js/publicar-anuncio.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Publicar Anuncio Comercial</h1>
-  </header>
 
-  <main class="contenedor">
-    <form id="form-anuncio">
-      <label>Título del anuncio *</label>
-      <input type="text" id="titulo" required>
+  <h1>Publicar Anuncio Comercial</h1>
 
-      <label>Descripción *</label>
-      <textarea id="descripcion" required></textarea>
+  <form id="form-anuncio" enctype="multipart/form-data">
+    <input type="hidden" name="access_key" value="36e1e635-e0fa-4b58-adba-4daf2694b7dd">
 
-      <label>Subir imágenes</label>
-      <input type="file" id="imagenes" multiple accept="image/*">
+    <label>Nombre del Negocio o Servicio *</label>
+    <input type="text" name="nombre_negocio" required>
 
-      <label>Categoría *</label>
-      <select id="categoria" required>
-        <option value="Comercio">Comercio</option>
-        <option value="Servicios">Servicios</option>
-        <option value="Profesionales">Profesionales</option>
-        <option value="Otros">Otros</option>
-      </select>
+    <label>Descripción del anuncio *</label>
+    <textarea name="descripcion" required></textarea>
 
-      <label>Ubicación *</label>
-      <input type="text" id="ubicacion" required>
+    <label>Categoría *</label>
+    <select name="categoria" required>
+      <option value="Inmobiliaria">Inmobiliaria</option>
+      <option value="Construcción">Construcción</option>
+      <option value="Mueblería">Mueblería</option>
+      <option value="Servicios Profesionales">Servicios Profesionales</option>
+      <option value="Turismo y Hoteles">Turismo y Hoteles</option>
+      <option value="Automóviles">Automóviles</option>
+      <option value="Tecnología">Tecnología</option>
+      <option value="Educación">Educación</option>
+      <option value="Otros">Otros</option>
+    </select>
 
-      <label>Teléfono *</label>
-      <input type="tel" id="telefono" required>
+    <label>Subir fotografías o logo</label>
+    <input type="file" id="imagenes" multiple accept="image/*">
+    <div id="preview"></div>
+    <input type="hidden" name="imagenes_urls" id="imagenes_urls">
 
-      <label>Email *</label>
-      <input type="email" id="email" required>
+    <label>Provincia</label>
+    <input type="text" name="provincia">
 
-      <label>Nombre del anunciante *</label>
-      <input type="text" id="nombre" required>
+    <label>País</label>
+    <input type="text" name="pais" value="Costa Rica">
 
-      <label><input type="checkbox" id="acepta" required> Acepta que la información es verídica</label>
+    <label>Teléfono de contacto *</label>
+    <input type="tel" name="telefono" required>
 
-      <button type="submit">Enviar Anuncio</button>
-    </form>
-  </main>
+    <label>Correo electrónico *</label>
+    <input type="email" name="email" required>
+
+    <label>Sitio web o red social</label>
+    <input type="url" name="sitio_web" placeholder="https://">
+
+    <label>Plan seleccionado *</label>
+    <select name="plan" required>
+      <option value="Gratis">Gratis</option>
+      <option value="Básico">₡5.000 - Básico</option>
+      <option value="Premium">₡10.000 - Premium</option>
+      <option value="Full">₡20.000 - Full</option>
+    </select>
+
+    <label><input type="checkbox" name="veracidad" required> Confirmo que la información es correcta</label>
+
+    <button type="submit">Enviar Anuncio</button>
+  </form>
+
+  <div id="status"></div>
+
+  <script>
+    const cloudName = "media-anuncios";
+    const uploadPreset = "malos-inquilinos";
+
+    const form = document.getElementById("form-anuncio");
+    const inputImagenes = document.getElementById("imagenes");
+    const preview = document.getElementById("preview");
+    const statusDiv = document.getElementById("status");
+    const imagenesUrlsInput = document.getElementById("imagenes_urls");
+
+    let imagenesUrls = [];
+
+    inputImagenes.addEventListener("change", async (e) => {
+      preview.innerHTML = "<p>Subiendo imágenes...</p>";
+      const files = e.target.files;
+      imagenesUrls = [];
+
+      for (const file of files) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", uploadPreset);
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: "POST",
+          body: formData
+        });
+        const data = await res.json();
+        imagenesUrls.push(data.secure_url);
+      }
+
+      imagenesUrlsInput.value = imagenesUrls.join(", ");
+      preview.innerHTML = imagenesUrls.map(url => `<img src="${url}" style="width:100px;height:100px;margin:5px;border-radius:8px;">`).join("");
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusDiv.innerHTML = "📤 Enviando anuncio...";
+
+      const formData = new FormData(form);
+      formData.append("imagenes_urls", imagenesUrls.join(", "));
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        statusDiv.innerHTML = "✅ Enviado correctamente. Será revisado antes de publicarse.";
+        form.reset();
+        preview.innerHTML = "";
+      } else {
+        statusDiv.innerHTML = "❌ Error al enviar. Intente de nuevo.";
+      }
+    });
+  </script>
 </body>
 </html>
