@@ -3,41 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publicar Alquiler - Inmobiliaria CR</title>
-  <link rel="stylesheet" href="estilos.css" />
+  <title>Anunciar en Directorio Comercial</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <h2>Publicar Propiedad en Alquiler</h2>
+  <h2>Anunciar en Directorio Comercial</h2>
 
-  <form id="form-alquiler">
-    <label>Nombre Completo:</label>
-    <input type="text" name="nombre" required />
+  <form id="form-anuncio">
+    <!-- Tipo de anuncio -->
+    <label for="tipo">Tipo de Anuncio *</label>
+    <select id="tipo" name="tipo" required>
+      <option value="">Seleccioná una opción</option>
+      <option value="servicio">Servicio</option>
+      <option value="negocio">Negocio</option>
+      <option value="profesional">Profesional</option>
+      <option value="otro">Otro</option>
+    </select>
 
-    <label>Email:</label>
-    <input type="email" name="email" required />
+    <!-- Título y descripción -->
+    <label for="titulo">Título del Anuncio *</label>
+    <input type="text" id="titulo" name="titulo" required />
 
-    <label>Teléfono:</label>
-    <input type="text" name="telefono" required />
+    <label for="descripcion">Descripción del Anuncio *</label>
+    <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
 
-    <label>Título del Anuncio:</label>
-    <input type="text" name="titulo" required />
+    <!-- Datos de contacto -->
+    <label for="negocio">Nombre del Negocio</label>
+    <input type="text" id="negocio" name="negocio" />
 
-    <label>Descripción:</label>
-    <textarea name="descripcion" rows="5" required></textarea>
+    <label for="telefono">Teléfono de contacto *</label>
+    <input type="text" id="telefono" name="telefono" required />
 
-    <label>Provincia:</label>
-    <input type="text" name="provincia" placeholder="Ej: San José" required />
+    <label for="email">Email de contacto</label>
+    <input type="email" id="email" name="email" />
 
-    <label>Precio (₡):</label>
-    <input type="number" name="precio" required />
+    <!-- Subida de logo -->
+    <label>Subir Logo (máx. 1 imagen)</label>
+    <input type="file" id="logo" accept="image/*" />
+    <div id="preview-logo" class="preview"></div>
 
-    <label>Imágenes de la Propiedad:</label>
-    <input type="file" id="imagenes" multiple accept="image/*" />
+    <!-- Subida de imágenes -->
+    <label>Subir Imágenes (máx. 5)</label>
+    <input type="file" id="imagenes" accept="image/*" multiple />
     <div id="preview" class="preview"></div>
+
+    <!-- Nombre de quien anuncia -->
+    <h3>Información de quien publica</h3>
+    <label>Nombre *</label>
+    <input type="text" id="nombre" name="nombre" required />
+
+    <label>Apellidos *</label>
+    <input type="text" id="apellidos" name="apellidos" required />
+
+    <!-- Horario -->
+    <h3>Horario de Atención *</h3>
+    <label><input type="radio" name="horario" value="todos" checked /> Abierto todos los días</label><br>
+    <label><input type="radio" name="horario" value="personalizado" /> Personalizar horario</label>
+    <textarea id="detalleHorario" name="detalleHorario" rows="3" placeholder="Ej: Lunes a Viernes de 8am a 6pm"></textarea>
+
+    <!-- Dirección -->
+    <h3>Dirección del Negocio *</h3>
+    <label>Dirección exacta *</label>
+    <input type="text" id="direccion" name="direccion" required />
+
+    <label>Distrito *</label>
+    <input type="text" id="distrito" name="distrito" required />
+
+    <label>Cantón *</label>
+    <input type="text" id="canton" name="canton" required />
+
+    <label>Provincia *</label>
+    <input type="text" id="provincia" name="provincia" required />
+
+    <label>País *</label>
+    <input type="text" id="pais" name="pais" required value="Costa Rica" />
+
+    <!-- Servicio a domicilio -->
+    <h3>Servicio a Domicilio *</h3>
+    <label><input type="radio" name="domicilio" value="sí" required /> Sí</label>
+    <label><input type="radio" name="domicilio" value="no" required /> No</label>
+
+    <!-- Aceptación -->
+    <div class="confirmacion">
+      <label>
+        <input type="checkbox" required />
+        Acepto que la información que estoy enviando es verídica *
+      </label>
+    </div>
 
     <button type="submit">Enviar Anuncio</button>
   </form>
 
-  <script src="js/publicar-alquiler.js"></script>
+  <script src="js/publicar-anuncio.js"></script>
 </body>
 </html>
