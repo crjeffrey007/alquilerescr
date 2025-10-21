@@ -1,62 +1,103 @@
-// === CONFIGURACIÓN GENERAL ===
-const CLOUD_NAME = "media-anuncios";
-const UPLOAD_PRESET = "malos-inquilinos";
-const WEB3_ACCESS_KEY = "36e1e635-e0fa-4b58-adba-4daf2694b7dd";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publicar Venta de Propiedad</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
 
-const form = document.getElementById("form-venta");
-const inputImagenes = document.getElementById("imagenes");
-const preview = document.getElementById("preview");
-let imagenesSubidas = [];
+  <h2>🏠 Publicar Propiedad en Venta</h2>
 
-// === SUBIR IMÁGENES A CLOUDINARY ===
-inputImagenes.addEventListener("change", async (e) => {
-  const archivos = e.target.files;
-  preview.innerHTML = "";
+  <form id="form-venta">
+    <label>Título del anuncio *</label>
+    <input type="text" name="titulo" required />
 
-  for (const archivo of archivos) {
-    const data = new FormData();
-    data.append("file", archivo);
-    data.append("upload_preset", UPLOAD_PRESET);
+    <label>Descripción *</label>
+    <textarea name="descripcion" required></textarea>
 
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
-      method: "POST",
-      body: data,
-    });
+    <label>Subir fotografías *</label>
+    <input type="file" id="imagenes" name="imagenes" multiple accept="image/*" required />
 
-    const file = await res.json();
-    imagenesSubidas.push(file.secure_url);
+    <label>Tipo de propiedad *</label>
+    <select name="tipo" required>
+      <option value="">Seleccionar</option>
+      <option>Lote</option>
+      <option>Finca</option>
+      <option>Quinta</option>
+      <option>Casa</option>
+      <option>Apartamento</option>
+      <option>Bodega</option>
+      <option>Otro</option>
+    </select>
 
-    const img = document.createElement("img");
-    img.src = file.secure_url;
-    img.classList.add("preview-img");
-    preview.appendChild(img);
-  }
-});
+    <label>Área de la propiedad (m²)</label>
+    <input type="number" name="area" />
 
-// === ENVIAR FORMULARIO A WEB3FORMS ===
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    <label>Área de construcción (m²)</label>
+    <input type="number" name="area_construccion" />
 
-  const formData = new FormData(form);
-  formData.append("access_key", WEB3_ACCESS_KEY);
-  formData.append("imagenes", imagenesSubidas.join(", "));
+    <label>¿Alquila amoblado?</label>
+    <select name="amoblado">
+      <option>No</option>
+      <option>Sí</option>
+    </select>
 
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
+    <label>Número de habitaciones</label>
+    <input type="number" name="habitaciones" min="0" />
 
-  const response = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: json,
-  });
+    <label>Número de baños</label>
+    <input type="number" name="banos" min="0" />
 
-  if (response.ok) {
-    alert("✅ Tu anuncio de venta fue enviado correctamente.");
-    form.reset();
-    imagenesSubidas = [];
-    preview.innerHTML = "";
-    window.location.href = "gracias.html";
-  } else {
-    alert("❌ Error al enviar el formulario. Intenta nuevamente.");
-  }
-});
+    <label>Dirección del inmueble *</label>
+    <input type="text" name="direccion" required />
+
+    <label>Distrito</label>
+    <input type="text" name="distrito" />
+
+    <label>Cantón</label>
+    <input type="text" name="canton" />
+
+    <label>Provincia</label>
+    <input type="text" name="provincia" />
+
+    <label>País</label>
+    <input type="text" name="pais" value="Costa Rica" />
+
+    <label>Moneda *</label>
+    <select name="moneda" required>
+      <option>Colones</option>
+      <option>Dólares</option>
+    </select>
+
+    <label>Valor de la propiedad *</label>
+    <input type="number" name="valor" required />
+
+    <label>Nombre del anunciante *</label>
+    <input type="text" name="nombre" required />
+
+    <label>Apellidos *</label>
+    <input type="text" name="apellidos" required />
+
+    <label>Email *</label>
+    <input type="email" name="email" required />
+
+    <label>Teléfono *</label>
+    <input type="tel" name="telefono" required />
+
+    <label>
+      <input type="checkbox" name="veridico" required />
+      Acepta que la información que está enviando es verídica *
+    </label>
+
+    <button type="submit">📤 Publicar Propiedad</button>
+  </form>
+
+  <hr />
+  <h3>Mis Propiedades Publicadas</h3>
+  <div id="mis-ventas"></div>
+
+  <script type="module" src="js/ventas.js"></script>
+</body>
+</html>
