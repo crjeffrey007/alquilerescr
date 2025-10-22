@@ -68,88 +68,83 @@
           <div class="cssload-speeding-wheel"></div>
         </div>
       </div>
-<!-- ======= HEADER ======= -->
+<!-- ===== HEADER ===== -->
 <header class="page-header">
-  <nav class="navbar">
-    <div class="navbar-container">
-      <!-- LOGO -->
-      <a href="./" class="navbar-logo">
-        <img src="images/logo-alquilerescr.jpg" alt="Logo" width="200" height="32">
-      </a>
+  <div class="rd-navbar-wrap">
+    <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-lg-stick-up="true">
+      <div class="rd-navbar-inner">
+        <!-- Panel -->
+        <div class="rd-navbar-panel">
+          <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap">
+            <span></span>
+          </button>
+          <!-- Logo -->
+          <div class="rd-navbar-brand">
+            <a class="brand-name" href="./">
+              <img src="images/logo-alquilerescr.jpg" alt="Logo" width="200" height="32"/>
+            </a>
+          </div>
+        </div>
 
-      <!-- BOTÓN HAMBURGUESA -->
-      <button class="navbar-toggle" id="menu-toggle">
-        <i class="fa fa-bars"></i>
-      </button>
+        <!-- NAV -->
+        <div id="navbar-collapse-02" class="rd-navbar-nav-wrap">
+          <ul class="rd-navbar-nav">
+            <li><a href="./">Inicio</a></li>
 
-      <!-- MENÚ ESCRITORIO -->
-      <ul class="navbar-menu desktop-menu">
-        <li><a href="./">Inicio</a></li>
+            <!-- Alquileres -->
+            <li class="rd-navbar--has-dropdown">
+              <a href="alquileres-listado.html">Alquileres</a>
+              <ul class="rd-navbar-dropdown mega-menu">
+                <li><a href="#"><i class="fa fa-map-marker text-danger"></i> San José</a></li>
+                <li><a href="#"><i class="fa fa-leaf text-success"></i> Alajuela</a></li>
+                <li><a href="#"><i class="fa fa-tree text-primary"></i> Cartago</a></li>
+                <li><a href="#"><i class="fa fa-university text-warning"></i> Heredia</a></li>
+                <li><a href="#"><i class="fa fa-sun text-orange"></i> Guanacaste</a></li>
+                <li><a href="#"><i class="fa fa-water text-info"></i> Puntarenas</a></li>
+                <li><a href="#"><i class="fa fa-anchor text-purple"></i> Limón</a></li>
+              </ul>
+            </li>
 
-        <!-- ALQUILERES -->
-        <li class="dropdown">
-          <a href="alquileres-listado.html">Alquileres</a>
-          <ul class="submenu horizontal">
-            <li><a href="#"><i class="fa fa-map-marker"></i> San José</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Alajuela</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Cartago</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Heredia</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Guanacaste</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Puntarenas</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Limón</a></li>
+            <!-- Ventas -->
+            <li class="rd-navbar--has-dropdown">
+              <a href="ventas-listado.html">Venta de Propiedades</a>
+              <ul class="rd-navbar-dropdown mega-menu">
+                <li><a href="#"><i class="fa fa-map-marker text-danger"></i> San José</a></li>
+                <li><a href="#"><i class="fa fa-leaf text-success"></i> Alajuela</a></li>
+                <li><a href="#"><i class="fa fa-tree text-primary"></i> Cartago</a></li>
+                <li><a href="#"><i class="fa fa-university text-warning"></i> Heredia</a></li>
+                <li><a href="#"><i class="fa fa-sun text-orange"></i> Guanacaste</a></li>
+                <li><a href="#"><i class="fa fa-water text-info"></i> Puntarenas</a></li>
+                <li><a href="#"><i class="fa fa-anchor text-purple"></i> Limón</a></li>
+              </ul>
+            </li>
+
+            <!-- Anuncios -->
+            <li class="rd-navbar--has-dropdown">
+              <a href="anuncios-listado.html">Anuncios Comerciales</a>
+              <ul class="rd-navbar-dropdown mega-menu">
+                <li><a href="#"><i class="fa fa-map-marker text-danger"></i> San José</a></li>
+                <li><a href="#"><i class="fa fa-leaf text-success"></i> Alajuela</a></li>
+                <li><a href="#"><i class="fa fa-tree text-primary"></i> Cartago</a></li>
+                <li><a href="#"><i class="fa fa-university text-warning"></i> Heredia</a></li>
+                <li><a href="#"><i class="fa fa-sun text-orange"></i> Guanacaste</a></li>
+                <li><a href="#"><i class="fa fa-water text-info"></i> Puntarenas</a></li>
+                <li><a href="#"><i class="fa fa-anchor text-purple"></i> Limón</a></li>
+              </ul>
+            </li>
+
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
           </ul>
-        </li>
+        </div>
 
-        <!-- VENTAS -->
-        <li class="dropdown">
-          <a href="ventas-listado.html">Venta de Propiedades</a>
-          <ul class="submenu horizontal">
-            <li><a href="#"><i class="fa fa-map-marker"></i> San José</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Alajuela</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Cartago</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Heredia</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Guanacaste</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Puntarenas</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Limón</a></li>
-          </ul>
-        </li>
-
-        <!-- ANUNCIOS -->
-        <li class="dropdown">
-          <a href="anuncios-listado.html">Anuncios Comerciales</a>
-          <ul class="submenu horizontal">
-            <li><a href="#"><i class="fa fa-map-marker"></i> San José</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Alajuela</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Cartago</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Heredia</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Guanacaste</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Puntarenas</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> Limón</a></li>
-          </ul>
-        </li>
-
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-
-        <li>
-          <a href="#" class="button button-primary">
-            <i class="fa fa-home"></i> Anunciarse
-          </a>
-        </li>
-      </ul>
-
-      <!-- MENÚ MÓVIL -->
-      <ul class="navbar-menu mobile-menu" id="mobile-menu">
-        <li><a href="./">Inicio</a></li>
-        <li><a href="alquileres-listado.html">Alquileres</a></li>
-        <li><a href="ventas-listado.html">Venta de Propiedades</a></li>
-        <li><a href="anuncios-listado.html">Anuncios Comerciales</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="#" class="button button-primary"><i class="fa fa-home"></i> Anunciarse</a></li>
-      </ul>
-    </div>
-  </nav>
+        <!-- Botón Anunciarse (solo escritorio) -->
+        <div class="button-wrap desktop-only">
+          <a href="#" class="button button-primary"><i class="fa fa-home"></i> Anunciarse</a>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
 <!-- Swiper -->
 <section id="inicio">
