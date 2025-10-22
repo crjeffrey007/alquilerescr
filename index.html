@@ -872,8 +872,9 @@
     <script src="js/main.js"></script> 
     <!-- ======= SCRIPT ======= -->
 <script>
-document.querySelector('.navbar-modern-toggle').addEventListener('click', function() {
-  document.querySelector('.navbar-modern-nav').classList.toggle('show');
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  const menu = document.querySelector('.rd-navbar-nav');
+  menu.classList.toggle('show');
 });
 </script>
   </body>
