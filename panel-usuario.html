@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Usuario | Alquileres CR</title>
+  <link rel="stylesheet" href="css/publicar.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+</head>
+<body>
+  <main class="panel-container">
+    <h1>Mis Publicaciones</h1>
+    <p>Desde aquí podés editar, activar/desactivar o eliminar tus anuncios.</p>
+
+    <div id="listaPublicaciones" class="publicaciones-grid">
+      <p>Cargando tus publicaciones...</p>
+    </div>
+  </main>
+
+  <div id="modalEdicion" class="modal">
+    <div class="modal-content">
+      <span id="cerrarModal">&times;</span>
+      <h2>Editar Anuncio</h2>
+      <form id="formEditar">
+        <input type="hidden" id="editId">
+        <label>Título</label>
+        <input type="text" id="editTitulo" required>
+
+        <label>Descripción</label>
+        <textarea id="editDescripcion" rows="4" required></textarea>
+
+        <label>Teléfono</label>
+        <input type="tel" id="editTelefono" required>
+
+        <label>Email</label>
+        <input type="email" id="editEmail">
+
+        <label>Estado</label>
+        <select id="editActivo">
+          <option value="true">Activo</option>
+          <option value="false">Inactivo</option>
+        </select>
+
+        <button type="submit">💾 Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/panel-usuario.js"></script>
+</body>
+</html>
