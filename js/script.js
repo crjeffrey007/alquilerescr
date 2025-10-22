@@ -1084,8 +1084,3 @@ window.onload = function() {
     el.setAttribute('required', 'required'); 
   } 
 }
-
-document.getElementById('menu-toggle').addEventListener('click', function() {
-  const menu = document.getElementById('mobile-menu');
-  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-});
