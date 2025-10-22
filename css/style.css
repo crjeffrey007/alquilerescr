@@ -20649,40 +20649,6 @@ input[type="checkbox"] {
   .card-body h3 {
     font-size: 1rem;
   }
-}
-
-/* Submenú clásico */
-.submenu {
-  display: none;
-  position: absolute;
-  background: #fff;
-  min-width: 220px;
-  top: 100%;
-  left: 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  border-radius: 6px;
-  padding: 10px 0;
-  z-index: 1000;
-}
-.submenu li {
-  margin: 0;
-}
-.submenu li a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  color: #333;
-  font-weight: 400;
-  white-space: nowrap;
-}
-.submenu li a:hover {
-  background: #f5f5f5;
-  color: #007bff;
-}
-.rd-navbar-dropdown:hover > .submenu {
-  display: block;
-}
 
 /* Colores por provincia */
 .text-danger { color: #e74c3c; }
@@ -20700,3 +20666,4 @@ input[type="checkbox"] {
   /* Ocultar submenús y botón en tablet/móvil */
   .submenu, .desktop-only { display: none !important; }
 }
+
