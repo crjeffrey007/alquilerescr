@@ -1,34 +1,29 @@
-// auth.js
-import { auth } from "./firebase.js";
-import {
-  onAuthStateChanged,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+// js/auth.js
+// Funciones para login/registro simple. Llamá a estas funciones desde tus botones.
+const providerGoogle = new firebase.auth.GoogleAuthProvider();
 
-const provider = new GoogleAuthProvider();
-const loginBtn = document.getElementById("login-btn");
-const logoutBtn = document.getElementById("logout-btn");
-
-if (loginBtn) {
-  loginBtn.addEventListener("click", async () => {
-    await signInWithPopup(auth, provider);
-  });
-}
-
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-  });
-}
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.body.classList.add("logged-in");
-    localStorage.setItem("uid", user.uid);
-  } else {
-    document.body.classList.remove("logged-in");
-    localStorage.removeItem("uid");
+export async function loginWithGoogle() {
+  try {
+    await firebase.auth().signInWithPopup(providerGoogle);
+  } catch (err) {
+    console.error(err);
+    alert("Error login Google: " + err.message);
   }
+}
+
+export async function registerWithEmail(email, password) {
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
+}
+
+export async function loginWithEmail(email, password) {
+  return firebase.auth().signInWithEmailAndPassword(email, password);
+}
+
+export function logout() {
+  return firebase.auth().signOut();
+}
+
+// útil: muestra uid cuando cambia estado
+firebase.auth().onAuthStateChanged(user => {
+  window.currentUser = user;
 });
