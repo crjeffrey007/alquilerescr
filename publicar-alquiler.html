@@ -1,121 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publicar Alquiler | Alquileres CR</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Publicar Alquiler - Alquileres CR</title>
   <link rel="stylesheet" href="css/publicar.css" />
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
 </head>
 <body>
   <main class="formulario-container">
-    <h1>Publicar Alquiler</h1>
+    <h1>Publicar Propiedad en Alquiler</h1>
+
+    <!-- Mensajes e inicio de sesión: si querés mostrar login aquí -->
+    <div id="loginArea"></div>
+
     <form id="formAlquiler" enctype="multipart/form-data">
-      
+      <!-- Campos (los tuyos completos) -->
       <label>Título del anuncio *</label>
-      <input type="text" name="titulo" required />
+      <input name="titulo" type="text" required>
 
-      <label>Descripción del anuncio *</label>
-      <textarea name="descripcion" rows="5" required></textarea>
+      <label>Descripción *</label>
+      <textarea name="descripcion" required></textarea>
 
-      <label>Fotografías (máximo 5)</label>
-      <input type="file" id="imagenes" name="imagenes" multiple accept="image/*" />
+      <label>Subir fotografías (ilimitadas)</label>
+      <input id="imagenes" name="imagenes" type="file" accept="image/*" multiple>
+      <div id="preview" class="preview"></div>
 
-      <div id="preview"></div>
-
-      <label>Área de la propiedad</label>
-      <input type="text" name="areaPropiedad" />
-
-      <label>Área de construcción</label>
-      <input type="text" name="areaConstruccion" />
-
+      <label>Área (m²)</label><input name="areaPropiedad" type="text">
+      <label>Área de construcción (m²)</label><input name="areaConstruccion" type="text">
       <label>¿Alquila amoblado?</label>
-      <select name="amoblado" required>
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-      </select>
+      <select name="amoblado"><option>Sí</option><option>No</option></select>
 
-      <label>El inmueble tiene:</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="instalaciones" value="Sala" /> Sala</label>
-        <label><input type="checkbox" name="instalaciones" value="Cocina" /> Cocina</label>
-        <label><input type="checkbox" name="instalaciones" value="Habitaciones" /> Habitaciones</label>
-        <label><input type="checkbox" name="instalaciones" value="Piscina" /> Piscina</label>
-        <label><input type="checkbox" name="instalaciones" value="Jardín" /> Jardín</label>
+      <label>Instalaciones (marcar las que correspondan)</label>
+      <div>
+        <label><input type="checkbox" name="instalaciones" value="Sala"> Sala</label>
+        <label><input type="checkbox" name="instalaciones" value="Cocina"> Cocina</label>
+        <label><input type="checkbox" name="instalaciones" value="Piscina"> Piscina</label>
+        <label><input type="checkbox" name="instalaciones" value="Jardín"> Jardín</label>
       </div>
 
-      <label>Número de habitaciones *</label>
-      <input type="number" name="habitaciones" required />
+      <label>N° habitaciones *</label><input name="habitaciones" type="number" required>
+      <label>N° baños *</label><input name="banos" type="number" required>
 
-      <label>Número de baños *</label>
-      <input type="number" name="banos" required />
-
-      <label>Muebles y artefactos incluidos:</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="muebles" value="TV" /> TV</label>
-        <label><input type="checkbox" name="muebles" value="Sofá" /> Sofá</label>
-        <label><input type="checkbox" name="muebles" value="Refrigerador" /> Refrigerador</label>
-        <label><input type="checkbox" name="muebles" value="Cama" /> Cama</label>
-        <label><input type="checkbox" name="muebles" value="Lavadora" /> Lavadora</label>
+      <label>Muebles y artefactos</label>
+      <div>
+        <label><input type="checkbox" name="muebles" value="TV"> TV</label>
+        <label><input type="checkbox" name="muebles" value="Sofá"> Sofá</label>
+        <label><input type="checkbox" name="muebles" value="Refrigerador"> Refrigerador</label>
       </div>
 
       <label>Incluye servicios?</label>
-      <select name="incluyeServicios" required>
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-      </select>
+      <select name="incluyeServicios"><option>Sí</option><option>No</option></select>
 
-      <label>Servicios incluidos:</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="servicios" value="Electricidad" /> Electricidad</label>
-        <label><input type="checkbox" name="servicios" value="Agua" /> Agua</label>
-        <label><input type="checkbox" name="servicios" value="Internet" /> Internet</label>
-        <label><input type="checkbox" name="servicios" value="Wifi" /> Wifi</label>
-        <label><input type="checkbox" name="servicios" value="Cable" /> Cable</label>
+      <label>Servicios</label>
+      <div>
+        <label><input type="checkbox" name="servicios" value="Electricidad"> Electricidad</label>
+        <label><input type="checkbox" name="servicios" value="Internet"> Internet</label>
       </div>
 
-      <label>Dirección del inmueble *</label>
-      <input type="text" name="direccion" required />
+      <label>Dirección *</label><input name="direccion" type="text" required>
+      <label>Distrito *</label><input name="distrito" type="text" required>
+      <label>Cantón *</label><input name="canton" type="text" required>
+      <label>Provincia *</label><input name="provincia" type="text" required>
+      <label>País *</label><input name="pais" type="text" value="Costa Rica" required>
 
-      <label>Provincia *</label>
-      <input type="text" name="provincia" required />
+      <label>Moneda *</label>
+      <select name="moneda"><option>Colones</option><option>Dólares</option></select>
 
-      <label>Moneda para cobrar *</label>
-      <select name="moneda" required>
-        <option value="Colones">Colones</option>
-        <option value="Dólares">Dólares</option>
-      </select>
+      <label>Nombre del anunciante *</label><input name="nombre" type="text" required>
+      <label>Email *</label><input name="email" type="email" required>
+      <label>Teléfono *</label><input name="telefono" type="tel" required>
 
-      <label>Nombre del anunciante *</label>
-      <input type="text" name="nombre" required />
+      <label>Estado</label>
+      <select name="activo"><option value="true" selected>Activo</option><option value="false">Inactivo</option></select>
 
-      <label>Email *</label>
-      <input type="email" name="email" required />
+      <label><input name="veracidad" type="checkbox" required> Acepto que la información es verídica</label>
 
-      <label>Teléfono *</label>
-      <input type="tel" name="telefono" required />
-
-      <label>Estado del anuncio</label>
-      <select name="activo" id="activo">
-        <option value="true" selected>Activo</option>
-        <option value="false">Inactivo</option>
-      </select>
-
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="aceptaTerminos" required />
-          Acepto que la información que envío es verídica *
-        </label>
-      </div>
-
-      <button type="submit">📤 Publicar Anuncio</button>
+      <button type="submit">Publicar Anuncio</button>
     </form>
 
     <div id="mensaje" class="mensaje"></div>
   </main>
 
-  <script src="js/firebase-config.js"></script>
-  <script src="js/publicar-alquiler.js"></script>
+  <script type="module" src="js/publicar-alquiler.js"></script>
 </body>
 </html>
