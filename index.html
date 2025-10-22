@@ -68,91 +68,97 @@
           <div class="cssload-speeding-wheel"></div>
         </div>
       </div>
-<!-- ======= HEADER FINAL CON ÍCONOS DE PROVINCIAS ======= -->
+<!-- ======= HEADER ======= -->
 <header class="page-header">
-  <nav class="navbar">
-    <div class="navbar-container">
-      <!-- LOGO -->
-      <a href="./" class="navbar-logo">
-        <img src="images/logo-alquilerescr.jpg" alt="Logo" width="200" height="32">
-      </a>
+  <div class="rd-navbar-wrap">
+    <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-lg-stick-up="true">
+      <div class="rd-navbar-inner">
+        
+        <!-- Panel superior -->
+        <div class="rd-navbar-panel">
+          <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap">
+            <span></span>
+          </button>
 
-      <!-- BOTÓN HAMBURGUESA -->
-      <button class="navbar-toggle" id="menu-toggle">
-        <i class="fa fa-bars"></i>
-      </button>
-
-      <!-- MENÚ PRINCIPAL -->
-      <ul class="navbar-menu" id="main-menu">
-        <li><a href="./">Inicio</a></li>
-
-        <!-- ALQUILERES -->
-        <li class="dropdown">
-          <a href="alquileres-listado.html">Alquileres</a>
-          <div class="mega-panel">
-            <ul>
-              <li><a href="#"><i class="fa fa-building"></i> 🏙️ San José</a></li>
-              <li><a href="#"><i class="fa fa-tree"></i> 🌿 Alajuela</a></li>
-              <li><a href="#"><i class="fa fa-university"></i> 🏛️ Cartago</a></li>
-              <li><a href="#"><i class="fa fa-leaf"></i> 🌸 Heredia</a></li>
-              <li><a href="#"><i class="fa fa-umbrella-beach"></i> 🌴 Guanacaste</a></li>
-              <li><a href="#"><i class="fa fa-water"></i> 🌊 Puntarenas</a></li>
-              <li><a href="#"><i class="fa fa-ship"></i> 🚢 Limón</a></li>
-            </ul>
+          <!-- LOGO -->
+          <div class="rd-navbar-brand">
+            <a class="brand-name" href="./">
+              <img src="images/logo-alquilerescr.jpg" alt="Logo" width="200" height="32" />
+            </a>
           </div>
-        </li>
+        </div>
 
-        <!-- VENTAS -->
-        <li class="dropdown">
-          <a href="ventas-listado.html">Venta de Propiedades</a>
-          <div class="mega-panel">
-            <ul>
-              <li><a href="#"><i class="fa fa-building"></i> 🏙️ San José</a></li>
-              <li><a href="#"><i class="fa fa-tree"></i> 🌿 Alajuela</a></li>
-              <li><a href="#"><i class="fa fa-university"></i> 🏛️ Cartago</a></li>
-              <li><a href="#"><i class="fa fa-leaf"></i> 🌸 Heredia</a></li>
-              <li><a href="#"><i class="fa fa-umbrella-beach"></i> 🌴 Guanacaste</a></li>
-              <li><a href="#"><i class="fa fa-water"></i> 🌊 Puntarenas</a></li>
-              <li><a href="#"><i class="fa fa-ship"></i> 🚢 Limón</a></li>
-            </ul>
-          </div>
-        </li>
+        <!-- ======= MENÚ ======= -->
+        <div class="rd-navbar-nav-wrap" id="navbar-collapse-02">
+          <ul class="rd-navbar-nav">
+            <li><a href="./">Inicio</a></li>
 
-        <!-- ANUNCIOS -->
-        <li class="dropdown">
-          <a href="anuncios-listado.html">Anuncios Comerciales</a>
-          <div class="mega-panel">
-            <ul>
-              <li><a href="#"><i class="fa fa-store"></i> 🏙️ San José</a></li>
-              <li><a href="#"><i class="fa fa-seedling"></i> 🌿 Alajuela</a></li>
-              <li><a href="#"><i class="fa fa-landmark"></i> 🏛️ Cartago</a></li>
-              <li><a href="#"><i class="fa fa-flower"></i> 🌸 Heredia</a></li>
-              <li><a href="#"><i class="fa fa-sun"></i> 🌴 Guanacaste</a></li>
-              <li><a href="#"><i class="fa fa-water"></i> 🌊 Puntarenas</a></li>
-              <li><a href="#"><i class="fa fa-ship"></i> 🚢 Limón</a></li>
-            </ul>
-          </div>
-        </li>
+            <!-- Alquileres -->
+            <li class="rd-navbar--has-dropdown">
+              <a href="alquileres-listado.html">Alquileres</a>
+              <ul class="rd-navbar-megamenu">
+                <li><a href="#"><i class="fa fa-map-marker"></i> San José</a></li>
+                <li><a href="#"><i class="fa fa-tree"></i> Alajuela</a></li>
+                <li><a href="#"><i class="fa fa-landmark"></i> Cartago</a></li>
+                <li><a href="#"><i class="fa fa-flower"></i> Heredia</a></li>
+                <li><a href="#"><i class="fa fa-sun"></i> Guanacaste</a></li>
+                <li><a href="#"><i class="fa fa-water"></i> Puntarenas</a></li>
+                <li><a href="#"><i class="fa fa-ship"></i> Limón</a></li>
+              </ul>
+            </li>
 
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+            <!-- Venta de Propiedades -->
+            <li class="rd-navbar--has-dropdown">
+              <a href="ventas-listado.html">Venta de Propiedades</a>
+              <ul class="rd-navbar-megamenu">
+                <li><a href="#"><i class="fa fa-map-marker"></i> San José</a></li>
+                <li><a href="#"><i class="fa fa-tree"></i> Alajuela</a></li>
+                <li><a href="#"><i class="fa fa-landmark"></i> Cartago</a></li>
+                <li><a href="#"><i class="fa fa-flower"></i> Heredia</a></li>
+                <li><a href="#"><i class="fa fa-sun"></i> Guanacaste</a></li>
+                <li><a href="#"><i class="fa fa-water"></i> Puntarenas</a></li>
+                <li><a href="#"><i class="fa fa-ship"></i> Limón</a></li>
+              </ul>
+            </li>
 
-        <!-- BOTÓN SOLO ESCRITORIO -->
-        <li class="desktop-only">
+            <!-- Anuncios Comerciales -->
+            <li class="rd-navbar--has-dropdown">
+              <a href="anuncios-listado.html">Anuncios Comerciales</a>
+              <ul class="rd-navbar-megamenu">
+                <li><a href="#"><i class="fa fa-map-marker"></i> San José</a></li>
+                <li><a href="#"><i class="fa fa-tree"></i> Alajuela</a></li>
+                <li><a href="#"><i class="fa fa-landmark"></i> Cartago</a></li>
+                <li><a href="#"><i class="fa fa-flower"></i> Heredia</a></li>
+                <li><a href="#"><i class="fa fa-sun"></i> Guanacaste</a></li>
+                <li><a href="#"><i class="fa fa-water"></i> Puntarenas</a></li>
+                <li><a href="#"><i class="fa fa-ship"></i> Limón</a></li>
+              </ul>
+            </li>
+
+            <!-- Servicios -->
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+
+            <!-- Botón móvil -->
+            <li class="mobile-button">
+              <a href="#" class="button button-primary">
+                <i class="fa fa-home"></i> Anunciarse
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Botón Escritorio -->
+        <div class="button-wrap desktop-only">
           <a href="#" class="button button-primary">
             <i class="fa fa-home"></i> Anunciarse
           </a>
-        </li>
+        </div>
 
-        <!-- BOTÓN SOLO MÓVIL -->
-        <li class="mobile-button">
-          <a href="#" class="button button-mobile">
-            <i class="fa fa-home"></i> Anunciarse
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+      </div>
+    </nav>
+  </div>
 </header>
 <!-- Swiper -->
 <section id="inicio">
