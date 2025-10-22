@@ -871,10 +871,11 @@
     <script src="js/firebase.js"></script>
     <script src="js/main.js"></script> 
     <!-- ===== SCRIPT MENU===== -->
+<!-- ======= SCRIPT ======= -->
 <script>
-document.querySelector('.rd-navbar-toggle').addEventListener('click', function() {
-  const nav = document.querySelector('.rd-navbar-nav');
-  nav.classList.toggle('show');
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('main-menu');
+  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
 });
 </script>
   </body>
