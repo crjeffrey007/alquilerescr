@@ -3,36 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anunciar en Directorio Comercial</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-  <script src="js/firebase.js" defer></script>
-  <script src="js/anuncios.js" defer></script>
+  <title>Publicar Anuncio Comercial | Alquileres CR</title>
+  <link rel="stylesheet" href="css/publicar.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 </head>
 <body>
-  <main class="form-container">
-    <h1>🧩 Anunciar en Directorio Comercial</h1>
+  <main class="formulario-container">
+    <h1>Publicar en Directorio Comercial</h1>
     <form id="formAnuncio" enctype="multipart/form-data">
-      
+
       <label>Tipo de Anuncio *</label>
-      <select name="tipoAnuncio" required>
-        <option value="">Selecciona</option>
-        <option value="servicio">Servicio</option>
-        <option value="negocio">Negocio</option>
-        <option value="profesional">Profesional</option>
+      <select name="tipo" required>
+        <option value="Producto">Producto</option>
+        <option value="Servicio">Servicio</option>
+        <option value="Negocio">Negocio</option>
+        <option value="Evento">Evento</option>
       </select>
 
       <label>Título del Anuncio *</label>
       <input type="text" name="titulo" required>
 
-      <label>Descripción *</label>
-      <textarea name="descripcion" required></textarea>
+      <label>Descripción del Anuncio *</label>
+      <textarea name="descripcion" rows="5" required></textarea>
 
-      <label>Nombre del Negocio *</label>
-      <input type="text" name="nombreNegocio" required>
+      <label>Nombre del Negocio</label>
+      <input type="text" name="negocio">
 
       <label>Teléfono de contacto *</label>
       <input type="tel" name="telefono" required>
@@ -40,46 +36,69 @@
       <label>Email de contacto</label>
       <input type="email" name="email">
 
-      <label>Subir Logo (máximo 1)</label>
-      <input type="file" id="logo" accept="image/*">
+      <label>Subir Logo (máx. 1 imagen)</label>
+      <input type="file" id="logo" name="logo" accept="image/*">
 
-      <label>Subir Imágenes (sin límite)</label>
-      <input type="file" id="imagenes" accept="image/*" multiple>
+      <label>Subir Imágenes (máx. 5 imágenes)</label>
+      <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple>
+      <div id="preview"></div>
 
       <label>Nombre de quien anuncia *</label>
       <input type="text" name="nombre" required>
-      <input type="text" name="apellidos" required>
 
       <label>Horario de atención *</label>
       <select name="horario" required>
-        <option value="abierto_todos">Abierto todos los días</option>
-        <option value="personalizado">Personalizar horario</option>
+        <option value="Abierto todos los días">Abierto todos los días</option>
+        <option value="Personalizado">Personalizar horario</option>
       </select>
 
-      <label>Dirección exacta *</label>
+      <label>Dirección del Negocio *</label>
       <input type="text" name="direccion" required>
 
-      <label>Provincia *</label>
-      <select id="selectProvincia" required></select>
-
-      <label>Cantón *</label>
-      <select id="selectCanton" required></select>
-
-      <label>Categoría del negocio *</label>
-      <select id="selectCategoria" required></select>
-
-      <label>Ofrece servicio a domicilio *</label>
-      <div>
-        <label><input type="radio" name="domicilio" value="sí" required> Sí</label>
-        <label><input type="radio" name="domicilio" value="no"> No</label>
+      <div class="ubicacion">
+        <input type="text" name="distrito" placeholder="Distrito" required>
+        <input type="text" name="canton" placeholder="Cantón" required>
+        <input type="text" name="provincia" placeholder="Provincia" required>
+        <input type="text" name="pais" placeholder="País" required>
       </div>
 
-      <label><input type="checkbox" name="veracidad" required> Acepto que la información es verídica *</label>
+      <label>¿Ofrece servicio a domicilio?</label>
+      <select name="domicilio" required>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
 
-      <button type="submit">📤 Publicar Anuncio</button>
+      <label>Categoría del negocio *</label>
+      <select name="categoria" required>
+        <option value="Restaurantes">Restaurantes</option>
+        <option value="Turismo">Turismo</option>
+        <option value="Salud">Salud</option>
+        <option value="Belleza">Belleza</option>
+        <option value="Construcción">Construcción</option>
+        <option value="Automotriz">Automotriz</option>
+        <option value="Tecnología">Tecnología</option>
+        <option value="Educación">Educación</option>
+        <option value="Servicios Profesionales">Servicios Profesionales</option>
+        <option value="Otros">Otros</option>
+      </select>
+
+      <label>Estado del Anuncio</label>
+      <select name="activo">
+        <option value="true" selected>Activo</option>
+        <option value="false">Inactivo</option>
+      </select>
+
+      <div class="checkbox">
+        <label><input type="checkbox" name="acepta" required> Acepto que la información es verídica *</label>
+      </div>
+
+      <button type="submit">📢 Publicar Anuncio</button>
     </form>
 
-    <div id="mensajeExito" class="oculto">✅ Tu anuncio fue enviado y está pendiente de aprobación.</div>
+    <div id="mensaje" class="mensaje"></div>
   </main>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/publicar-anuncio.js"></script>
 </body>
 </html>
