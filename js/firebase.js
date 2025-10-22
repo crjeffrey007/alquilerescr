@@ -11,3 +11,12 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+// inicializar Firebase (SDK compat)
+if (!firebase.apps || !firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.firestore();
+const auth = firebase.auth();
+window.db = db;     // expongo global para usar directo en scripts
+window.auth = auth;
