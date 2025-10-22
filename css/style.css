@@ -20649,145 +20649,80 @@ input[type="checkbox"] {
   .card-body h3 {
     font-size: 1rem;
   }
-/* General */
-.navbar {
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1000;
-}
-.navbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: auto;
-  padding: 10px 20px;
-}
-.navbar-menu {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-.navbar-menu li {
-  position: relative;
-  margin: 0 10px;
-}
-.navbar-menu a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  padding: 10px 5px;
-  display: inline-block;
-}
-.navbar-menu a:hover {
-  color: #007bff;
-}
 
-/* Botón principal (escritorio) */
-.button-primary {
-  background: #007bff;
-  color: #fff !important;
-  padding: 8px 16px;
-  border-radius: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: 0.3s;
-}
-.button-primary:hover {
-  background: #000;
-  color: #fff !important;
-}
-
-/* Botón móvil */
-.button-mobile {
-  background: #007bff;
-  color: #fff !important;
-  padding: 12px;
-  display: block;
-  border-radius: 0;
-  text-align: center;
-  transition: 0.3s;
-}
-.button-mobile:hover {
-  background: #000;
-  color: #fff !important;
-}
-
-/* Submenús tipo panel moderno */
-.dropdown .mega-panel {
+<!-- ======= ESTILOS SOLO PARA SUBMENÚS ======= -->
+<style>
+/* ===== SUBMENÚ MEGAMENU ===== */
+.rd-navbar-megamenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   background: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 15px 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   border-radius: 8px;
+  padding: 15px 25px;
+  min-width: 320px;
+  z-index: 999;
 }
-.dropdown:hover .mega-panel {
-  display: block;
-}
-.mega-panel ul {
+.rd-navbar--has-dropdown:hover > .rd-navbar-megamenu {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px 20px;
-  margin: 0;
-  padding: 0;
+  gap: 10px 20px;
+}
+.rd-navbar-megamenu li {
   list-style: none;
 }
-.mega-panel li a {
+.rd-navbar-megamenu a {
   display: flex;
   align-items: center;
   gap: 8px;
   color: #333;
-  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 5px 0;
   transition: color 0.3s;
 }
-.mega-panel li a:hover {
+.rd-navbar-megamenu a:hover {
   color: #007bff;
 }
-
-/* Hamburguesa */
-.navbar-toggle {
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: #333;
-  display: none;
+.rd-navbar-megamenu i {
+  color: #007bff;
+  font-size: 15px;
 }
 
-/* Responsivo */
+/* ===== RESPONSIVE ===== */
+
+/* Ocultar submenús en tablet y móvil */
 @media (max-width: 992px) {
-  .dropdown .mega-panel { display: none !important; }
-  .navbar-menu {
-    flex-direction: column;
-    display: none;
-    width: 100%;
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    position: absolute;
-    top: 70px;
-    left: 0;
+  .rd-navbar-megamenu {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
   }
-  .navbar-menu li {
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-  }
-  .navbar-menu a {
-    padding: 12px;
-    display: block;
-  }
-  .navbar-toggle { display: block; }
-  .desktop-only { display: none !important; }
-  .mobile-button { display: block !important; }
 }
 
+/* Ocultar botón móvil en escritorio */
 @media (min-width: 993px) {
-  .navbar-menu { display: flex !important; }
   .mobile-button { display: none !important; }
+}
+
+/* Asegurar que no se dupliquen menús */
+@media (max-width: 992px) {
+  .desktop-only { display: none !important; }
+}
+
+/* Estilo del botón móvil */
+.mobile-button .button-primary {
+  background: #007bff;
+  color: #fff;
+  border-radius: 0;
+  text-align: center;
+  padding: 12px;
+  display: block;
+  transition: 0.3s;
+}
+.mobile-button .button-primary:hover {
+  background: #000;
+  color: #fff;
 }
