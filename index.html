@@ -861,5 +861,11 @@
     <!--coded by ATOM-->
     <script src="js/firebase.js"></script>
     <script src="js/main.js"></script> 
+    <script>
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-menu');
+  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+});
+</script>
   </body>
 </html>
