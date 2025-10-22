@@ -1,5 +1,5 @@
 const CLOUD_NAME = "media-anuncios";
-const UPLOAD_PRESET = "malos-inquilinos";
+const UPLOAD_PRESET = "alquilerescr";
 const WEB3FORMS_KEY = "36e1e635-e0fa-4b58-adba-4daf2694b7dd";
 
 const form = document.getElementById("formAlquiler");
