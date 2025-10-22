@@ -2,152 +2,120 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Publicar Propiedad en Alquiler</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publicar Alquiler | Alquileres CR</title>
+  <link rel="stylesheet" href="css/publicar.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 </head>
 <body>
-
-  <h2>🏠 Publicar Propiedad en Alquiler</h2>
-
-  <form id="form-alquiler">
-
-    <fieldset>
-      <legend>📄 Detalles del Anuncio</legend>
-
+  <main class="formulario-container">
+    <h1>Publicar Alquiler</h1>
+    <form id="formAlquiler" enctype="multipart/form-data">
+      
       <label>Título del anuncio *</label>
-      <input type="text" name="titulo" required>
+      <input type="text" name="titulo" required />
 
       <label>Descripción del anuncio *</label>
-      <textarea name="descripcion" rows="4" required></textarea>
+      <textarea name="descripcion" rows="5" required></textarea>
 
-      <label>Subir fotografías *</label>
-      <input type="file" id="imagenes" accept="image/*" multiple required>
-      <small>Puedes subir varias imágenes</small>
-    </fieldset>
+      <label>Fotografías (máximo 5)</label>
+      <input type="file" id="imagenes" name="imagenes" multiple accept="image/*" />
 
-    <fieldset>
-      <legend>🏡 Detalles de la Propiedad</legend>
+      <div id="preview"></div>
 
-      <label>Área de la propiedad (m²)</label>
-      <input type="number" name="areaPropiedad">
+      <label>Área de la propiedad</label>
+      <input type="text" name="areaPropiedad" />
 
-      <label>Área de construcción (m²)</label>
-      <input type="number" name="areaConstruccion">
+      <label>Área de construcción</label>
+      <input type="text" name="areaConstruccion" />
 
       <label>¿Alquila amoblado?</label>
-      <select name="amoblado">
+      <select name="amoblado" required>
         <option value="Sí">Sí</option>
         <option value="No">No</option>
       </select>
 
+      <label>El inmueble tiene:</label>
       <div class="checkbox-group">
-        <p>El inmueble tiene:</p>
-        <label><input type="checkbox" name="tiene" value="Sala"> Sala</label>
-        <label><input type="checkbox" name="tiene" value="Cocina"> Cocina</label>
-        <label><input type="checkbox" name="tiene" value="Habitaciones"> Habitaciones</label>
-        <label><input type="checkbox" name="tiene" value="Corredor"> Corredor</label>
-        <label><input type="checkbox" name="tiene" value="Patio de pilas"> Patio de pilas</label>
-        <label><input type="checkbox" name="tiene" value="Sótano"> Sótano</label>
-        <label><input type="checkbox" name="tiene" value="Piscina"> Piscina</label>
-        <label><input type="checkbox" name="tiene" value="Jardín"> Jardín</label>
+        <label><input type="checkbox" name="instalaciones" value="Sala" /> Sala</label>
+        <label><input type="checkbox" name="instalaciones" value="Cocina" /> Cocina</label>
+        <label><input type="checkbox" name="instalaciones" value="Habitaciones" /> Habitaciones</label>
+        <label><input type="checkbox" name="instalaciones" value="Piscina" /> Piscina</label>
+        <label><input type="checkbox" name="instalaciones" value="Jardín" /> Jardín</label>
       </div>
 
       <label>Número de habitaciones *</label>
-      <input type="number" name="habitaciones" required>
+      <input type="number" name="habitaciones" required />
 
       <label>Número de baños *</label>
-      <input type="number" name="banos" required>
+      <input type="number" name="banos" required />
 
+      <label>Muebles y artefactos incluidos:</label>
       <div class="checkbox-group">
-        <p>Muebles y artefactos incluidos:</p>
-        <label><input type="checkbox" name="muebles" value="TV"> TV</label>
-        <label><input type="checkbox" name="muebles" value="Sofá"> Sofá</label>
-        <label><input type="checkbox" name="muebles" value="Cocina"> Cocina</label>
-        <label><input type="checkbox" name="muebles" value="Refrigerador"> Refrigerador</label>
-        <label><input type="checkbox" name="muebles" value="Microondas"> Microondas</label>
-        <label><input type="checkbox" name="muebles" value="Horno"> Horno</label>
-        <label><input type="checkbox" name="muebles" value="Cofeemaker"> Cofeemaker</label>
-        <label><input type="checkbox" name="muebles" value="Licuadora"> Licuadora</label>
-        <label><input type="checkbox" name="muebles" value="Lavadora"> Lavadora</label>
-        <label><input type="checkbox" name="muebles" value="Mesa"> Mesa</label>
-        <label><input type="checkbox" name="muebles" value="Sillas"> Sillas</label>
-        <label><input type="checkbox" name="muebles" value="Cama"> Cama</label>
-        <label><input type="checkbox" name="muebles" value="Lámparas"> Lámparas</label>
+        <label><input type="checkbox" name="muebles" value="TV" /> TV</label>
+        <label><input type="checkbox" name="muebles" value="Sofá" /> Sofá</label>
+        <label><input type="checkbox" name="muebles" value="Refrigerador" /> Refrigerador</label>
+        <label><input type="checkbox" name="muebles" value="Cama" /> Cama</label>
+        <label><input type="checkbox" name="muebles" value="Lavadora" /> Lavadora</label>
       </div>
 
-      <label>¿Incluye servicios?</label>
-      <select name="incluyeServicios">
+      <label>Incluye servicios?</label>
+      <select name="incluyeServicios" required>
         <option value="Sí">Sí</option>
         <option value="No">No</option>
       </select>
 
+      <label>Servicios incluidos:</label>
       <div class="checkbox-group">
-        <p>Servicios incluidos:</p>
-        <label><input type="checkbox" name="servicios" value="Electricidad"> Electricidad</label>
-        <label><input type="checkbox" name="servicios" value="Agua"> Agua</label>
-        <label><input type="checkbox" name="servicios" value="Internet"> Internet</label>
-        <label><input type="checkbox" name="servicios" value="Wifi"> Wifi</label>
-        <label><input type="checkbox" name="servicios" value="Cable"> Canales de cable</label>
-        <label><input type="checkbox" name="servicios" value="Netflix"> Netflix</label>
-        <label><input type="checkbox" name="servicios" value="Prime"> Prime Video</label>
-        <label><input type="checkbox" name="servicios" value="Basura"> Basura</label>
+        <label><input type="checkbox" name="servicios" value="Electricidad" /> Electricidad</label>
+        <label><input type="checkbox" name="servicios" value="Agua" /> Agua</label>
+        <label><input type="checkbox" name="servicios" value="Internet" /> Internet</label>
+        <label><input type="checkbox" name="servicios" value="Wifi" /> Wifi</label>
+        <label><input type="checkbox" name="servicios" value="Cable" /> Cable</label>
       </div>
-    </fieldset>
 
-    <fieldset>
-      <legend>📍 Ubicación</legend>
-      <label>Dirección exacta *</label>
-      <input type="text" name="direccion" required>
-
-      <label>Distrito *</label>
-      <input type="text" name="distrito" required>
-
-      <label>Cantón *</label>
-      <input type="text" name="canton" required>
+      <label>Dirección del inmueble *</label>
+      <input type="text" name="direccion" required />
 
       <label>Provincia *</label>
-      <input type="text" name="provincia" required>
+      <input type="text" name="provincia" required />
 
-      <label>País *</label>
-      <input type="text" name="pais" required>
-
-      <label>Moneda *</label>
+      <label>Moneda para cobrar *</label>
       <select name="moneda" required>
         <option value="Colones">Colones</option>
         <option value="Dólares">Dólares</option>
       </select>
-    </fieldset>
 
-    <fieldset>
-      <legend>👤 Datos del anunciante</legend>
-      <label>Nombre *</label>
-      <input type="text" name="nombre" required>
-
-      <label>Apellidos *</label>
-      <input type="text" name="apellidos" required>
+      <label>Nombre del anunciante *</label>
+      <input type="text" name="nombre" required />
 
       <label>Email *</label>
-      <input type="email" name="email" required>
+      <input type="email" name="email" required />
 
       <label>Teléfono *</label>
-      <input type="tel" name="telefono" required>
-    </fieldset>
+      <input type="tel" name="telefono" required />
 
-    <label>
-      <input type="checkbox" required>
-      Acepta que la información enviada es verídica *
-    </label>
+      <label>Estado del anuncio</label>
+      <select name="activo" id="activo">
+        <option value="true" selected>Activo</option>
+        <option value="false">Inactivo</option>
+      </select>
 
-    <button type="submit">📤 Publicar Propiedad</button>
-  </form>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="aceptaTerminos" required />
+          Acepto que la información que envío es verídica *
+        </label>
+      </div>
 
-  <h3>Mis Propiedades</h3>
-  <div id="mis-anuncios"></div>
+      <button type="submit">📤 Publicar Anuncio</button>
+    </form>
 
-  <script type="module" src="js/firebase.js"></script>
-  <script type="module" src="js/auth.js"></script>
-  <script type="module" src="js/cloudinary-upload.js"></script>
-  <script type="module" src="js/web3form.js"></script>
-  <script type="module" src="js/alquileres.js"></script>
+    <div id="mensaje" class="mensaje"></div>
+  </main>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/publicar-alquiler.js"></script>
 </body>
 </html>
