@@ -7775,6 +7775,7 @@ html:not(.lt-ie10) .not-animated {
 
 .rd-navbar-fixed .rd-navbar-nav-wrap.active {
 	transform: translateX(0);
+	margin
 }
 
 .rd-navbar-fixed .rd-navbar-nav-wrap .rd-navbar-items-list,
@@ -20714,3 +20715,4 @@ input[type="checkbox"] {
 @media (min-width: 993px) {
   .rd-navbar-toggle { display: none; }
 }
+
