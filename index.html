@@ -873,8 +873,8 @@
     <!-- ======= SCRIPT ======= -->
 <script>
 document.getElementById('menu-toggle').addEventListener('click', function() {
-  const menu = document.querySelector('.rd-navbar-nav');
-  menu.classList.toggle('show');
+  const menu = document.getElementById('main-menu');
+  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
 });
 </script>
   </body>
