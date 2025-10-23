@@ -1,23 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propiedades en Alquiler - Alquileres CR</title>
-  <link rel="stylesheet" href="css/estilos.css">
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  <script src="js/firebase.js" defer></script>
-  <script src="js/listar-alquileres.js" defer></script>
-</head>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Alquileres - Alquileres CR</title>
+<link rel="stylesheet" href="css/styles.css"></head>
 <body>
-  <header>
-    <h1>Propiedades en Alquiler</h1>
-  </header>
-
-  <main class="contenedor">
-    <div id="lista-alquileres" class="grid-listado"></div>
-  </main>
+<header class="site-header"><div class="container"><h1>Alquileres CR</h1><nav class="nav"><a href="index.html">Inicio</a></nav></div></header>
+<main class="container">
+  <h2>Listado de Alquileres (demo)</h2>
+  <div id="list-alquileres" class="publicaciones-grid">
+    <p>Cargando listados... (en la versión demo los datos se cargan desde Firestore cuando configurado)</p>
+  </div>
+</main>
+<script src="js/firebase.js"></script>
+<script src="js/listados.js"></script>
 </body>
 </html>

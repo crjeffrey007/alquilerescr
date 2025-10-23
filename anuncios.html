@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Directorio Comercial - Alquileres CR</title>
-  <link rel="stylesheet" href="css/estilos.css">
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  <script src="js/firebase.js" defer></script>
-  <script src="js/listar-anuncios.js" defer></script>
-</head>
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Anuncios - Alquileres CR</title>
+<link rel="stylesheet" href="css/styles.css"></head>
 <body>
-  <header>
-    <h1>Directorio Comercial</h1>
-  </header>
-
-  <main class="contenedor">
-    <div id="lista-anuncios" class="grid-listado"></div>
-  </main>
-</body>
-</html>
+<header class="site-header"><div class="container"><h1>Alquileres CR</h1></div></header>
+<main class="container">
+  <h2>Directorio Comercial (demo)</h2>
+  <div id="list-anuncios" class="publicaciones-grid"><p>Configurá Google Sheets o Firestore para ver datos reales.</p></div>
+</main>
+<script src="js/firebase.js"></script>
+<script src="js/listados.js"></script>
+</body></html>

@@ -1,89 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Publicar Alquiler - Alquileres CR</title>
-  <link rel="stylesheet" href="css/publicar.css" />
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-</head>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Publicar Alquiler - Alquileres CR</title>
+<link rel="stylesheet" href="css/styles.css"></head>
 <body>
-  <main class="formulario-container">
-    <h1>Publicar Propiedad en Alquiler</h1>
-
-    <!-- Mensajes e inicio de sesión: si querés mostrar login aquí -->
-    <div id="loginArea"></div>
-
-    <form id="formAlquiler" enctype="multipart/form-data">
-      <!-- Campos (los tuyos completos) -->
-      <label>Título del anuncio *</label>
-      <input name="titulo" type="text" required>
-
-      <label>Descripción *</label>
-      <textarea name="descripcion" required></textarea>
-
-      <label>Subir fotografías (ilimitadas)</label>
-      <input id="imagenes" name="imagenes" type="file" accept="image/*" multiple>
-      <div id="preview" class="preview"></div>
-
-      <label>Área (m²)</label><input name="areaPropiedad" type="text">
-      <label>Área de construcción (m²)</label><input name="areaConstruccion" type="text">
-      <label>¿Alquila amoblado?</label>
-      <select name="amoblado"><option>Sí</option><option>No</option></select>
-
-      <label>Instalaciones (marcar las que correspondan)</label>
-      <div>
-        <label><input type="checkbox" name="instalaciones" value="Sala"> Sala</label>
-        <label><input type="checkbox" name="instalaciones" value="Cocina"> Cocina</label>
-        <label><input type="checkbox" name="instalaciones" value="Piscina"> Piscina</label>
-        <label><input type="checkbox" name="instalaciones" value="Jardín"> Jardín</label>
-      </div>
-
-      <label>N° habitaciones *</label><input name="habitaciones" type="number" required>
-      <label>N° baños *</label><input name="banos" type="number" required>
-
-      <label>Muebles y artefactos</label>
-      <div>
-        <label><input type="checkbox" name="muebles" value="TV"> TV</label>
-        <label><input type="checkbox" name="muebles" value="Sofá"> Sofá</label>
-        <label><input type="checkbox" name="muebles" value="Refrigerador"> Refrigerador</label>
-      </div>
-
-      <label>Incluye servicios?</label>
-      <select name="incluyeServicios"><option>Sí</option><option>No</option></select>
-
-      <label>Servicios</label>
-      <div>
-        <label><input type="checkbox" name="servicios" value="Electricidad"> Electricidad</label>
-        <label><input type="checkbox" name="servicios" value="Internet"> Internet</label>
-      </div>
-
-      <label>Dirección *</label><input name="direccion" type="text" required>
-      <label>Distrito *</label><input name="distrito" type="text" required>
-      <label>Cantón *</label><input name="canton" type="text" required>
-      <label>Provincia *</label><input name="provincia" type="text" required>
-      <label>País *</label><input name="pais" type="text" value="Costa Rica" required>
-
-      <label>Moneda *</label>
-      <select name="moneda"><option>Colones</option><option>Dólares</option></select>
-
-      <label>Nombre del anunciante *</label><input name="nombre" type="text" required>
-      <label>Email *</label><input name="email" type="email" required>
-      <label>Teléfono *</label><input name="telefono" type="tel" required>
-
-      <label>Estado</label>
-      <select name="activo"><option value="true" selected>Activo</option><option value="false">Inactivo</option></select>
-
-      <label><input name="veracidad" type="checkbox" required> Acepto que la información es verídica</label>
-
-      <button type="submit">Publicar Anuncio</button>
-    </form>
-
-    <div id="mensaje" class="mensaje"></div>
-  </main>
-
-  <script type="module" src="js/publicar-alquiler.js"></script>
+<header class="site-header"><div class="container"><h1>Publicar Alquiler</h1></div></header>
+<main class="container">
+  <form id="form-alquiler" class="form">
+    <label>Título*</label><input name="titulo" required>
+    <label>Descripción*</label><textarea name="descripcion" required></textarea>
+    <label>Fotos</label><input type="file" id="fotos" name="fotos" accept="image/*" multiple>
+    <label>Provincia</label><input name="provincia">
+    <label>Cantón</label><input name="canton">
+    <label>Distrito</label><input name="distrito">
+    <label>Precio</label><input name="precio" type="number">
+    <label>Nombre*</label><input name="nombre" required>
+    <label>Email*</label><input type="email" name="email" required>
+    <label>Teléfono*</label><input name="telefono" required>
+    <label><input type="checkbox" name="veracidad" required> Confirmo información verídica</label>
+    <button type="submit">Enviar Anuncio</button>
+  </form>
+  <div id="msg"></div>
+</main>
+<script src="js/firebase.js"></script>
+<script src="js/cloudinary-upload.js"></script>
+<script src="js/form-handler.js"></script>
+<script>
+document.getElementById('form-alquiler').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = e.target;
+  const files = document.getElementById('fotos').files;
+  document.getElementById('msg').textContent = 'Subiendo...';
+  const urls = [];
+  for(const f of files){ const u = await uploadToCloudinary(f); urls.push(u); }
+  // Save to Firestore if configured (placeholder)
+  if(window.db){ await db.collection('alquileres').add({ titulo: form.titulo.value, descripcion: form.descripcion.value, imagenes: urls, provincia: form.provincia.value, precio: form.precio.value, uid: (auth.currentUser && auth.currentUser.uid) || null, estado: 'pendiente', fechaPublicacion: firebase.firestore.FieldValue.serverTimestamp() }); }
+  // send to Web3Forms
+  const fd = new FormData(form); fd.append('access_key', '36e1e635-e0fa-4b58-adba-4daf2694b7dd'); fd.append('images', JSON.stringify(urls));
+  await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+  document.getElementById('msg').textContent = 'Enviado. Pendiente de aprobación.';
+  form.reset();
+});
+</script>
 </body>
 </html>

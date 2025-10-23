@@ -1,104 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publicar Anuncio Comercial | Alquileres CR</title>
-  <link rel="stylesheet" href="css/publicar.css">
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
-</head>
-<body>
-  <main class="formulario-container">
-    <h1>Publicar en Directorio Comercial</h1>
-    <form id="formAnuncio" enctype="multipart/form-data">
-
-      <label>Tipo de Anuncio *</label>
-      <select name="tipo" required>
-        <option value="Producto">Producto</option>
-        <option value="Servicio">Servicio</option>
-        <option value="Negocio">Negocio</option>
-        <option value="Evento">Evento</option>
-      </select>
-
-      <label>Título del Anuncio *</label>
-      <input type="text" name="titulo" required>
-
-      <label>Descripción del Anuncio *</label>
-      <textarea name="descripcion" rows="5" required></textarea>
-
-      <label>Nombre del Negocio</label>
-      <input type="text" name="negocio">
-
-      <label>Teléfono de contacto *</label>
-      <input type="tel" name="telefono" required>
-
-      <label>Email de contacto</label>
-      <input type="email" name="email">
-
-      <label>Subir Logo (máx. 1 imagen)</label>
-      <input type="file" id="logo" name="logo" accept="image/*">
-
-      <label>Subir Imágenes (máx. 5 imágenes)</label>
-      <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple>
-      <div id="preview"></div>
-
-      <label>Nombre de quien anuncia *</label>
-      <input type="text" name="nombre" required>
-
-      <label>Horario de atención *</label>
-      <select name="horario" required>
-        <option value="Abierto todos los días">Abierto todos los días</option>
-        <option value="Personalizado">Personalizar horario</option>
-      </select>
-
-      <label>Dirección del Negocio *</label>
-      <input type="text" name="direccion" required>
-
-      <div class="ubicacion">
-        <input type="text" name="distrito" placeholder="Distrito" required>
-        <input type="text" name="canton" placeholder="Cantón" required>
-        <input type="text" name="provincia" placeholder="Provincia" required>
-        <input type="text" name="pais" placeholder="País" required>
-      </div>
-
-      <label>¿Ofrece servicio a domicilio?</label>
-      <select name="domicilio" required>
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-      </select>
-
-      <label>Categoría del negocio *</label>
-      <select name="categoria" required>
-        <option value="Restaurantes">Restaurantes</option>
-        <option value="Turismo">Turismo</option>
-        <option value="Salud">Salud</option>
-        <option value="Belleza">Belleza</option>
-        <option value="Construcción">Construcción</option>
-        <option value="Automotriz">Automotriz</option>
-        <option value="Tecnología">Tecnología</option>
-        <option value="Educación">Educación</option>
-        <option value="Servicios Profesionales">Servicios Profesionales</option>
-        <option value="Otros">Otros</option>
-      </select>
-
-      <label>Estado del Anuncio</label>
-      <select name="activo">
-        <option value="true" selected>Activo</option>
-        <option value="false">Inactivo</option>
-      </select>
-
-      <div class="checkbox">
-        <label><input type="checkbox" name="acepta" required> Acepto que la información es verídica *</label>
-      </div>
-
-      <button type="submit">📢 Publicar Anuncio</button>
-    </form>
-
-    <div id="mensaje" class="mensaje"></div>
-  </main>
-
-  <script src="js/firebase-config.js"></script>
-  <script src="js/publicar-anuncio.js"></script>
-</body>
-</html>
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Publicar Anuncio - Alquileres CR</title>
+<link rel="stylesheet" href="css/styles.css"></head><body>
+<header class="site-header"><div class="container"><h1>Publicar Anuncio</h1></div></header>
+<main class="container">
+<form id="form-anuncio" class="form">
+  <label>Tipo*</label><select name="tipo"><option>Negocio</option><option>Servicio</option></select>
+  <label>Título*</label><input name="titulo" required>
+  <label>Descripción*</label><textarea name="descripcion" required></textarea>
+  <label>Nombre del negocio</label><input name="nombreNegocio">
+  <label>Teléfono*</label><input name="telefono" required>
+  <label>Email</label><input type="email" name="email">
+  <label>Logo</label><input type="file" id="logof" accept="image/*">
+  <label>Imágenes</label><input type="file" id="fotosa" multiple accept="image/*">
+  <label>Provincia</label><input name="provincia">
+  <label>Cantón</label><input name="canton">
+  <label>Categoría</label><input name="categoria">
+  <label>Nombre anunciante*</label><input name="anunciante" required>
+  <label><input type="checkbox" name="veracidad" required> Confirmo información verídica</label>
+  <button type="submit">Enviar</button>
+</form>
+<div id="msga"></div>
+</main>
+<script src="js/firebase.js"></script>
+<script src="js/cloudinary-upload.js"></script>
+<script src="js/form-handler.js"></script>
+<script>
+document.getElementById('form-anuncio').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = e.target;
+  const logos = document.getElementById('logof').files;
+  const fotos = document.getElementById('fotosa').files;
+  document.getElementById('msga').textContent = 'Subiendo...';
+  const urls = [];
+  for(const f of Array.from(logos||[])){ urls.push(await uploadToCloudinary(f)); }
+  for(const f of Array.from(fotos||[])){ urls.push(await uploadToCloudinary(f)); }
+  if(window.db){ await db.collection('anunciosComerciales').add({ titulo: form.titulo.value, descripcion: form.descripcion.value, imagenes: urls, uid: (auth.currentUser && auth.currentUser.uid) || null, estado: 'pendiente', fechaPublicacion: firebase.firestore.FieldValue.serverTimestamp() }); }
+  const fd = new FormData(form); fd.append('access_key','36e1e635-e0fa-4b58-adba-4daf2694b7dd'); fd.append('images', JSON.stringify(urls));
+  await fetch('https://api.web3forms.com/submit',{method:'POST', body: fd});
+  document.getElementById('msga').textContent = 'Enviado. Pendiente de aprobación.';
+  form.reset();
+});
+</script>
+</body></html>
