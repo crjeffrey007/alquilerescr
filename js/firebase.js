@@ -8,15 +8,7 @@ const firebaseConfig = {
   appId: "1:594252224879:web:6321a05511f67e2d13309a",
   measurementId: "G-21HRE9SEVG"
 };
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-// inicializar Firebase (SDK compat)
-if (!firebase.apps || !firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+if(!firebase.apps || !firebase.apps.length){ firebase.initializeApp(firebaseConfig); }
 const db = firebase.firestore();
 const auth = firebase.auth();
-window.db = db;     // expongo global para usar directo en scripts
-window.auth = auth;
+window.db = db; window.auth = auth;
