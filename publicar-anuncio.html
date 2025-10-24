@@ -1,1 +1,45 @@
-<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport'content='width=device-width,initial-scale=1'><title>Publicar Anuncio</title><link rel='stylesheet' href='css/style.css'></head><body><header class='site-header'><div class='container'><h1>Publicar Anuncio</h1></div></header><main class='container'><form id='form-anuncio' class='form'><label>Título *</label><input name='titulo' required><label>Descripción *</label><textarea name='descripcion' required></textarea><label>Logo</label><input id='logo' type='file' accept='image/*'><label>Imágenes</label><input id='imagenes' type='file' accept='image/*' multiple><label>Provincia *</label><input name='provincia' required><label>Categoría</label><input name='categoria' required><label>Nombre anunciante</label><input name='anunciante' required><button type='submit'>Enviar</button></form><div id='msga'></div><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js'></script><script src='js/firebase.js'></script><script src='js/cloudinary.js'></script><script src='js/web3forms.js'></script><script src='js/publicar-anuncio.js'></script></main></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <title>Anunciar en Directorio Comercial - Alquileres CR</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><h1>Anunciar en Directorio Comercial</h1></div></header>
+  <main class="container">
+    <form id="form-anuncio" class="form">
+      <label>Tipo de Anuncio</label><select name="tipo"><option>Negocio</option><option>Servicio</option></select>
+      <label>Título del Anuncio *</label><input name="titulo" required>
+      <label>Descripción *</label><textarea name="descripcion" required></textarea>
+      <label>Nombre del Negocio</label><input name="nombreNegocio">
+      <label>Teléfono de contacto</label><input name="telefono">
+      <label>Email de contacto</label><input name="email" type="email">
+      <label>Subir Logo (máx 1)</label><input id="logo" type="file" accept="image/*">
+      <label>Subir imágenes (máx 5)</label><input id="imagenes" type="file" accept="image/*" multiple>
+      <label>Horario de Atención</label><select name="horario"><option>Abierto todos los días</option><option>Personalizar</option></select>
+      <label>Dirección</label><input name="direccion" required>
+      <label>Distrito</label><input name="distrito" required>
+      <label>Cantón</label><input name="canton" required>
+      <label>Provincia</label><input name="provincia" required>
+      <label>Categoría</label><input name="categoria" required>
+      <label>Nombre de quien anuncia</label><input name="anunciante" required>
+      <label>Ofrece servicio a domicilio?</label><select name="servicioDomicilio"><option>Si</option><option>No</option></select>
+      <label><input type="checkbox" name="veracidad" required> Acepto que la información es verídica</label>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="msga"></div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/cloudinary-upload.js"></script>
+  <script src="js/web3forms.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/publicar-anuncio.js"></script>
+</body>
+</html>
