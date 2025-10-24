@@ -1,1 +1,50 @@
-<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport'content='width=device-width,initial-scale=1'><title>Publicar Alquiler</title><link rel='stylesheet' href='css/style.css'></head><body><header class='site-header'><div class='container'><h1>Publicar Alquiler</h1></div></header><main class='container'> <form id='form-alquiler' class='form'> <label>Título *</label><input name='titulo' required> <label>Descripción *</label><textarea name='descripcion' required></textarea> <label>Fotos</label><input id='alquiler-fotos' type='file' accept='image/*' multiple> <label>Provincia *</label><input name='provincia' required> <label>Cantón *</label><input name='canton' required> <label>Precio *</label><input name='precio' type='number' required> <label>Moneda</label><select name='moneda'><option>Colones</option><option>Dólares</option></select> <label>Nombre</label><input name='nombre'> <label>Email</label><input name='email' type='email'> <button type='submit'>Enviar</button> </form> <div id='msg'></div> <script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js'></script> <script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js'></script> <script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js'></script> <script src='js/firebase.js'></script> <script src='js/cloudinary.js'></script> <script src='js/web3forms.js'></script> <script src='js/publicar-alquiler.js'></script> </main></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <title>Publicar Anuncio de Alquiler - Alquileres CR</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><h1>Publicar Anuncio de Alquiler</h1></div></header>
+  <main class="container">
+    <form id="form-alquiler" class="form">
+      <label>Título del anuncio *</label><input name="titulo" required>
+      <label>Descripción del anuncio *</label><textarea name="descripcion" required></textarea>
+      <label>Subir fotografías</label><input id="alquiler-fotos" type="file" accept="image/*" multiple>
+      <label>Área de la propiedad</label><input name="area">
+      <label>Área de construcción</label><input name="areaConstruccion">
+      <label>Alquila amoblado?</label><select name="amoblado"><option>Si</option><option>No</option></select>
+      <label>El inmueble tiene (lista)</label><input name="caracteristicas" placeholder="Sala, Cocina, Piscina,...">
+      <label>Número de habitaciones</label><input name="habitaciones" type="number">
+      <label>Número de baños</label><input name="banos" type="number">
+      <label>Muebles y artefactos</label><input name="muebles" placeholder="TV, Sofá, Refrigerador...">
+      <label>Incluye servicios?</label><select name="incluyeServicios"><option>Si</option><option>No</option></select>
+      <label>Servicios (si aplica)</label><input name="servicios" placeholder="Electricidad, Agua, Internet...">
+      <label>Dirección del inmueble *</label><input name="direccion" required>
+      <label>Distrito</label><input name="distrito">
+      <label>Cantón *</label><input name="canton" required>
+      <label>Provincia *</label><input name="provincia" required>
+      <label>Precio *</label><input name="precio" type="number" required>
+      <label>Moneda</label><select name="moneda"><option>Colones</option><option>Dólares</option></select>
+      <label>Nombre del anunciante *</label><input name="nombre" required>
+      <label>Email *</label><input name="email" type="email" required>
+      <label>Teléfono</label><input name="telefono">
+      <label><input type="checkbox" name="veracidad" required> Acepto que la información es verídica *</label>
+      <button type="submit">Enviar Anuncio</button>
+    </form>
+    <div id="msg"></div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/cloudinary-upload.js"></script>
+  <script src="js/web3forms.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/publicar-alquiler.js"></script>
+</body>
+</html>
