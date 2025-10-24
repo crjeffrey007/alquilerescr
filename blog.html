@@ -1,9 +1,1 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Blog - Alquileres CR</title>
-<link rel="stylesheet" href="css/styles.css"></head><body>
-<header class="site-header"><div class="container"><h1>Alquileres CR</h1></div></header>
-<main class="container">
-  <h2>Blog</h2>
-  <p>En la versión final el blog es administrado solo por el administrador desde el panel.</p>
-</main>
-</body></html>
+<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Blog</title><link rel='stylesheet' href='css/style.css'></head><body><header class='site-header'><div class='container'><h1>Blog</h1></div></header><main class='container'><div id='list-blog'></div></main><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js'></script><script src='js/firebase.js'></script><script>async function cargarBlog(){const el=document.getElementById('list-blog');el.innerHTML='<p>Cargando...</p>';const snap=await db.collection('blog').orderBy('createdAt','desc').get();let html='';snap.forEach(doc=>{const d=doc.data();html+=`<article class="card"><h3>${d.titulo}</h3><p><em>${d.categoria}</em></p><div>${d.contenido? d.contenido.substring(0,300): ''}</div></article>`});el.innerHTML=html||'<p>No hay artículos.</p>';}document.addEventListener('DOMContentLoaded',cargarBlog);</script></body></html>
