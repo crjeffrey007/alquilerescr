@@ -1,1 +1,52 @@
-<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport'content='width=device-width,initial-scale=1'><title>Publicar Venta</title><link rel='stylesheet' href='css/style.css'></head><body><header class='site-header'><div class='container'><h1>Publicar Venta</h1></div></header><main class='container'><form id='form-venta' class='form'><label>Título *</label><input name='titulo' required><label>Descripción *</label><textarea name='descripcion' required></textarea><label>Fotos</label><input id='venta-fotos' type='file' accept='image/*' multiple><label>Tipo de propiedad</label><select name='tipoPropiedad'><option>Casa</option><option>Apartamento</option></select><label>Provincia *</label><input name='provincia' required><label>Precio *</label><input name='precio' type='number' required><label>Nombre</label><input name='nombre'><label>Email</label><input name='email' type='email'><button type='submit'>Enviar</button></form><div id='msgv'></div><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js'></script><script src='js/firebase.js'></script><script src='js/cloudinary.js'></script><script src='js/web3forms.js'></script><script src='js/publicar-venta.js'></script></main></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <title>Anunciar Propiedad en Venta - Alquileres CR</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><h1>Anunciar Propiedad en Venta</h1></div></header>
+  <main class="container">
+    <form id="form-venta" class="form">
+      <label>Título del anuncio *</label><input name="titulo" required>
+      <label>Descripción *</label><textarea name="descripcion" required></textarea>
+      <label>Subir fotografías</label><input id="venta-fotos" type="file" accept="image/*" multiple>
+      <label>Tipo de propiedad</label>
+      <select name="tipoPropiedad">
+        <option>Lote</option><option>Finca</option><option>Casa</option>
+        <option>Apartamento</option><option>Apartamento en Edificio</option>
+        <option>Apartamento en Condominio</option><option>Cabaña</option>
+        <option>Bodega</option><option>Otro</option>
+      </select>
+      <label>Área de la propiedad</label><input name="area">
+      <label>Área de construcción</label><input name="areaConstruccion">
+      <label>Número de habitaciones</label><input name="habitaciones" type="number">
+      <label>Número de baños</label><input name="banos" type="number">
+      <label>Dirección *</label><input name="direccion" required>
+      <label>Distrito</label><input name="distrito">
+      <label>Cantón *</label><input name="canton" required>
+      <label>Provincia *</label><input name="provincia" required>
+      <label>Precio *</label><input name="precio" type="number" required>
+      <label>Moneda</label><select name="moneda"><option>Colones</option><option>Dólares</option></select>
+      <label>Nombre del anunciante *</label><input name="nombre" required>
+      <label>Email *</label><input name="email" type="email" required>
+      <label>Teléfono</label><input name="telefono">
+      <label><input type="checkbox" name="veracidad" required> Acepto que la información es verídica</label>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="msgv"></div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/cloudinary-upload.js"></script>
+  <script src="js/web3forms.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/publicar-venta.js"></script>
+</body>
+</html>
