@@ -1,26 +1,32 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Publicar Blog - Alquileres CR</title>
-<link rel="stylesheet" href="css/styles.css"></head><body>
-<header class="site-header"><div class="container"><h1>Publicar Blog</h1></div></header>
-<main class="container">
-<form id="form-blog" class="form">
-  <label>Título*</label><input name="titulo" required>
-  <label>Contenido*</label><textarea name="contenido" rows="10" required></textarea>
-  <label>Categoría</label><select name="categoria"><option>Consejos</option><option>Recomendaciones</option><option>Noticias</option></select>
-  <button type="submit">Publicar (solo admin)</button>
-</form>
-<div id="msgb"></div>
-</main>
-<script src="js/firebase.js"></script>
-<script src="js/form-handler.js"></script>
-<script>
-document.getElementById('form-blog').addEventListener('submit', async function(e){
-  e.preventDefault();
-  if(!auth.currentUser){ return alert('Debes iniciar sesión como admin'); }
-  const form = e.target;
-  if(window.db){ await db.collection('blog').add({ titulo: form.titulo.value, contenido: form.contenido.value, categoria: form.categoria.value, uid: auth.currentUser.uid, fechaPublicacion: firebase.firestore.FieldValue.serverTimestamp() }); }
-  document.getElementById('msgb').textContent = 'Publicado (pendiente si requiere revisión).';
-  form.reset();
-});
-</script>
-</body></html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <title>Publicar Artículo - Blog</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><h1>Publicar Artículo (Admin)</h1></div></header>
+  <main class="container">
+    <form id="form-blog" class="form">
+      <label>Título</label><input name="titulo" required>
+      <label>Categoría</label>
+      <select name="categoria">
+        <option>Recomendaciones</option><option>Experiencias</option><option>Asuntos Legales</option>
+      </select>
+      <label>Contenido</label><textarea name="contenido" rows="12" required></textarea>
+      <button type="submit">Publicar</button>
+    </form>
+    <div id="msgb"></div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/publicar-blog.js"></script>
+</body>
+</html>
