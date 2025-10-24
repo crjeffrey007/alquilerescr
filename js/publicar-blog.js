@@ -1,1 +1,15 @@
-document.getElementById('form-blog')?.addEventListener('submit', async function(e){e.preventDefault(); if(!auth.currentUser) return alert('Inicia sesión como admin'); const data = Object.fromEntries(new FormData(e.target).entries()); const doc = {...data, uid: auth.currentUser.uid, categoria: data.categoria || 'Recomendaciones', createdAt: firebase.firestore.FieldValue.serverTimestamp()}; if(window.db) await db.collection('blog').add(doc); showMsg(document.getElementById('msgb'),'Publicado.'); e.target.reset(); });
+/* js/publicar-blog.js */
+document.getElementById('form-blog')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  if(!auth.currentUser) return alert('Inicia sesión como admin');
+  const data = serializeForm(e.target);
+  const doc = {
+    ...data,
+    categoria: data.categoria || 'Recomendaciones',
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    uid: auth.currentUser.uid
+  };
+  await db.collection('blog').add(doc);
+  showMsg(document.getElementById('msgb'),'Artículo publicado.');
+  e.target.reset();
+});
