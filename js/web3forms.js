@@ -1,0 +1,2 @@
+const WEB3FORMS_KEY = '36e1e635-e0fa-4b58-adba-4daf2694b7dd';
+async function sendToWeb3Forms(fd){ fd.append('access_key', WEB3FORMS_KEY); const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd }); try{ return await res.json(); }catch(e){ return { success:false }; } }

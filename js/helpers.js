@@ -1,0 +1,1 @@
+function q(s){return document.querySelector(s);} function showMsg(el,t){el.textContent=t; setTimeout(()=>el.textContent='',4000);}
