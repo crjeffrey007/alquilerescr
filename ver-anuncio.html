@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ver Anuncio - Alquileres CR</title>
+  <link rel="stylesheet" href="css/formularios.css">
+  <style>
+    .anuncio-detalle{max-width:900px;margin:20px auto;background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.05);padding:16px;}
+    .galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:10px 0;}
+    .galeria img, .galeria video{width:100%;border-radius:8px;object-fit:cover;}
+    .info{margin-top:10px;}
+    .precio{font-size:1.4em;color:#0a66c2;font-weight:bold;margin-top:6px;}
+  </style>
+</head>
+<body>
+  <main class="anuncio-detalle">
+    <div id="anuncio"></div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/ver-anuncio.js"></script>
+</body>
+</html>
