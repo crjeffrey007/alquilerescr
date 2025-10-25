@@ -1,23 +1,23 @@
-// upload.js
-export async function subirArchivosCloudinary(files, tipo = "image") {
+// js/upload.js
+export const CLOUDINARY_CLOUD = 'media-anuncios';   // cambia si tu cloud name es otro
+export const CLOUDINARY_PRESET = 'alquilerescr';    // tu unsigned upload preset
+
+export async function subirArchivosCloudinary(fileList, tipo = 'image') {
   const urls = [];
-  const cloudName = "media-anuncios";
-  const uploadPreset = "alquilerescr";
+  if(!fileList || fileList.length === 0) return urls;
+  for (const file of Array.from(fileList)) {
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', CLOUDINARY_PRESET);
+    fd.append('folder', 'alquilerescr');
 
-  for (let file of files) {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", uploadPreset);
-    formData.append("folder", "alquilerescr");
-
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${tipo}/upload`, {
-      method: "POST",
-      body: formData,
+    const resp = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/${tipo}/upload`, {
+      method: 'POST',
+      body: fd
     });
-
-    const data = await response.json();
-    if (data.secure_url) urls.push(data.secure_url);
+    const j = await resp.json();
+    if (j.secure_url) urls.push(j.secure_url);
+    else console.warn('Cloudinary error', j);
   }
-
   return urls;
 }
