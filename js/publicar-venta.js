@@ -1,48 +1,80 @@
-import { db } from './firebase.js';
-import { collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js';
+// ===============================
+// PUBLICAR ANUNCIO DE VENTA
+// ===============================
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-// Config Cloudinary
-const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/media-anuncios/upload';
-const UPLOAD_PRESET = 'alquilerescr';
+const CLOUDINARY_CLOUD_NAME = "media-anuncios";
+const CLOUDINARY_UPLOAD_PRESET = "alquilerescr";
 
-const form = document.getElementById('form-venta');
-const msg = document.getElementById('msg');
+let imagenesURLs = [];
+const previewContainer = document.getElementById("previewImagenes");
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  msg.textContent = "Subiendo propiedad...";
-
-  try {
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.fecha = serverTimestamp();
-    data.activo = true;
-    data.tipo = "venta";
-
-    // Subir imágenes
-    const imagenes = Array.from(document.getElementById('imagenes').files);
-    const urlsImg = await Promise.all(imagenes.map(subirArchivoCloudinary));
-
-    // Subir videos
-    const videos = Array.from(document.getElementById('videos').files);
-    const urlsVid = await Promise.all(videos.map(subirArchivoCloudinary));
-
-    data.imagenes = urlsImg;
-    data.videos = urlsVid;
-
-    await addDoc(collection(db, "ventas"), data);
-    msg.textContent = "✅ Propiedad publicada correctamente.";
-    form.reset();
-
-  } catch (err) {
-    console.error(err);
-    msg.textContent = "❌ Error al publicar: " + err.message;
-  }
+document.getElementById("btnSubirFotos").addEventListener("click", () => {
+  cloudinary.openUploadWidget(
+    {
+      cloudName: CLOUDINARY_CLOUD_NAME,
+      uploadPreset: CLOUDINARY_UPLOAD_PRESET,
+      multiple: true,
+      folder: "ventas"
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        imagenesURLs.push(result.info.secure_url);
+        previewContainer.innerHTML = imagenesURLs
+          .map(url => `<img src="${url}" style="max-height:100px;margin:5px;border-radius:8px;">`)
+          .join("");
+      }
+    }
+  );
 });
 
-async function subirArchivoCloudinary(archivo) {
-  const formData = new FormData();
-  formData.append('file', archivo);
-  formData.append('upload_preset', UPLOAD_PRESET);
-  const res = await axios.post(CLOUDINARY_URL, formData);
-  return res.data.secure_url;
-}
+document.getElementById("formVenta").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = e.target;
+
+  const token = document.querySelector('[name="cf-turnstile-response"]').value;
+  if (!token) {
+    alert("⚠️ Completa la verificación antes de enviar.");
+    return;
+  }
+
+  const data = {
+    tipo: "Venta",
+    titulo: f.titulo.value,
+    descripcion: f.descripcion.value,
+    area: f.area.value,
+    construccion: f.construccion.value,
+    amoblado: f.amoblado.value,
+    habitaciones: f.habitaciones.value,
+    banos: f.banos.value,
+    muebles: Array.from(f.querySelectorAll("input[name='muebles[]']:checked")).map(x => x.value),
+    servicios: Array.from(f.querySelectorAll("input[name='servicios[]']:checked")).map(x => x.value),
+    direccion: f.direccion.value,
+    distrito: f.distrito.value,
+    canton: f.canton.value,
+    provincia: f.provincia.value,
+    pais: f.pais.value,
+    moneda: f.moneda.value,
+    nombre: f.nombre.value,
+    apellidos: f.apellidos.value,
+    email: f.email.value,
+    telefono: f.telefono.value,
+    aceptaComision: f.comision.checked,
+    imagenes: imagenesURLs,
+    fechaRegistro: new Date().toISOString(),
+    activo: true
+  };
+
+  try {
+    await db.collection("anuncios_ventas").add(data);
+    alert("✅ Tu anuncio de venta se ha enviado correctamente.");
+    f.reset();
+    previewContainer.innerHTML = "";
+    imagenesURLs = [];
+    turnstile.reset();
+  } catch (error) {
+    console.error(error);
+    alert("❌ Error al enviar. Intenta de nuevo.");
+  }
+});
