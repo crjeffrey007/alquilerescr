@@ -1,110 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publicar Propiedad en Alquiler - Alquileres CR</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Publicar Alquiler - Alquileres CR</title>
   <link rel="stylesheet" href="css/formularios.css">
-  <script type="module" src="js/firebase.js"></script>
-  <script type="module" src="js/publicar-alquiler.js" defer></script>
 </head>
 <body>
-  <main class="form-container">
-    <h1>Publicar Propiedad en Alquiler</h1>
-    <form id="formAlquiler">
-      <fieldset>
-        <legend>Información del inmueble</legend>
 
-        <label>Título del anuncio *</label>
-        <input type="text" name="titulo" required>
+  <section class="form-container">
+    <h1>🟩 Publicar Alquiler</h1>
+    <form id="form-alquiler" enctype="multipart/form-data">
+      <label>Título del anuncio</label>
+      <input type="text" name="titulo" required placeholder="Ej: Apartamento en San José">
 
-        <label>Descripción *</label>
-        <textarea name="descripcion" rows="5" required></textarea>
+      <label>Descripción</label>
+      <textarea name="descripcion" required placeholder="Describe el alquiler..."></textarea>
 
-        <label>Tipo de propiedad *</label>
-        <select name="tipoPropiedad" required>
-          <option>Casa</option>
-          <option>Apartamento</option>
-          <option>Oficina</option>
-          <option>Local Comercial</option>
-          <option>Bodega</option>
-          <option>Terreno</option>
-        </select>
+      <label>Provincia</label>
+      <select name="provincia" required>
+        <option value="">Seleccioná una provincia</option>
+        <option>San José</option>
+        <option>Alajuela</option>
+        <option>Cartago</option>
+        <option>Heredia</option>
+        <option>Guanacaste</option>
+        <option>Puntarenas</option>
+        <option>Limón</option>
+      </select>
 
-        <label>Precio *</label>
-        <input type="number" name="precio" required>
+      <label>Precio</label>
+      <input type="number" name="precio" required placeholder="Monto">
 
-        <label>Moneda</label>
-        <select name="moneda">
-          <option value="CRC">₡ Colones</option>
-          <option value="USD">$ Dólares</option>
-        </select>
+      <label>Moneda</label>
+      <select name="moneda">
+        <option value="CRC">Colones (₡)</option>
+        <option value="USD">Dólares ($)</option>
+      </select>
 
-        <label>Habitaciones</label>
-        <input type="number" name="habitaciones" min="0">
+      <label>Teléfono o WhatsApp</label>
+      <input type="text" name="telefono" placeholder="Opcional">
 
-        <label>Baños</label>
-        <input type="number" name="banos" min="0">
+      <label>Subir Imágenes (sin límite)</label>
+      <input type="file" name="imagenes" id="imagenes" accept="image/*" multiple>
 
-        <label>Área (m²)</label>
-        <input type="number" name="area" min="0">
+      <label>Subir Videos (sin límite)</label>
+      <input type="file" name="videos" id="videos" accept="video/*" multiple>
 
-        <label>Amueblado</label>
-        <select name="amueblado">
-          <option>Sí</option>
-          <option>No</option>
-        </select>
-      </fieldset>
+      <label>Ubicación o dirección</label>
+      <input type="text" name="direccion" placeholder="Ej: Barrio Escalante, San José">
 
-      <fieldset>
-        <legend>Ubicación</legend>
-        <label>Provincia *</label>
-        <select name="provincia" required>
-          <option>San José</option><option>Alajuela</option><option>Cartago</option>
-          <option>Heredia</option><option>Guanacaste</option><option>Puntarenas</option><option>Limón</option>
-        </select>
-
-        <label>Cantón</label>
-        <input type="text" name="canton">
-
-        <label>Distrito</label>
-        <input type="text" name="distrito">
-
-        <label>Dirección exacta *</label>
-        <input type="text" name="direccion" required>
-      </fieldset>
-
-      <fieldset>
-        <legend>Contacto</legend>
-        <label>Nombre del anunciante *</label>
-        <input type="text" name="nombre" required>
-
-        <label>Teléfono o WhatsApp *</label>
-        <input type="text" name="telefono" required>
-
-        <label>Email de contacto</label>
-        <input type="email" name="email">
-      </fieldset>
-
-      <fieldset>
-        <legend>Multimedia</legend>
-        <label>Subir imágenes (sin límite)</label>
-        <input type="file" id="imagenes" multiple accept="image/*">
-
-        <label>Subir videos (sin límite)</label>
-        <input type="file" id="videos" multiple accept="video/*">
-      </fieldset>
-
-      <fieldset>
-        <legend>Estado</legend>
-        <label>
-          <input type="checkbox" name="activo" checked>
-          Activar anuncio al publicar
-        </label>
-      </fieldset>
-
-      <button type="submit">Publicar Alquiler</button>
+      <button type="submit">📤 Publicar Alquiler</button>
     </form>
-  </main>
+
+    <p id="msg"></p>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/publicar-alquiler.js"></script>
+
 </body>
 </html>
