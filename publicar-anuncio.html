@@ -1,45 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport"content="width=device-width,initial-scale=1">
-  <title>Anunciar en Directorio Comercial - Alquileres CR</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Anuncio Comercial | Alquileres CR</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
+
 <body>
-  <header class="site-header"><div class="container"><h1>Anunciar en Directorio Comercial</h1></div></header>
-  <main class="container">
-    <form id="form-anuncio" class="form">
-      <label>Tipo de Anuncio</label><select name="tipo"><option>Negocio</option><option>Servicio</option></select>
-      <label>Título del Anuncio *</label><input name="titulo" required>
-      <label>Descripción *</label><textarea name="descripcion" required></textarea>
-      <label>Nombre del Negocio</label><input name="nombreNegocio">
-      <label>Teléfono de contacto</label><input name="telefono">
-      <label>Email de contacto</label><input name="email" type="email">
-      <label>Subir Logo (máx 1)</label><input id="logo" type="file" accept="image/*">
-      <label>Subir imágenes (máx 5)</label><input id="imagenes" type="file" accept="image/*" multiple>
-      <label>Horario de Atención</label><select name="horario"><option>Abierto todos los días</option><option>Personalizar</option></select>
-      <label>Dirección</label><input name="direccion" required>
-      <label>Distrito</label><input name="distrito" required>
-      <label>Cantón</label><input name="canton" required>
-      <label>Provincia</label><input name="provincia" required>
-      <label>Categoría</label><input name="categoria" required>
-      <label>Nombre de quien anuncia</label><input name="anunciante" required>
-      <label>Ofrece servicio a domicilio?</label><select name="servicioDomicilio"><option>Si</option><option>No</option></select>
-      <label><input type="checkbox" name="veracidad" required> Acepto que la información es verídica</label>
-      <button type="submit">Enviar</button>
+  <main class="form-container">
+    <h1>Publicar Anuncio Comercial</h1>
+
+    <form id="formAnuncio">
+      <input type="hidden" name="tipo" value="anuncio">
+
+      <div class="form-group">
+        <label>Tipo de Anuncio *</label>
+        <select name="tipoAnuncio" required>
+          <option value="">Seleccione una opción</option>
+          <option value="Servicio">Servicio</option>
+          <option value="Negocio">Negocio</option>
+          <option value="Producto">Producto</option>
+          <option value="Promoción">Promoción</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Título del Anuncio *</label>
+        <input type="text" name="titulo" required>
+      </div>
+
+      <div class="form-group">
+        <label>Descripción del Anuncio *</label>
+        <textarea name="descripcion" rows="5" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Nombre del Negocio</label>
+        <input type="text" name="nombreNegocio">
+      </div>
+
+      <div class="form-grid">
+        <input type="tel" name="telefono" placeholder="Teléfono de contacto *" required>
+        <input type="email" name="email" placeholder="Email de contacto">
+      </div>
+
+      <h3>Subir Logo</h3>
+      <button type="button" id="btnSubirLogo">Seleccionar Logo</button>
+      <div id="previewLogo"></div>
+
+      <h3>Subir Imágenes</h3>
+      <button type="button" id="btnSubirImagenes">Seleccionar Imágenes</button>
+      <div id="previewImagenes"></div>
+
+      <h3>Datos de la Persona que Anuncia</h3>
+      <div class="form-grid">
+        <input type="text" name="nombre" placeholder="Nombre *" required>
+        <input type="text" name="apellidos" placeholder="Apellidos *" required>
+      </div>
+
+      <div class="form-group">
+        <label>Horario de Atención *</label>
+        <label><input type="radio" name="horario" value="Abierto todos los días" required> Abierto todos los días</label>
+        <label><input type="radio" name="horario" value="Personalizado" required> Personalizar horario</label>
+      </div>
+
+      <div class="form-group">
+        <label>Dirección del Negocio *</label>
+        <input type="text" name="direccion" placeholder="Dirección exacta" required>
+        <input type="text" name="distrito" placeholder="Distrito" required>
+        <input type="text" name="canton" placeholder="Cantón" required>
+        <select name="provincia" required>
+          <option value="">Provincia</option>
+          <option>San José</option>
+          <option>Alajuela</option>
+          <option>Cartago</option>
+          <option>Heredia</option>
+          <option>Puntarenas</option>
+          <option>Guanacaste</option>
+          <option>Limón</option>
+        </select>
+        <input type="text" name="pais" placeholder="País" required>
+      </div>
+
+      <div class="form-group">
+        <label>¿Ofrece servicio a domicilio? *</label>
+        <label><input type="radio" name="domicilio" value="Sí" required> Sí</label>
+        <label><input type="radio" name="domicilio" value="No" required> No</label>
+      </div>
+
+      <div class="form-group">
+        <label><input type="checkbox" name="aceptaVeracidad" required>
+          Acepta que la información que está enviando es verídica *</label>
+      </div>
+
+      <div class="cf-turnstile" data-sitekey="TU_SITE_KEY_TURNSTILE" data-theme="light"></div>
+
+      <button type="submit" class="btn-enviar">Enviar Anuncio</button>
     </form>
-    <div id="msga"></div>
   </main>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-
-  <script src="js/firebase.js"></script>
-  <script src="js/cloudinary-upload.js"></script>
-  <script src="js/web3forms.js"></script>
-  <script src="js/helpers.js"></script>
   <script src="js/publicar-anuncio.js"></script>
 </body>
 </html>
