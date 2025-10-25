@@ -1,1 +1,88 @@
-<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Alquileres</title><link rel='stylesheet' href='css/style.css'></head><body><header class='site-header'><div class='container'><h1>Alquileres</h1></div></header><main class='container'><div id='list-alquileres' class='publicaciones-grid'></div></main><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js'></script><script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js'></script><script src='js/firebase.js'></script><script src='js/listados.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propiedades en Alquiler - Alquileres CR</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Propiedades en Alquiler</h1>
+  </header>
+
+  <main>
+    <section id="filtros">
+      <select id="provinciaFiltro">
+        <option value="">Todas las provincias</option>
+        <option>San José</option><option>Alajuela</option>
+        <option>Cartago</option><option>Heredia</option>
+        <option>Guanacaste</option><option>Puntarenas</option>
+        <option>Limón</option>
+      </select>
+      <select id="monedaFiltro">
+        <option value="">Cualquier moneda</option>
+        <option value="Colones">Colones</option>
+        <option value="Dólares">Dólares</option>
+      </select>
+      <input type="text" id="buscar" placeholder="Buscar por título o dirección...">
+      <button id="btnBuscar">Buscar</button>
+    </section>
+
+    <section id="listaAlquileres" class="grid-listado"></section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBKdQaX27zlOWU0xwCRJPscaQR5FiqjD80",
+      authDomain: "inmobiliaria-cr.firebaseapp.com",
+      projectId: "inmobiliaria-cr",
+      storageBucket: "inmobiliaria-cr.firebasestorage.app",
+      messagingSenderId: "594252224879",
+      appId: "1:594252224879:web:6321a05511f67e2d13309a",
+      measurementId: "G-21HRE9SEVG"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const contenedor = document.getElementById('listaAlquileres');
+    const buscar = document.getElementById('buscar');
+    const provinciaFiltro = document.getElementById('provinciaFiltro');
+    const monedaFiltro = document.getElementById('monedaFiltro');
+
+    async function cargarAlquileres() {
+      contenedor.innerHTML = "<p>Cargando propiedades...</p>";
+      const snapshot = await db.collection("alquileres").get();
+      const docs = snapshot.docs.map(doc => doc.data());
+
+      const filtroTexto = buscar.value.toLowerCase();
+      const filtroProvincia = provinciaFiltro.value;
+      const filtroMoneda = monedaFiltro.value;
+
+      const filtrados = docs.filter(a =>
+        (!filtroTexto || a.titulo.toLowerCase().includes(filtroTexto) || a.direccion.toLowerCase().includes(filtroTexto)) &&
+        (!filtroProvincia || a.provincia === filtroProvincia) &&
+        (!filtroMoneda || a.moneda === filtroMoneda)
+      );
+
+      contenedor.innerHTML = filtrados.map(a => `
+        <article class="card">
+          <img src="${a.imagenesURLs?.[0] || 'img/sin-imagen.png'}" alt="${a.titulo}">
+          <h3>${a.titulo}</h3>
+          <p>${a.descripcion}</p>
+          <p><strong>Provincia:</strong> ${a.provincia}</p>
+          <p><strong>Moneda:</strong> ${a.moneda}</p>
+          <p><strong>Contacto:</strong> ${a.email || "No indicado"}</p>
+        </article>
+      `).join("");
+    }
+
+    document.getElementById("btnBuscar").addEventListener("click", cargarAlquileres);
+    provinciaFiltro.addEventListener("change", cargarAlquileres);
+    monedaFiltro.addEventListener("change", cargarAlquileres);
+    window.addEventListener("DOMContentLoaded", cargarAlquileres);
+  </script>
+</body>
+</html>
