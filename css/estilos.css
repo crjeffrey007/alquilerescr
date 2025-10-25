@@ -1,0 +1,106 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: #f8f9fa;
+  color: #333;
+}
+
+header {
+  background: #004aad;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.busqueda, .filtros {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.busqueda input, .filtros select {
+  padding: 0.6rem;
+  margin: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  background: #004aad;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover { background: #0060d6; }
+
+.grid-anuncios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.card:hover { transform: scale(1.02); }
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card h3 {
+  font-size: 1.1rem;
+  margin: 0.5rem;
+}
+.card p {
+  margin: 0.5rem;
+  color: #555;
+}
+
+.paginacion {
+  text-align: center;
+  padding: 1rem;
+}
+.paginacion button {
+  margin: 0.2rem;
+  padding: 0.4rem 0.8rem;
+}
+.paginacion .activo {
+  background: #222;
+  color: white;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-contenido {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+.modal-contenido img {
+  width: 100%;
+  border-radius: 10px;
+}
+#cerrarModal {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
