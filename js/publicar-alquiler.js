@@ -1,19 +1,48 @@
-document.getElementById('form-alquiler')?.addEventListener('submit', async function(e){
+import { db } from './firebase.js';
+import { collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js';
+
+// Config Cloudinary
+const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/media-anuncios/upload';
+const UPLOAD_PRESET = 'alquilerescr';
+
+const form = document.getElementById('form-alquiler');
+const msg = document.getElementById('msg');
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const form = e.target;
-  const files = document.getElementById('alquiler-fotos')?.files || [];
-  const imagenes = await uploadMultipleFiles(files);
-  const data = Object.fromEntries(new FormData(form).entries());
-  const expireDate = new Date(Date.now() + 45*24*60*60*1000); // 45 días
-  const doc = { ...data, imagenes, createdAt: firebase.firestore.FieldValue.serverTimestamp(), expireAt: firebase.firestore.Timestamp.fromDate(expireDate), estado: 'pendiente', activo: true, uid: (auth.currentUser && auth.currentUser.uid) || null, emailUsuario: (auth.currentUser && auth.currentUser.email) || data.email || '' };
-  await db.collection('alquileres').add(doc);
-  // Notificación via Web3Forms
-  const fd = new FormData(form);
-  fd.append('images', JSON.stringify(imagenes));
-  const adminSnap = await db.collection('admins').get();
-  const adminEmails = []; adminSnap.forEach(d=>adminEmails.push(d.id));
-  if(adminEmails.length){ fd.append('to', adminEmails.join(',')); fd.append('subject','Nuevo anuncio de Alquiler'); }
-  await sendToWeb3Forms(fd);
-  document.getElementById('msg') && (document.getElementById('msg').textContent = 'Enviado. Pendiente de aprobación.');
-  form.reset();
+  msg.textContent = "Subiendo anuncio...";
+
+  try {
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.fecha = serverTimestamp();
+    data.activo = true;
+    data.tipo = "alquiler";
+
+    // Subir imágenes
+    const imagenes = Array.from(document.getElementById('imagenes').files);
+    const urlsImg = await Promise.all(imagenes.map(subirArchivoCloudinary));
+
+    // Subir videos
+    const videos = Array.from(document.getElementById('videos').files);
+    const urlsVid = await Promise.all(videos.map(subirArchivoCloudinary));
+
+    data.imagenes = urlsImg;
+    data.videos = urlsVid;
+
+    await addDoc(collection(db, "alquileres"), data);
+    msg.textContent = "✅ Alquiler publicado correctamente.";
+    form.reset();
+
+  } catch (err) {
+    console.error(err);
+    msg.textContent = "❌ Error al publicar: " + err.message;
+  }
 });
+
+async function subirArchivoCloudinary(archivo) {
+  const formData = new FormData();
+  formData.append('file', archivo);
+  formData.append('upload_preset', UPLOAD_PRESET);
+  const res = await axios.post(CLOUDINARY_URL, formData);
+  return res.data.secure_url;
+}
