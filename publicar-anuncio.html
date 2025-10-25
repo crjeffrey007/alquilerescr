@@ -1,107 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicar Anuncio Comercial | Alquileres CR</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-100 flex items-center justify-center py-10">
 
-<body>
-  <main class="form-container">
-    <h1>Publicar Anuncio Comercial</h1>
+  <div class="bg-white shadow-lg rounded-2xl w-full max-w-3xl p-8">
+    <h1 class="text-3xl font-bold mb-6 text-center text-green-600">📢 Publicar Anuncio Comercial o Servicio</h1>
 
-    <form id="formAnuncio">
-      <input type="hidden" name="tipo" value="anuncio">
-
-      <div class="form-group">
-        <label>Tipo de Anuncio *</label>
-        <select name="tipoAnuncio" required>
+    <form id="formAnuncio" class="space-y-5">
+      <!-- Tipo de anuncio -->
+      <div>
+        <label class="font-semibold">Tipo de Anuncio *</label>
+        <select name="tipoAnuncio" class="w-full border rounded-lg p-2" required>
           <option value="">Seleccione una opción</option>
           <option value="Servicio">Servicio</option>
           <option value="Negocio">Negocio</option>
-          <option value="Producto">Producto</option>
-          <option value="Promoción">Promoción</option>
+          <option value="Profesional">Profesional</option>
+          <option value="Otro">Otro</option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label>Título del Anuncio *</label>
-        <input type="text" name="titulo" required>
+      <!-- Título -->
+      <div>
+        <label class="font-semibold">Título del Anuncio *</label>
+        <input type="text" name="titulo" class="w-full border rounded-lg p-2" required>
       </div>
 
-      <div class="form-group">
-        <label>Descripción del Anuncio *</label>
-        <textarea name="descripcion" rows="5" required></textarea>
+      <!-- Descripción -->
+      <div>
+        <label class="font-semibold">Descripción del Anuncio *</label>
+        <textarea name="descripcion" class="w-full border rounded-lg p-2" rows="3" required></textarea>
       </div>
 
-      <div class="form-group">
-        <label>Nombre del Negocio</label>
-        <input type="text" name="nombreNegocio">
+      <!-- Datos del negocio -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label>Nombre del Negocio</label>
+          <input type="text" name="nombreNegocio" class="w-full border rounded-lg p-2">
+        </div>
+        <div>
+          <label>Teléfono de contacto *</label>
+          <input type="tel" name="telefono" class="w-full border rounded-lg p-2" required>
+        </div>
+        <div>
+          <label>Email de contacto</label>
+          <input type="email" name="email" class="w-full border rounded-lg p-2">
+        </div>
       </div>
 
-      <div class="form-grid">
-        <input type="tel" name="telefono" placeholder="Teléfono de contacto *" required>
-        <input type="email" name="email" placeholder="Email de contacto">
+      <!-- Logo -->
+      <div>
+        <label class="font-semibold">Subir Logo</label><br>
+        <button type="button" id="btnSubirLogo" class="bg-green-600 text-white px-4 py-2 rounded-lg">📁 Subir Logo</button>
+        <div id="previewLogo" class="mt-3"></div>
       </div>
 
-      <h3>Subir Logo</h3>
-      <button type="button" id="btnSubirLogo">Seleccionar Logo</button>
-      <div id="previewLogo"></div>
-
-      <h3>Subir Imágenes</h3>
-      <button type="button" id="btnSubirImagenes">Seleccionar Imágenes</button>
-      <div id="previewImagenes"></div>
-
-      <h3>Datos de la Persona que Anuncia</h3>
-      <div class="form-grid">
-        <input type="text" name="nombre" placeholder="Nombre *" required>
-        <input type="text" name="apellidos" placeholder="Apellidos *" required>
+      <!-- Imágenes -->
+      <div>
+        <label class="font-semibold">Subir Imágenes</label><br>
+        <button type="button" id="btnSubirImagenes" class="bg-green-600 text-white px-4 py-2 rounded-lg">📸 Subir Imágenes</button>
+        <div id="previewImagenes" class="flex flex-wrap mt-3 gap-2"></div>
       </div>
 
-      <div class="form-group">
-        <label>Horario de Atención *</label>
-        <label><input type="radio" name="horario" value="Abierto todos los días" required> Abierto todos los días</label>
-        <label><input type="radio" name="horario" value="Personalizado" required> Personalizar horario</label>
+      <!-- Datos del anunciante -->
+      <div>
+        <h3 class="font-semibold text-lg text-gray-700">Datos del anunciante</h3>
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <input type="text" name="nombre" placeholder="Nombre" class="border rounded-lg p-2" required>
+          <input type="text" name="apellidos" placeholder="Apellidos" class="border rounded-lg p-2" required>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Dirección del Negocio *</label>
-        <input type="text" name="direccion" placeholder="Dirección exacta" required>
-        <input type="text" name="distrito" placeholder="Distrito" required>
-        <input type="text" name="canton" placeholder="Cantón" required>
-        <select name="provincia" required>
-          <option value="">Provincia</option>
-          <option>San José</option>
-          <option>Alajuela</option>
-          <option>Cartago</option>
-          <option>Heredia</option>
-          <option>Puntarenas</option>
-          <option>Guanacaste</option>
-          <option>Limón</option>
+      <!-- Horario -->
+      <div>
+        <label class="font-semibold">Horario de Atención *</label>
+        <select name="horario" class="w-full border rounded-lg p-2" required>
+          <option value="">Seleccione</option>
+          <option value="Abierto todos los días">Abierto todos los días</option>
+          <option value="Personalizar">Personalizar horario</option>
         </select>
-        <input type="text" name="pais" placeholder="País" required>
       </div>
 
-      <div class="form-group">
-        <label>¿Ofrece servicio a domicilio? *</label>
-        <label><input type="radio" name="domicilio" value="Sí" required> Sí</label>
-        <label><input type="radio" name="domicilio" value="No" required> No</label>
+      <!-- Dirección -->
+      <div>
+        <h3 class="font-semibold text-lg text-gray-700">Dirección del Negocio *</h3>
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <input type="text" name="direccion" placeholder="Dirección exacta" class="border rounded-lg p-2 col-span-2" required>
+          <input type="text" name="distrito" placeholder="Distrito" class="border rounded-lg p-2" required>
+          <input type="text" name="canton" placeholder="Cantón" class="border rounded-lg p-2" required>
+          <select name="provincia" class="border rounded-lg p-2">
+            <option>San José</option>
+            <option>Alajuela</option>
+            <option>Cartago</option>
+            <option>Heredia</option>
+            <option>Guanacaste</option>
+            <option>Puntarenas</option>
+            <option>Limón</option>
+          </select>
+          <input type="text" name="pais" value="Costa Rica" class="border rounded-lg p-2" required>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label><input type="checkbox" name="aceptaVeracidad" required>
-          Acepta que la información que está enviando es verídica *</label>
+      <!-- Domicilio -->
+      <div>
+        <label>Ofrece servicio a domicilio *</label>
+        <select name="domicilio" class="w-full border rounded-lg p-2" required>
+          <option value="">Seleccione</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
       </div>
 
-      <div class="cf-turnstile" data-sitekey="TU_SITE_KEY_TURNSTILE" data-theme="light"></div>
+      <!-- Veracidad -->
+      <div class="flex items-center">
+        <input type="checkbox" name="aceptaVeracidad" id="aceptaVeracidad" class="mr-2" required>
+        <label for="aceptaVeracidad" class="text-sm text-gray-700">Acepta que la información enviada es verídica *</label>
+      </div>
 
-      <button type="submit" class="btn-enviar">Enviar Anuncio</button>
+      <!-- CAPTCHA -->
+      <div class="cf-turnstile" data-sitekey="TU_SITE_KEY_DE_TURNSTILE"></div>
+
+      <!-- Botón -->
+      <button type="submit" class="w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition">
+        📤 Publicar Anuncio
+      </button>
     </form>
-  </main>
+  </div>
 
-  <script src="js/publicar-anuncio.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="publicar-anuncio.js"></script>
 </body>
 </html>
