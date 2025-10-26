@@ -1,76 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Publicar Propiedad en Venta - Alquileres CR</title>
-  <link rel="stylesheet" href="css/formularios.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Propiedad en Venta</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+  <h2>🔵 Publicar Propiedad en Venta</h2>
 
-  <section class="form-container">
-    <h1>🏠 Publicar Propiedad en Venta</h1>
-    <form id="form-venta" enctype="multipart/form-data">
-      
-      <label>Título del anuncio *</label>
-      <input type="text" name="titulo" required placeholder="Ej: Casa en venta en Heredia centro">
+  <form id="formVenta">
+    <label>Título del anuncio *</label>
+    <input type="text" name="titulo" required>
 
-      <label>Descripción *</label>
-      <textarea name="descripcion" required placeholder="Detalles de la propiedad..."></textarea>
+    <label>Descripción *</label>
+    <textarea name="descripcion" required></textarea>
 
-      <label>Tipo de propiedad</label>
-      <select name="tipoPropiedad" required>
-        <option>Casa</option>
-        <option>Apartamento</option>
-        <option>Lote</option>
-        <option>Edificio</option>
-        <option>Otro</option>
-      </select>
+    <label>Área del terreno (m²)</label>
+    <input type="text" name="areaTerreno">
 
-      <label>Provincia</label>
-      <select name="provincia" required>
-        <option value="">Seleccioná una provincia</option>
-        <option>San José</option>
-        <option>Alajuela</option>
-        <option>Cartago</option>
-        <option>Heredia</option>
-        <option>Guanacaste</option>
-        <option>Puntarenas</option>
-        <option>Limón</option>
-      </select>
+    <label>Área construida (m²)</label>
+    <input type="text" name="areaConstruccion">
 
-      <label>Precio</label>
-      <input type="number" name="precio" required placeholder="Monto">
+    <label>Amueblado</label>
+    <select name="amoblado">
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select>
 
-      <label>Moneda</label>
-      <select name="moneda">
-        <option value="CRC">Colones (₡)</option>
-        <option value="USD">Dólares ($)</option>
-      </select>
+    <label>Habitaciones</label>
+    <input type="number" name="habitaciones" min="0">
 
-      <label>Teléfono o WhatsApp</label>
-      <input type="text" name="telefono" placeholder="Opcional">
+    <label>Baños</label>
+    <input type="number" name="banos" min="0">
 
-      <label>Subir Imágenes (sin límite)</label>
-      <input type="file" id="imagenes" accept="image/*" multiple>
+    <label>Dirección *</label>
+    <input type="text" name="direccion" required>
+    <input type="text" name="distrito" placeholder="Distrito" required>
+    <input type="text" name="canton" placeholder="Cantón" required>
+    <input type="text" name="provincia" placeholder="Provincia" required>
+    <input type="text" name="pais" placeholder="País" required>
 
-      <label>Subir Videos (sin límite)</label>
-      <input type="file" id="videos" accept="video/*" multiple>
+    <label>Moneda</label>
+    <select name="moneda">
+      <option value="₡ Colones">₡ Colones</option>
+      <option value="$ Dólares">$ Dólares</option>
+    </select>
 
-      <label>Ubicación exacta</label>
-      <input type="text" name="direccion" placeholder="Ej: Belén, Heredia">
+    <label>Subir Imágenes</label><br>
+    <button type="button" id="btnSubirFotosVenta">📸 Subir Fotos</button>
+    <div id="previewFotosVenta" style="margin-top:10px;"></div>
 
-      <button type="submit">📤 Publicar Venta</button>
-    </form>
+    <hr>
 
-    <p id="msg"></p>
-  </section>
+    <h3>Contacto</h3>
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="text" name="apellidos" placeholder="Apellidos" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
+    <input type="tel" name="telefono" placeholder="Teléfono" required>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script type="module" src="js/firebase.js"></script>
-  <script type="module" src="js/publicar-venta.js"></script>
+    <label>
+      <input type="checkbox" name="aceptaComision">
+      Acepto pagar comisión si se vende mediante la plataforma.
+    </label>
 
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAAXXXXXXXXXXXXXXXX"></div>
+
+    <button type="submit">📤 Enviar Anuncio</button>
+  </form>
+
+  <script src="publicar-venta.js"></script>
 </body>
 </html>
