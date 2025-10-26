@@ -1,67 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anuncios Comerciales - Alquileres CR</title>
-  <link rel="stylesheet" href="css/estilos.css">
-</head>
-<body>
-  <header>
-    <h1>Anuncios Comerciales</h1>
-  </header>
-
-  <main>
-    <section id="filtros">
-      <input type="text" id="buscar" placeholder="Buscar por título o negocio...">
-      <button id="btnBuscar">Buscar</button>
-    </section>
-
-    <section id="listaAnuncios" class="grid-listado"></section>
-  </main>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anuncios Comerciales | Alquileres CR</title>
+  <link rel="stylesheet" href="css/estilos.css" />
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBKdQaX27zlOWU0xwCRJPscaQR5FiqjD80",
-      authDomain: "inmobiliaria-cr.firebaseapp.com",
-      projectId: "inmobiliaria-cr",
-      storageBucket: "inmobiliaria-cr.firebasestorage.app",
-      messagingSenderId: "594252224879",
-      appId: "1:594252224879:web:6321a05511f67e2d13309a",
-      measurementId: "G-21HRE9SEVG"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+</head>
+<body>
+  <h2>Directorio Comercial</h2>
 
-    const contenedor = document.getElementById('listaAnuncios');
-    const buscar = document.getElementById('buscar');
-    const btnBuscar = document.getElementById('btnBuscar');
+  <div id="filtros">
+    <select id="filtroProvincia">
+      <option value="">Filtrar por provincia</option>
+      <option value="San José">San José</option>
+      <option value="Alajuela">Alajuela</option>
+      <option value="Cartago">Cartago</option>
+      <option value="Heredia">Heredia</option>
+      <option value="Guanacaste">Guanacaste</option>
+      <option value="Puntarenas">Puntarenas</option>
+      <option value="Limón">Limón</option>
+    </select>
+  </div>
 
-    async function cargarAnuncios(filtro = "") {
-      contenedor.innerHTML = "<p>Cargando anuncios...</p>";
-      const snapshot = await db.collection("anuncios_comerciales").get();
-      const docs = snapshot.docs.map(doc => doc.data());
+  <div id="contenedorAnuncios" class="grid-listado"></div>
 
-      const filtrados = docs.filter(a =>
-        a.titulo.toLowerCase().includes(filtro.toLowerCase()) ||
-        a.nombreNegocio.toLowerCase().includes(filtro.toLowerCase())
-      );
-
-      contenedor.innerHTML = filtrados.map(a => `
-        <article class="card">
-          <img src="${a.logoURL || a.imagenesURLs[0] || 'img/sin-imagen.png'}" alt="${a.titulo}">
-          <h3>${a.titulo}</h3>
-          <p>${a.descripcion}</p>
-          <p><strong>Negocio:</strong> ${a.nombreNegocio || "—"}</p>
-          <p><strong>Tel:</strong> ${a.telefono || "No indicado"}</p>
-        </article>
-      `).join("");
-    }
-
-    btnBuscar.addEventListener("click", () => cargarAnuncios(buscar.value));
-    window.addEventListener("DOMContentLoaded", () => cargarAnuncios());
-  </script>
+  <script src="js/listar-anuncios.js"></script>
 </body>
 </html>
