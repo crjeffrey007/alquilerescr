@@ -1,45 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propiedades en Alquiler | Inmobiliaria CR</title>
-  <link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propiedades en Alquiler | Alquileres CR</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
+  <h2>Propiedades en Alquiler</h2>
 
-  <header>
-    <h1>Propiedades en Alquiler</h1>
-    <div class="filtros">
-      <input type="text" id="buscar" placeholder="Buscar...">
-      <select id="provinciaFiltro">
-        <option value="">Provincia</option>
-        <option>San José</option>
-        <option>Alajuela</option>
-        <option>Cartago</option>
-        <option>Heredia</option>
-        <option>Guanacaste</option>
-        <option>Puntarenas</option>
-        <option>Limón</option>
-      </select>
-      <select id="monedaFiltro">
-        <option value="">Moneda</option>
-        <option value="CRC">Colones</option>
-        <option value="USD">Dólares</option>
-      </select>
-    </div>
-  </header>
+  <div id="filtros">
+    <select id="filtroProvincia">
+      <option value="">Filtrar por provincia</option>
+      <option value="San José">San José</option>
+      <option value="Alajuela">Alajuela</option>
+      <option value="Cartago">Cartago</option>
+      <option value="Heredia">Heredia</option>
+      <option value="Guanacaste">Guanacaste</option>
+      <option value="Puntarenas">Puntarenas</option>
+      <option value="Limón">Limón</option>
+    </select>
+  </div>
 
-  <main>
-    <section id="listaAlquileres" class="grid-anuncios"></section>
-    <div id="paginacionAlquiler" class="paginacion"></div>
-  </main>
+  <div id="contenedorAlquileres" class="grid-listado"></div>
 
-  <div id="modal" class="modal"></div>
-
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-  <script src="js/firebase.js"></script>
   <script src="js/listar-alquileres.js"></script>
 </body>
 </html>
