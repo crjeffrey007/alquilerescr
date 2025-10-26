@@ -13,80 +13,78 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // ===============================
-// ELEMENTOS DEL DOM
+// REFERENCIAS DOM
 // ===============================
-const listado = document.getElementById("listado");
-const busqueda = document.getElementById("busqueda");
-const provinciaFiltro = document.getElementById("provinciaFiltro");
-const cantonFiltro = document.getElementById("cantonFiltro");
-const distritoFiltro = document.getElementById("distritoFiltro");
+const lista = document.getElementById("lista-alquileres");
+const filtroProvincia = document.getElementById("filtro-provincia");
+const filtroCanton = document.getElementById("filtro-canton");
+const filtroDistrito = document.getElementById("filtro-distrito");
+const buscador = document.getElementById("buscador");
 
-let propiedades = [];
+let todos = [];
 
 // ===============================
-// CARGAR LISTADO DE ALQUILERES
+// CARGAR DATOS
 // ===============================
-async function cargarPropiedades() {
-  const snapshot = await db.collection("alquileres").where("aprobado", "==", true).get();
-  propiedades = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  actualizarFiltros();
-  renderizar(propiedades);
+async function cargarAlquileres() {
+  const snap = await db.collection("alquileres").where("aprobado", "==", true).get();
+  todos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+  generarFiltros();
+  mostrarAlquileres(todos);
 }
 
-// ===============================
-// RENDERIZAR LISTADO
-// ===============================
-function renderizar(data) {
-  listado.innerHTML = "";
-  if (data.length === 0) {
-    listado.innerHTML = "<p>No hay propiedades disponibles.</p>";
+function generarFiltros() {
+  const provincias = [...new Set(todos.map(a => a.provincia).filter(Boolean))];
+  filtroProvincia.innerHTML = `<option value="">Todas</option>` +
+    provincias.map(p => `<option value="${p}">${p}</option>`).join("");
+}
+
+function mostrarAlquileres(datos) {
+  lista.innerHTML = "";
+  if (datos.length === 0) {
+    lista.innerHTML = "<p>No hay alquileres disponibles.</p>";
     return;
   }
 
-  data.forEach(p => {
+  datos.forEach(p => {
     const div = document.createElement("div");
-    div.classList.add("card");
+    div.className = "card";
+
+    const img = p.imagenesURLs?.[0] || "img/sin-foto.jpg";
     div.innerHTML = `
-      <img src="${p.imagenesURLs?.[0] || "https://via.placeholder.com/400x220"}" alt="Imagen">
-      <div class="card-body">
-        <h3>${p.titulo}</h3>
-        <p>${p.descripcion.substring(0, 120)}...</p>
-        <p><strong>Provincia:</strong> ${p.provincia || "-"}</p>
-        <p class="precio">${p.precio || ""} ${p.moneda || ""}</p>
-        ${p.mostrarContacto ? `<button class="btn-contacto" onclick="mostrarContacto('${p.email}','${p.telefono}')">Contactar</button>` : ""}
-      </div>`;
-    listado.appendChild(div);
+      <img src="${img}" alt="${p.titulo}">
+      <div class="info">
+        <h3><a href="detalle.html?tipo=alquileres&id=${p.id}">${p.titulo}</a></h3>
+        <p>${p.descripcion?.substring(0, 120)}...</p>
+        <p><strong>${p.provincia || ""}, ${p.canton || ""}</strong></p>
+      </div>
+    `;
+    lista.appendChild(div);
   });
 }
 
-function mostrarContacto(email, telefono) {
-  alert(`📧 Email: ${email || "No disponible"}\n📞 Teléfono: ${telefono || "No disponible"}`);
+// ===============================
+// FILTROS Y BÚSQUEDA
+// ===============================
+function aplicarFiltros() {
+  const prov = filtroProvincia.value.toLowerCase();
+  const cant = filtroCanton.value.toLowerCase();
+  const dist = filtroDistrito.value.toLowerCase();
+  const term = buscador.value.toLowerCase();
+
+  const filtrados = todos.filter(a =>
+    (!prov || a.provincia?.toLowerCase() === prov) &&
+    (!cant || a.canton?.toLowerCase() === cant) &&
+    (!dist || a.distrito?.toLowerCase() === dist) &&
+    (!term || a.titulo?.toLowerCase().includes(term) || a.descripcion?.toLowerCase().includes(term))
+  );
+
+  mostrarAlquileres(filtrados);
 }
 
-// ===============================
-// FILTROS DINÁMICOS
-// ===============================
-function actualizarFiltros() {
-  const provincias = [...new Set(propiedades.map(p => p.provincia).filter(Boolean))];
-  provinciaFiltro.innerHTML = `<option value="">Provincia</option>` + provincias.map(p => `<option>${p}</option>`).join("");
+[filtroProvincia, filtroCanton, filtroDistrito, buscador].forEach(el =>
+  el.addEventListener("input", aplicarFiltros)
+);
 
-  provinciaFiltro.addEventListener("change", filtrar);
-  cantonFiltro.addEventListener("change", filtrar);
-  distritoFiltro.addEventListener("change", filtrar);
-  busqueda.addEventListener("input", filtrar);
-}
-
-function filtrar() {
-  let resultado = propiedades;
-
-  if (busqueda.value)
-    resultado = resultado.filter(p => p.titulo.toLowerCase().includes(busqueda.value.toLowerCase()) || p.nombre.toLowerCase().includes(busqueda.value.toLowerCase()));
-
-  if (provinciaFiltro.value)
-    resultado = resultado.filter(p => p.provincia === provinciaFiltro.value);
-
-  renderizar(resultado);
-}
-
-// ===============================
-cargarPropiedades();
+cargarAlquileres();
