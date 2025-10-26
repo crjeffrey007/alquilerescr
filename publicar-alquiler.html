@@ -1,66 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Publicar Alquiler - Alquileres CR</title>
-  <link rel="stylesheet" href="css/formularios.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Alquiler</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+  <h2>🟢 Publicar Propiedad en Alquiler</h2>
 
-  <section class="form-container">
-    <h1>🟩 Publicar Alquiler</h1>
-    <form id="form-alquiler" enctype="multipart/form-data">
-      <label>Título del anuncio</label>
-      <input type="text" name="titulo" required placeholder="Ej: Apartamento en San José">
+  <form id="formAlquiler">
+    <label>Título del anuncio *</label>
+    <input type="text" name="titulo" required>
 
-      <label>Descripción</label>
-      <textarea name="descripcion" required placeholder="Describe el alquiler..."></textarea>
+    <label>Descripción *</label>
+    <textarea name="descripcion" required></textarea>
 
-      <label>Provincia</label>
-      <select name="provincia" required>
-        <option value="">Seleccioná una provincia</option>
-        <option>San José</option>
-        <option>Alajuela</option>
-        <option>Cartago</option>
-        <option>Heredia</option>
-        <option>Guanacaste</option>
-        <option>Puntarenas</option>
-        <option>Limón</option>
-      </select>
+    <label>Área del terreno (m²)</label>
+    <input type="text" name="areaTerreno">
 
-      <label>Precio</label>
-      <input type="number" name="precio" required placeholder="Monto">
+    <label>Área construida (m²)</label>
+    <input type="text" name="areaConstruccion">
 
-      <label>Moneda</label>
-      <select name="moneda">
-        <option value="CRC">Colones (₡)</option>
-        <option value="USD">Dólares ($)</option>
-      </select>
+    <label>Amueblado</label>
+    <select name="amoblado">
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select>
 
-      <label>Teléfono o WhatsApp</label>
-      <input type="text" name="telefono" placeholder="Opcional">
+    <label>Habitaciones</label>
+    <input type="number" name="habitaciones" min="0">
 
-      <label>Subir Imágenes (sin límite)</label>
-      <input type="file" name="imagenes" id="imagenes" accept="image/*" multiple>
+    <label>Baños</label>
+    <input type="number" name="banos" min="0">
 
-      <label>Subir Videos (sin límite)</label>
-      <input type="file" name="videos" id="videos" accept="video/*" multiple>
+    <label>Dirección *</label>
+    <input type="text" name="direccion" required>
+    <input type="text" name="distrito" placeholder="Distrito" required>
+    <input type="text" name="canton" placeholder="Cantón" required>
+    <input type="text" name="provincia" placeholder="Provincia" required>
+    <input type="text" name="pais" placeholder="País" required>
 
-      <label>Ubicación o dirección</label>
-      <input type="text" name="direccion" placeholder="Ej: Barrio Escalante, San José">
+    <label>Moneda</label>
+    <select name="moneda">
+      <option value="₡ Colones">₡ Colones</option>
+      <option value="$ Dólares">$ Dólares</option>
+    </select>
 
-      <button type="submit">📤 Publicar Alquiler</button>
-    </form>
+    <label>Subir Imágenes</label><br>
+    <button type="button" id="btnSubirFotos">📸 Subir Fotos</button>
+    <div id="previewFotos" style="margin-top:10px;"></div>
 
-    <p id="msg"></p>
-  </section>
+    <hr>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script type="module" src="js/firebase.js"></script>
-  <script type="module" src="js/publicar-alquiler.js"></script>
+    <h3>Contacto</h3>
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="text" name="apellidos" placeholder="Apellidos" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
+    <input type="tel" name="telefono" placeholder="Teléfono" required>
 
+    <label>
+      <input type="checkbox" name="aceptaComision">
+      Acepto pagar comisión si se alquila mediante la plataforma.
+    </label>
+
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAAXXXXXXXXXXXXXXXX"></div>
+
+    <button type="submit">📤 Enviar Anuncio</button>
+  </form>
+
+  <script src="publicar-alquiler.js"></script>
 </body>
 </html>
