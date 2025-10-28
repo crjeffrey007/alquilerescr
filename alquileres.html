@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Propiedades en Alquiler - Alquileres CR</title>
-  <link rel="stylesheet" href="css/listados.css">
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propiedades en Alquiler | Alquileres CR</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
-  <header>🏠 Propiedades en Alquiler</header>
-  <div class="container">
-    <div class="filters">
-      <input type="text" id="busqueda" placeholder="Buscar por título o anunciante">
-      <select id="provinciaFiltro"></select>
-      <select id="cantonFiltro"></select>
-      <select id="distritoFiltro"></select>
-    </div>
+  <h2>Propiedades en Alquiler</h2>
 
-    <div id="listado" class="grid"></div>
+  <div id="filtros">
+    <select id="filtroProvincia">
+      <option value="">Filtrar por provincia</option>
+      <option value="San José">San José</option>
+      <option value="Alajuela">Alajuela</option>
+      <option value="Cartago">Cartago</option>
+      <option value="Heredia">Heredia</option>
+      <option value="Guanacaste">Guanacaste</option>
+      <option value="Puntarenas">Puntarenas</option>
+      <option value="Limón">Limón</option>
+    </select>
   </div>
+
+  <div id="contenedorAlquileres" class="grid-listado"></div>
+
   <script src="js/listar-alquileres.js"></script>
 </body>
 </html>
