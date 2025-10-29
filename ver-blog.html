@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ver Artículo | Alquileres CR</title>
-  <link rel="stylesheet" href="css/ver-blog.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title id="metaTitle">Cargando...</title>
+  <meta name="description" id="metaDescription" content="">
+  <meta name="keywords" id="metaKeywords" content="">
+  <meta property="og:title" id="ogTitle" content="">
+  <meta property="og:description" id="ogDesc" content="">
+  <meta property="og:image" id="ogImage" content="">
+  <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
-  <header>
-    <a href="blog.html" class="volver">← Volver al blog</a>
-    <h1 id="tituloPost">Cargando...</h1>
-  </header>
+  <header><a href="blog.html" class="volver">← Volver al blog</a></header>
+  <main id="postWrap" class="ver-blog container"><p>Cargando...</p></main>
+  <footer><p>&copy; 2025 Alquileres CR</p></footer>
 
-  <main id="contenidoPost" class="contenido"></main>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-  <footer>
-    <p>&copy; 2025 Alquileres CR - Blog</p>
-  </footer>
-
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="js/ver-blog.js"></script>
 </body>
 </html>
