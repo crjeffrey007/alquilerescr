@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Blog • Alquileres CR</title>
+  <link rel="stylesheet" href="../css/admin-blog.css" />
+  <!-- Quill (editor rich text) -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+  <!-- LOGIN / AUTH -->
+  <div id="authWrap" class="auth-wrap">
+    <div class="auth-box">
+      <h2>Acceso Administrador</h2>
+      <input id="emailInput" type="email" placeholder="Email" />
+      <input id="passwordInput" type="password" placeholder="Contraseña" />
+      <div class="auth-actions">
+        <button id="btnSignIn" class="btn">Iniciar sesión</button>
+        <button id="btnSignUp" class="btn btn-ghost">Crear cuenta</button>
+      </div>
+      <hr/>
+      <button id="btnGoogle" class="btn btn-google">Continuar con Google</button>
+      <p class="note">Solo usuarios admin pueden acceder al panel</p>
+    </div>
+  </div>
+
+  <!-- PANEL -->
+  <div id="panel" class="hidden">
+    <header class="topbar">
+      <div class="brand">Alquileres CR — Panel Blog</div>
+      <div class="top-actions">
+        <button id="btnNew" class="btn">+ Nuevo</button>
+        <button id="btnLogout" class="btn btn-ghost">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Filters / Search -->
+      <section class="controls">
+        <input id="searchTitle" placeholder="Buscar por título..." />
+        <label>Desde <input id="filterDateFrom" type="date"></label>
+        <label>Hasta <input id="filterDateTo" type="date"></label>
+        <button id="btnApplyFilter" class="btn btn-ghost">Filtrar</button>
+        <button id="btnClear" class="btn btn-ghost">Limpiar</button>
+      </section>
+
+      <!-- Editor -->
+      <section id="editorSection" class="editor hidden">
+        <h2 id="editorTitle">Nuevo artículo</h2>
+
+        <div class="row">
+          <label>Título *</label>
+          <input id="postTitle" type="text">
+        </div>
+
+        <div class="row">
+          <label>Título SEO (opcional)</label>
+          <input id="postTitleSeo" type="text">
+        </div>
+
+        <div class="row">
+          <label>Meta descripción (max 160 chars)</label>
+          <textarea id="postDescriptionSeo" rows="2"></textarea>
+        </div>
+
+        <div class="row">
+          <label>Palabras clave (coma separados)</label>
+          <input id="postKeywords" type="text" placeholder="ej: alquiler, casa, San José">
+        </div>
+
+        <div class="row">
+          <label>Slug (se genera automático, podés editarlo)</label>
+          <input id="postSlug" type="text">
+        </div>
+
+        <div class="row">
+          <label>Categoría *</label>
+          <select id="postCategory"></select>
+          <input id="newCategoryInput" placeholder="Nueva categoría">
+          <button id="btnAddCategory" class="btn btn-sm">Agregar</button>
+        </div>
+
+        <div class="row">
+          <label>Contenido *</label>
+          <div id="editor" style="height:300px;background:white;"></div>
+        </div>
+
+        <div class="row">
+          <label>Imágenes (múltiples)</label>
+          <button id="btnUploadImages" class="btn btn-sm">Subir imágenes</button>
+          <div id="previewImages" class="preview-images"></div>
+        </div>
+
+        <div class="row">
+          <label>Imagen destacada (opcional, para meta y tarjetas)</label>
+          <button id="btnUploadFeatured" class="btn btn-sm">Subir imagen destacada</button>
+          <div id="previewFeatured"></div>
+        </div>
+
+        <div class="row">
+          <label>Publicado</label>
+          <input id="postActive" type="checkbox">
+        </div>
+
+        <div class="actions">
+          <button id="btnSave" class="btn">Guardar</button>
+          <button id="btnCancel" class="btn btn-ghost">Cancelar</button>
+        </div>
+      </section>
+
+      <!-- Articles table -->
+      <section>
+        <h3>Artículos</h3>
+        <table class="table">
+          <thead>
+            <tr><th>Título</th><th>Slug</th><th>Categoría</th><th>Publicado</th><th>Visitas</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="postsList"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="../js/admin-blog.js"></script>
+</body>
+</html>
