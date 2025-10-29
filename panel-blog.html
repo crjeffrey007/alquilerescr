@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel del Blog | Alquileres CR</title>
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+  <header>
+    <h1>Panel de Administración del Blog</h1>
+  </header>
+
+  <section class="panel-blog">
+    <form id="formBlog" class="form-blog">
+      <h2>📝 Nueva Publicación</h2>
+
+      <label>Título *</label>
+      <input type="text" id="titulo" required>
+
+      <label>Categoría *</label>
+      <select id="categoria" required>
+        <option value="recomendaciones">Recomendaciones</option>
+        <option value="experiencias">Experiencias</option>
+        <option value="asuntos-legales">Asuntos legales</option>
+      </select>
+
+      <label>Contenido *</label>
+      <textarea id="contenido" rows="8" required></textarea>
+
+      <label>Subir imagen destacada</label>
+      <button type="button" id="btnSubirImagen">Subir imagen</button>
+      <div id="previewImagen"></div>
+
+      <button type="submit" class="btn-guardar">Guardar Publicación</button>
+    </form>
+
+    <hr>
+
+    <section id="listaBlog" class="lista-blog"></section>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+  <script src="panel-blog.js"></script>
+</body>
+</html>
