@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Propiedades en Alquiler | Alquileres CR</title>
-  <link rel="stylesheet" href="css/estilos.css" />
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="css/listados.css">
 </head>
 <body>
-  <h2>Propiedades en Alquiler</h2>
+  <header>
+    <h1>Propiedades en Alquiler</h1>
+  </header>
 
-  <div id="filtros">
-    <select id="filtroProvincia">
-      <option value="">Filtrar por provincia</option>
-      <option value="San José">San José</option>
-      <option value="Alajuela">Alajuela</option>
-      <option value="Cartago">Cartago</option>
-      <option value="Heredia">Heredia</option>
-      <option value="Guanacaste">Guanacaste</option>
-      <option value="Puntarenas">Puntarenas</option>
-      <option value="Limón">Limón</option>
-    </select>
-  </div>
+  <section class="filtros">
+    <input type="text" id="buscador" placeholder="Buscar propiedad...">
+    <select id="filtro-provincia"></select>
+    <select id="filtro-canton"></select>
+    <select id="filtro-distrito"></select>
+  </section>
 
-  <div id="contenedorAlquileres" class="grid-listado"></div>
+  <section id="lista-alquileres" class="listado"></section>
 
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- Script -->
   <script src="js/listar-alquileres.js"></script>
 </body>
 </html>
