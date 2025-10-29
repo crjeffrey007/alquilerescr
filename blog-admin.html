@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Blog Admin | Alquileres CR</title>
+  <link rel="stylesheet" href="css/blog-admin.css">
+</head>
+<body>
+  <header>
+    <h1>Panel de Administración del Blog</h1>
+  </header>
+
+  <main>
+    <form id="formPost">
+      <input type="text" id="titulo" placeholder="Título del artículo" required>
+      <textarea id="contenido" placeholder="Contenido del artículo" rows="6" required></textarea>
+      <button type="button" id="btnSubirImagen">📸 Subir imagen destacada</button>
+      <div id="previewImagen"></div>
+      <button type="submit">Publicar artículo</button>
+    </form>
+
+    <section id="listaPosts" class="lista"></section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Alquileres CR</p>
+  </footer>
+
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/blog-admin.js"></script>
+</body>
+</html>
