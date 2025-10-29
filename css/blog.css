@@ -1,54 +1,72 @@
 .filtros {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-.filtros select,
-.filtros input {
-  padding: 0.6rem;
+input[type="text"], input[type="date"] {
+  padding: 0.4rem;
+  border: 1px solid #aaa;
   border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
 }
 
-.contenedor-blog {
+/* === LISTADO === */
+.lista-blog {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 1rem;
-  margin: 1rem;
 }
 
-.post {
+.card {
   background: white;
   border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.img-card {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
   padding: 1rem;
+}
+
+.card-body .fecha {
+  color: #777;
+  font-size: 0.9em;
+}
+
+.sin-resultados {
+  text-align: center;
+  color: #555;
+}
+
+/* === VER BLOG === */
+.ver-blog {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.img-blog {
+.imagen-blog {
   width: 100%;
-  height: 200px;
+  max-height: 400px;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.post h2 {
-  color: #0f3b77;
-}
-
-.leer-mas {
-  background: #0f3b77;
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  display: inline-block;
-  border-radius: 5px;
-  margin-top: 0.5rem;
-  transition: background 0.3s;
-}
-
-.leer-mas:hover {
-  background: black;
+.texto {
+  margin-top: 1rem;
+  white-space: pre-wrap;
 }
