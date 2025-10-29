@@ -1,35 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Blog Admin | Alquileres CR</title>
-  <link rel="stylesheet" href="css/blog-admin.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Blog | Admin</title>
+  <link rel="stylesheet" href="css/blog-admin.css" />
 </head>
 <body>
   <header>
-    <h1>Panel de Administración del Blog</h1>
+    <h1>Panel del Blog</h1>
+    <button id="btnNuevo" class="btn">+ Nuevo Artículo</button>
   </header>
 
   <main>
-    <form id="formPost">
-      <input type="text" id="titulo" placeholder="Título del artículo" required>
-      <textarea id="contenido" placeholder="Contenido del artículo" rows="6" required></textarea>
-      <button type="button" id="btnSubirImagen">📸 Subir imagen destacada</button>
-      <div id="previewImagen"></div>
-      <button type="submit">Publicar artículo</button>
-    </form>
+    <!-- 🔍 Filtros -->
+    <section class="filtros">
+      <input type="text" id="buscarTitulo" placeholder="Buscar por título..." />
+      <label>Desde:</label>
+      <input type="date" id="fechaInicio" />
+      <label>Hasta:</label>
+      <input type="date" id="fechaFin" />
+      <button id="btnFiltrar" class="btn">Filtrar</button>
+      <button id="btnLimpiar" class="btn btn-secundario">Limpiar</button>
+    </section>
 
-    <section id="listaPosts" class="lista"></section>
+    <!-- ✏️ Formulario -->
+    <section id="formularioSection" class="form-section oculto">
+      <h2 id="tituloFormulario">Nuevo Artículo</h2>
+      <form id="formBlog">
+        <label>Título *</label>
+        <input type="text" id="titulo" required />
+
+        <label>Contenido *</label>
+        <textarea id="contenido" rows="8" required></textarea>
+
+        <label>Subir Imagen Destacada</label>
+        <button type="button" id="btnSubirImagen" class="btn">Subir Imagen</button>
+        <div id="previewImagen" class="preview"></div>
+
+        <div class="acciones">
+          <button type="submit" class="btn">Guardar</button>
+          <button type="button" id="btnCancelar" class="btn btn-secundario">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 📋 Listado -->
+    <section>
+      <h2>Artículos Publicados</h2>
+      <table id="tablaBlog">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="listaBlog"></tbody>
+      </table>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Alquileres CR</p>
+    <p>&copy; 2025 Alquileres CR - Administración</p>
   </footer>
 
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
   <script src="js/blog-admin.js"></script>
 </body>
 </html>
