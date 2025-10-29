@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anuncios Comerciales - Alquileres CR</title>
+  <link rel="stylesheet" href="css/listados.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Anuncios Comerciales</h1>
+  </header>
+
+  <section class="filtros">
+    <input type="text" id="busqueda" placeholder="Buscar por nombre, provincia o categoría...">
+    <select id="filtroProvincia">
+      <option value="">Todas las provincias</option>
+    </select>
+    <select id="filtroCanton">
+      <option value="">Todos los cantones</option>
+    </select>
+    <select id="filtroDistrito">
+      <option value="">Todos los distritos</option>
+    </select>
+  </section>
+
+  <main class="contenedor-listado">
+    <div id="listadoAnuncios" class="grid-listado"></div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/listar-anuncios.js"></script>
+</body>
+</html>
