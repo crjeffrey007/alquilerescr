@@ -70,3 +70,19 @@ input[type="text"], input[type="date"] {
   margin-top: 1rem;
   white-space: pre-wrap;
 }
+
+/* === PAGINACIÓN === */
+.paginacion {
+  text-align: center;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.paginacion .info-pagina {
+  color: #333;
+  font-weight: 600;
+}
