@@ -3,28 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propiedades en Alquiler | Alquileres CR</title>
+  <title>Alquileres - Alquileres CR</title>
   <link rel="stylesheet" href="css/listados.css">
 </head>
 <body>
-  <header>
+  <header class="header">
     <h1>Propiedades en Alquiler</h1>
   </header>
 
   <section class="filtros">
-    <input type="text" id="buscador" placeholder="Buscar propiedad...">
-    <select id="filtro-provincia"></select>
-    <select id="filtro-canton"></select>
-    <select id="filtro-distrito"></select>
+    <input type="text" id="busqueda" placeholder="Buscar por título, provincia, cantón o distrito...">
+    <select id="filtroProvincia">
+      <option value="">Todas las provincias</option>
+    </select>
+    <select id="filtroCanton">
+      <option value="">Todos los cantones</option>
+    </select>
+    <select id="filtroDistrito">
+      <option value="">Todos los distritos</option>
+    </select>
   </section>
 
-  <section id="lista-alquileres" class="listado"></section>
+  <main class="contenedor-listado">
+    <div id="listadoAlquileres" class="grid-listado"></div>
+  </main>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-  <!-- Script -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="js/listar-alquileres.js"></script>
 </body>
 </html>
