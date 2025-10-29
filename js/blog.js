@@ -9,65 +9,136 @@ const firebaseConfig = {
   messagingSenderId: "594252224879",
   appId: "1:594252224879:web:6321a05511f67e2d13309a"
 };
-
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // ===============================
-// CARGAR BLOG
+// ELEMENTOS
 // ===============================
-const contenedor = document.getElementById("contenedorBlog");
-const filtro = document.getElementById("filtroCategoria");
-const buscar = document.getElementById("buscarBlog");
+const listaBlog = document.getElementById("listaBlog");
+const buscarTitulo = document.getElementById("buscarTitulo");
+const fechaInicio = document.getElementById("fechaInicio");
+const fechaFin = document.getElementById("fechaFin");
+const btnFiltrar = document.getElementById("btnFiltrar");
+const btnLimpiar = document.getElementById("btnLimpiar");
 
-async function cargarPublicaciones() {
-  contenedor.innerHTML = "<p>Cargando publicaciones...</p>";
-  const snapshot = await db.collection("blog").where("activo", "==", true).get();
+const paginacion = document.createElement("div");
+paginacion.classList.add("paginacion");
+listaBlog.after(paginacion);
 
-  let posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  mostrarPublicaciones(posts);
+let posts = [];
+let paginaActual = 1;
+const porPagina = 12;
 
-  // Filtros
-  filtro.addEventListener("change", () => filtrar(posts));
-  buscar.addEventListener("input", () => filtrar(posts));
+// ===============================
+// CARGAR BLOGS
+// ===============================
+function cargarBlog() {
+  db.collection("blog").orderBy("fecha", "desc").onSnapshot(snapshot => {
+    posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    paginaActual = 1;
+    mostrarPosts(posts);
+  });
 }
 
-function filtrar(posts) {
-  const categoria = filtro.value;
-  const texto = buscar.value.toLowerCase();
+// ===============================
+// MOSTRAR POSTS + PAGINACIÓN
+// ===============================
+function mostrarPosts(lista) {
+  listaBlog.innerHTML = "";
+  paginacion.innerHTML = "";
 
-  let filtrados = posts.filter(p => 
-    (categoria === "todas" || p.categoria === categoria) &&
-    (p.titulo.toLowerCase().includes(texto) || p.contenido.toLowerCase().includes(texto))
-  );
-
-  mostrarPublicaciones(filtrados);
-}
-
-function mostrarPublicaciones(posts) {
-  if (posts.length === 0) {
-    contenedor.innerHTML = "<p>No hay publicaciones disponibles.</p>";
+  if (lista.length === 0) {
+    listaBlog.innerHTML = `<p class="sin-resultados">No se encontraron artículos.</p>`;
     return;
   }
 
-  contenedor.innerHTML = posts.map(p => `
-    <article class="post">
-      ${p.imagen ? `<img src="${p.imagen}" alt="${p.titulo}" class="img-blog">` : ""}
-      <h2>${p.titulo}</h2>
-      <p class="categoria">${formatearCategoria(p.categoria)}</p>
-      <p>${p.contenido.substring(0, 200)}...</p>
-      <a href="#" class="leer-mas" data-id="${p.id}">Leer más</a>
-    </article>
-  `).join("");
+  // Calcular páginas
+  const totalPaginas = Math.ceil(lista.length / porPagina);
+  const inicio = (paginaActual - 1) * porPagina;
+  const fin = inicio + porPagina;
+  const visibles = lista.slice(inicio, fin);
+
+  // Renderizar artículos
+  visibles.forEach(post => {
+    const card = document.createElement("article");
+    card.classList.add("card");
+
+    const fecha = new Date(post.fecha).toLocaleDateString("es-CR");
+    const img = post.imagenURL
+      ? `<img src="${post.imagenURL}" alt="${post.titulo}" class="img-card">`
+      : "";
+
+    card.innerHTML = `
+      ${img}
+      <div class="card-body">
+        <h3>${post.titulo}</h3>
+        <p class="fecha">${fecha}</p>
+        <p>${post.contenido.substring(0, 120)}...</p>
+        <a href="ver-blog.html?id=${post.id}" class="btn">Leer más</a>
+      </div>
+    `;
+    listaBlog.appendChild(card);
+  });
+
+  // Renderizar paginación
+  if (totalPaginas > 1) {
+    if (paginaActual > 1) {
+      const prev = document.createElement("button");
+      prev.textContent = "← Anteriores";
+      prev.classList.add("btn");
+      prev.addEventListener("click", () => {
+        paginaActual--;
+        mostrarPosts(lista);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      paginacion.appendChild(prev);
+    }
+
+    const info = document.createElement("span");
+    info.textContent = `Página ${paginaActual} de ${totalPaginas}`;
+    info.classList.add("info-pagina");
+    paginacion.appendChild(info);
+
+    if (paginaActual < totalPaginas) {
+      const next = document.createElement("button");
+      next.textContent = "Siguientes →";
+      next.classList.add("btn");
+      next.addEventListener("click", () => {
+        paginaActual++;
+        mostrarPosts(lista);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      paginacion.appendChild(next);
+    }
+  }
 }
 
-function formatearCategoria(cat) {
-  const map = {
-    "recomendaciones": "Recomendaciones",
-    "experiencias": "Experiencias",
-    "asuntos-legales": "Asuntos legales"
-  };
-  return map[cat] || cat;
-}
+// ===============================
+// FILTROS
+// ===============================
+btnFiltrar.addEventListener("click", () => {
+  const texto = buscarTitulo.value.toLowerCase();
+  const desde = fechaInicio.value ? new Date(fechaInicio.value) : null;
+  const hasta = fechaFin.value ? new Date(fechaFin.value) : null;
 
-cargarPublicaciones();
+  const filtrados = posts.filter(p => {
+    const tituloMatch = p.titulo.toLowerCase().includes(texto);
+    const fecha = new Date(p.fecha);
+    const fechaMatch = (!desde || fecha >= desde) && (!hasta || fecha <= hasta);
+    return tituloMatch && fechaMatch;
+  });
+
+  paginaActual = 1;
+  mostrarPosts(filtrados);
+});
+
+btnLimpiar.addEventListener("click", () => {
+  buscarTitulo.value = "";
+  fechaInicio.value = "";
+  fechaFin.value = "";
+  paginaActual = 1;
+  mostrarPosts(posts);
+});
+
+cargarBlog();
