@@ -1,6 +1,4 @@
-/* --------------------------
-   FILTROS Y BUSCADOR
-   -------------------------- */
+/* === Filtros === */
 .filtros {
   background: #fff;
   padding: 15px;
@@ -8,91 +6,78 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  border-bottom: 2px solid #eee;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.filtros input,
+.filtros input, 
 .filtros select {
-  padding: 8px 10px;
-  border-radius: 6px;
+  padding: 10px;
   border: 1px solid #ccc;
-  min-width: 180px;
-  font-size: 0.95rem;
+  border-radius: 6px;
+  width: 200px;
+  font-size: 0.9rem;
 }
 
-/* --------------------------
-   LISTADO DE CARDS
-   -------------------------- */
-.listado {
+/* === Listado === */
+.contenedor-listado {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+.grid-listado {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 15px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
 }
 
+/* === Tarjetas === */
 .card {
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
 
-.card .info {
+.card-body {
   padding: 15px;
 }
 
-.card h3 {
-  margin: 0;
-  color: #0f3b77;
+.card-body h3 {
   font-size: 1.1rem;
+  color: #0f3b77;
+  margin-bottom: 8px;
 }
 
-.card p {
+.card-body p {
   font-size: 0.9rem;
   color: #555;
-  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
-/* --------------------------
-   BOTONES
-   -------------------------- */
+/* === Botones === */
 .btn {
   display: inline-block;
+  padding: 10px 15px;
   background: #0f3b77;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
+  color: #fff;
+  border-radius: 6px;
   text-decoration: none;
-  margin-top: 10px;
-  transition: background 0.2s ease;
+  transition: 0.3s;
 }
 
 .btn:hover {
   background: #000;
-  color: white;
-}
-
-/* --------------------------
-   RESPONSIVE
-   -------------------------- */
-  .filtros {
-    flex-direction: column;
-    align-items: center;
-  }
-  .filtros input,
-  .filtros select {
-    width: 90%;
-  }
 }
