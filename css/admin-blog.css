@@ -212,3 +212,77 @@
   background: #d9534f;
   color: #fff;
 }
+
+.btn-salir {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.panel-blog {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 30px;
+}
+
+.formulario-blog {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.formulario-blog h2, .formulario-blog h3 {
+  color: #0f3b77;
+}
+
+.formulario-blog label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+input[type="text"], textarea, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+}
+
+.btn-guardar, #btnSubirImagen {
+  background-color: #0f3b77;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.btn-guardar:hover, #btnSubirImagen:hover {
+  background: #000;
+}
+
+.preview img {
+  max-width: 200px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+#postsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post-item {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
