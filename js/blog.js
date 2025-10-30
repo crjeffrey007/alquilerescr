@@ -1,4 +1,18 @@
 // ===============================
+// BLOG LISTADO (blog.js)
+// ===============================
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+// ===============================
 // FIREBASE CONFIG
 // ===============================
 const firebaseConfig = {
@@ -9,136 +23,74 @@ const firebaseConfig = {
   messagingSenderId: "594252224879",
   appId: "1:594252224879:web:6321a05511f67e2d13309a"
 };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
-// ===============================
-// ELEMENTOS
-// ===============================
-const listaBlog = document.getElementById("listaBlog");
-const buscarTitulo = document.getElementById("buscarTitulo");
-const fechaInicio = document.getElementById("fechaInicio");
-const fechaFin = document.getElementById("fechaFin");
-const btnFiltrar = document.getElementById("btnFiltrar");
-const btnLimpiar = document.getElementById("btnLimpiar");
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const paginacion = document.createElement("div");
-paginacion.classList.add("paginacion");
-listaBlog.after(paginacion);
+// Elementos del DOM
+const blogListado = document.getElementById("blogListado");
+const buscarPost = document.getElementById("buscarPost");
 
-let posts = [];
-let paginaActual = 1;
-const porPagina = 12;
+// Cargar publicaciones publicadas
+async function cargarPosts() {
+  blogListado.innerHTML = "<p>Cargando artículos...</p>";
 
-// ===============================
-// CARGAR BLOGS
-// ===============================
-function cargarBlog() {
-  db.collection("blog").orderBy("fecha", "desc").onSnapshot(snapshot => {
-    posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    paginaActual = 1;
-    mostrarPosts(posts);
-  });
+  const q = query(
+    collection(db, "blog_posts"),
+    where("publicado", "==", true),
+    orderBy("fechaPublicacion", "desc")
+  );
+
+  const snapshot = await getDocs(q);
+  mostrarPosts(snapshot.docs);
 }
 
-// ===============================
-// MOSTRAR POSTS + PAGINACIÓN
-// ===============================
-function mostrarPosts(lista) {
-  listaBlog.innerHTML = "";
-  paginacion.innerHTML = "";
-
-  if (lista.length === 0) {
-    listaBlog.innerHTML = `<p class="sin-resultados">No se encontraron artículos.</p>`;
+// Mostrar posts
+function mostrarPosts(posts) {
+  if (posts.length === 0) {
+    blogListado.innerHTML = "<p>No hay artículos publicados aún.</p>";
     return;
   }
 
-  // Calcular páginas
-  const totalPaginas = Math.ceil(lista.length / porPagina);
-  const inicio = (paginaActual - 1) * porPagina;
-  const fin = inicio + porPagina;
-  const visibles = lista.slice(inicio, fin);
+  blogListado.innerHTML = posts.map(doc => {
+    const data = doc.data();
+    const preview = data.contenido.replace(/<[^>]+>/g, "").slice(0, 160) + "...";
+    const img = data.imagenDestacada || "https://via.placeholder.com/400x250?text=Sin+Imagen";
 
-  // Renderizar artículos
-  visibles.forEach(post => {
-    const card = document.createElement("article");
-    card.classList.add("card");
-
-    const fecha = new Date(post.fecha).toLocaleDateString("es-CR");
-    const img = post.imagenURL
-      ? `<img src="${post.imagenURL}" alt="${post.titulo}" class="img-card">`
-      : "";
-
-    card.innerHTML = `
-      ${img}
-      <div class="card-body">
-        <h3>${post.titulo}</h3>
-        <p class="fecha">${fecha}</p>
-        <p>${post.contenido.substring(0, 120)}...</p>
-        <a href="ver-blog.html?id=${post.id}" class="btn">Leer más</a>
-      </div>
+    return `
+      <article class="blog-card">
+        <img src="${img}" alt="${data.titulo}">
+        <div class="blog-card-content">
+          <h2>${data.titulo}</h2>
+          <p>${preview}</p>
+          <a href="blog-post.html?id=${doc.id}" class="btn-leer">Leer más</a>
+        </div>
+      </article>
     `;
-    listaBlog.appendChild(card);
-  });
-
-  // Renderizar paginación
-  if (totalPaginas > 1) {
-    if (paginaActual > 1) {
-      const prev = document.createElement("button");
-      prev.textContent = "← Anteriores";
-      prev.classList.add("btn");
-      prev.addEventListener("click", () => {
-        paginaActual--;
-        mostrarPosts(lista);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-      paginacion.appendChild(prev);
-    }
-
-    const info = document.createElement("span");
-    info.textContent = `Página ${paginaActual} de ${totalPaginas}`;
-    info.classList.add("info-pagina");
-    paginacion.appendChild(info);
-
-    if (paginaActual < totalPaginas) {
-      const next = document.createElement("button");
-      next.textContent = "Siguientes →";
-      next.classList.add("btn");
-      next.addEventListener("click", () => {
-        paginaActual++;
-        mostrarPosts(lista);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-      paginacion.appendChild(next);
-    }
-  }
+  }).join("");
 }
 
-// ===============================
-// FILTROS
-// ===============================
-btnFiltrar.addEventListener("click", () => {
-  const texto = buscarTitulo.value.toLowerCase();
-  const desde = fechaInicio.value ? new Date(fechaInicio.value) : null;
-  const hasta = fechaFin.value ? new Date(fechaFin.value) : null;
+// Buscar artículos
+buscarPost.addEventListener("input", async (e) => {
+  const termino = e.target.value.toLowerCase();
 
-  const filtrados = posts.filter(p => {
-    const tituloMatch = p.titulo.toLowerCase().includes(texto);
-    const fecha = new Date(p.fecha);
-    const fechaMatch = (!desde || fecha >= desde) && (!hasta || fecha <= hasta);
-    return tituloMatch && fechaMatch;
+  const q = query(
+    collection(db, "blog_posts"),
+    where("publicado", "==", true)
+  );
+
+  const snapshot = await getDocs(q);
+  const filtrados = snapshot.docs.filter(doc => {
+    const data = doc.data();
+    return (
+      data.titulo.toLowerCase().includes(termino) ||
+      data.descripcion.toLowerCase().includes(termino)
+    );
   });
 
-  paginaActual = 1;
   mostrarPosts(filtrados);
 });
 
-btnLimpiar.addEventListener("click", () => {
-  buscarTitulo.value = "";
-  fechaInicio.value = "";
-  fechaFin.value = "";
-  paginaActual = 1;
-  mostrarPosts(posts);
-});
-
-cargarBlog();
+// Iniciar carga
+cargarPosts();
