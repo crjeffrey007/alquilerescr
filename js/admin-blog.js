@@ -1,3 +1,23 @@
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+
+const auth = getAuth();
+
+// Verifica si el usuario está autenticado
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    localStorage.removeItem("isAdmin");
+    window.location.href = "login.html";
+  }
+});
+
+// Cerrar sesión
+document.getElementById("cerrarSesion").addEventListener("click", () => {
+  signOut(auth).then(() => {
+    localStorage.removeItem("isAdmin");
+    window.location.href = "login.html";
+  });
+});
+
 // ===============================
 // PANEL DE ADMINISTRADOR BLOG
 // ===============================
