@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración - Alquileres CR</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="dashboard.js" defer></script>
+  <script type="module" src="analytics.js" defer></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Alquileres CR</h2>
+    <ul>
+      <li><a href="#" class="active" data-section="resumen">📊 Resumen</a></li>
+      <li><a href="#" data-section="anuncios">🏠 Anuncios</a></li>
+      <li><a href="#" data-section="alquileres">🏘️ Alquileres</a></li>
+      <li><a href="#" data-section="ventas">🏡 Ventas</a></li>
+      <li><a href="#" data-section="blog">📰 Blog</a></li>
+      <li><a href="#" data-section="usuarios" class="admin-only">👤 Usuarios</a></li>
+      <li><button id="logoutBtn">Cerrar sesión</button></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <!-- Resumen -->
+    <section id="resumen" class="panel-section active">
+      <h1>Resumen General</h1>
+      <p>Bienvenido al panel de administración de <strong>Alquileres CR</strong>.</p>
+      <div id="summaryCards" class="cards-grid"></div>
+    </section>
+
+    <!-- Anuncios -->
+    <section id="anuncios" class="panel-section">
+      <h1>Anuncios Comerciales</h1>
+      <div id="anunciosContent">Cargando...</div>
+    </section>
+
+    <!-- Alquileres -->
+    <section id="alquileres" class="panel-section">
+      <h1>Alquileres</h1>
+      <div id="alquileresContent">Cargando...</div>
+    </section>
+
+    <!-- Ventas -->
+    <section id="ventas" class="panel-section">
+      <h1>Ventas</h1>
+      <div id="ventasContent">Cargando...</div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="panel-section">
+      <h1>Blog</h1>
+      <div id="blogContent">Cargando...</div>
+    </section>
+
+    <!-- Usuarios -->
+    <section id="usuarios" class="panel-section">
+      <h1>Usuarios</h1>
+      <div id="usuariosContent">Cargando...</div>
+    </section>
+
+    <!-- Analytics -->
+    <section id="analytics" class="panel-section">
+      <h1>Analítica</h1>
+      <div id="analyticsContainer" class="card">
+        <div style="width:100%;max-width:900px;margin:0 auto;">
+          <canvas id="visitasChart"></canvas>
+        </div>
+        <div style="width:100%;max-width:900px;margin:30px auto 0;">
+          <canvas id="paisesChart"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

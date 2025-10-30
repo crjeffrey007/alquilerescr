@@ -1,0 +1,16 @@
+body { margin:0; font-family: "Poppins", sans-serif; display:flex; background:#f4f6f8; color:#222; }
+.sidebar { width:240px; background:#0f3b77; color:white; height:100vh; padding:20px; display:flex; flex-direction:column; }
+.sidebar h2 { margin-bottom:20px; text-align:center; }
+.sidebar ul { list-style:none; padding:0; flex-grow:1; }
+.sidebar li { margin-bottom:12px; }
+.sidebar a, .sidebar button { color:white; text-decoration:none; background:none; border:none; font-size:15px; width:100%; text-align:left; cursor:pointer; padding:8px 10px; border-radius:8px; display:block; transition:background .2s; }
+.sidebar a:hover, .sidebar a.active, .sidebar button:hover { background:black; }
+.main-content { flex:1; padding:24px; overflow-y:auto; }
+.panel-section { display:none; }
+.panel-section.active { display:block; }
+.cards-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:16px; }
+.card { background:#fff; padding:16px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+table { width:100%; border-collapse:collapse; margin-top:12px; }
+th, td { padding:10px; border:1px solid #eee; text-align:left; }
+button.small { padding:6px 10px; border-radius:6px; border:none; background:#0f3b77; color:#fff; cursor:pointer; }
+button.small:hover { background:#000; }
