@@ -3,11 +3,11 @@
   Reemplaza los placeholders por los valores de tu proyecto.
 */
 export const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
+  apiKey: "AIzaSyBKdQaX27zlOWU0xwCRJPscaQR5FiqD80",
+  authDomain: "inmobiliaria-cr.firebaseapp.com",
   projectId: "inmobiliaria-cr",
   storageBucket: "inmobiliaria-cr.firebasestorage.app",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID",
-  measurementId: "G-XXXXXXX"
+  messagingSenderId: "594252224879",
+  appId: "1:594252224879:web:6321a05511f67e2d13309a",
+  measurementId: "G-21HRE9SEVG"
 };
