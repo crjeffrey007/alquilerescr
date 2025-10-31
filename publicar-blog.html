@@ -1,32 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport"content="width=device-width,initial-scale=1">
-  <title>Publicar Artículo - Blog</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Publicar • Blog — Alquileres CR</title>
+  <link rel="stylesheet" href="css/blog.css">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header"><div class="container"><h1>Publicar Artículo (Admin)</h1></div></header>
-  <main class="container">
-    <form id="form-blog" class="form">
-      <label>Título</label><input name="titulo" required>
+  <main class="wrap">
+    <h1>Publicar artículo</h1>
+    <form id="formPublicar">
+      <label>Título *</label>
+      <input id="titulo" required>
+
+      <label>Título SEO (opcional)</label>
+      <input id="tituloSeo">
+
+      <label>Descripción corta (meta, 160 chars)</label>
+      <textarea id="descripcionSeo" maxlength="160"></textarea>
+
       <label>Categoría</label>
-      <select name="categoria">
-        <option>Recomendaciones</option><option>Experiencias</option><option>Asuntos Legales</option>
-      </select>
-      <label>Contenido</label><textarea name="contenido" rows="12" required></textarea>
-      <button type="submit">Publicar</button>
+      <input id="categoriaName" placeholder="ej: Recomendaciones">
+
+      <label>Provincia (opcional)</label>
+      <input id="provincia" placeholder="ej: San José">
+
+      <label>Palabras clave (coma separadas)</label>
+      <input id="keywords">
+
+      <label>Imagen destacada</label>
+      <button type="button" id="btnUploadFeatured">Subir imagen</button>
+      <div id="previewFeatured"></div>
+
+      <label>Contenido *</label>
+      <div id="editor" style="height:320px;background:#fff"></div>
+
+      <label>Publicar ahora?</label>
+      <input type="checkbox" id="activo" checked>
+
+      <button type="submit" class="btn-leer">Guardar artículo</button>
     </form>
-    <div id="msgb"></div>
   </main>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-
-  <script src="js/firebase.js"></script>
-  <script src="js/helpers.js"></script>
-  <script src="js/publicar-blog.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script type="module" src="js/publicar-blog.js"></script>
 </body>
 </html>
