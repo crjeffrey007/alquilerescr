@@ -34,13 +34,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 // 🔹 Configuración Firebase
-const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID"
+apiKey: "AIzaSyBKdQaX27zlOWU0xwCRJPscaQR5FiqD80",
+  authDomain: "inmobiliaria-cr.firebaseapp.com",
+  projectId: "inmobiliaria-cr",
+  storageBucket: "inmobiliaria-cr.firebasestorage.app",
+  messagingSenderId: "594252224879",
+  appId: "1:594252224879:web:6321a05511f67e2d13309a",
+  measurementId: "G-21HRE9SEVG"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -53,8 +53,8 @@ const quill = new Quill("#editor", {
 });
 
 // 🔹 Cloudinary Config
-const CLOUDINARY_CLOUD_NAME = "TU_CLOUD_NAME";
-const CLOUDINARY_UPLOAD_PRESET = "TU_UPLOAD_PRESET";
+const CLOUDINARY_CLOUD_NAME = "media-anuncios";
+const CLOUDINARY_UPLOAD_PRESET = "alquilerescr";
 
 let imagenDestacada = "";
 
