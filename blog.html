@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog | Alquileres CR</title>
-  <link rel="stylesheet" href="blog.css">
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog • Alquileres CR</title>
+  <meta name="description" content="Consejos, noticias y guías sobre alquileres y ventas en Costa Rica.">
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
   <header class="blog-header">
-    <h1>Blog de Alquileres CR</h1>
-    <input type="text" id="buscarPost" placeholder="Buscar artículos...">
+    <div class="wrap">
+      <h1>Blog • Alquileres CR</h1>
+      <p>Consejos, recomendaciones y noticias del sector inmobiliario en Costa Rica</p>
+    </div>
   </header>
 
-  <main id="blogListado" class="blog-listado"></main>
+  <main class="wrap">
+    <section class="controls">
+      <input id="buscar" type="search" placeholder="Buscar artículos..." />
+      <select id="filtroCategoria"><option value="">Todas las categorías</option></select>
+      <select id="filtroProvincia"><option value="">Todas las provincias</option></select>
+    </section>
+
+    <section id="listado" class="blog-list"></section>
+
+    <nav id="paginacion" class="paginacion"></nav>
+  </main>
 
   <footer class="blog-footer">
-    <p>© 2025 Alquileres CR - Todos los derechos reservados</p>
+    <div class="wrap">© <span id="anio"></span> Alquileres CR</div>
   </footer>
 
-  <script type="module" src="blog.js"></script>
+  <script type="module" src="js/blog.js"></script>
+  <script>document.getElementById('anio').textContent = new Date().getFullYear()</script>
 </body>
 </html>
