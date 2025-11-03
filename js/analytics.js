@@ -1,27 +1,19 @@
-// Analytics render
-const analyticsContainer = document.getElementById("analyticsContainer");
+// analytics.js — Integración de Google Analytics (sin API)
+(function() {
+  const GA_ID = 'G-21HRE9SEVG'; // Tu ID de medición de Google Analytics
 
-function mostrarEstadisticas() {
-  analyticsContainer.innerHTML = `
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3>👥 Visitantes</h3>
-        <p>+1200</p>
-      </div>
-      <div class="stat-card">
-        <h3>📱 Sesiones activas</h3>
-        <p>25</p>
-      </div>
-      <div class="stat-card">
-        <h3>📄 Páginas vistas</h3>
-        <p>4,532</p>
-      </div>
-    </div>
-    <iframe
-      src="https://analytics.google.com/analytics/web/#/p${'G-21HRE9SEVG'}/reports/home"
-      style="width:100%;height:400px;border:0;margin-top:20px;"
-    ></iframe>
-  `;
-}
+  // Crear e insertar el script principal de gtag.js
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(script);
 
-mostrarEstadisticas();
+  // Inicializar dataLayer y configuración
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+
+  console.log("✅ Google Analytics inicializado con ID:", GA_ID);
+})();
