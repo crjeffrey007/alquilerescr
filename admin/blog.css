@@ -1,0 +1,8 @@
+/* admin/css/blog.css - estilos del editor/gestión */
+.container{max-width:1100px;margin:20px auto;padding:16px;background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+label{display:block;margin-top:12px;font-weight:600}
+input[type="text"], textarea, select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;margin-top:6px}
+.preview img{max-width:220px;border-radius:8px;margin-top:8px}
+.actions{margin-top:14px;display:flex;gap:8px}
+.btn{background:#0f3b77;color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+.btn.outlined{background:#fff;color:#0f3b77;border:1px solid #0f3b77}
