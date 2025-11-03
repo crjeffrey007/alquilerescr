@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog - Admin</title>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/admin-style.css"> <!-- tu CSS global -->
+  <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+  <!-- Requiere auth guard (usa js/firebase-admin.js del panel) -->
+  <div class="container">
+    <h1>Crear / Editar artículo</h1>
+
+    <form id="postForm">
+      <input type="hidden" id="postId" value="" />
+
+      <label>Título</label>
+      <input id="titulo" type="text" required placeholder="Título del artículo" />
+
+      <label>Subtítulo / excerpt (resumen corto)</label>
+      <input id="excerpt" type="text" placeholder="Breve resumen (para listados/SEO)" />
+
+      <label>Categorías (separadas por comas)</label>
+      <input id="categorias" type="text" placeholder="Ej: Recomendaciones,Legal" />
+
+      <label>Slug (opcional, si dejas vacío se genera)</label>
+      <input id="slug" type="text" placeholder="slug-ejemplo" />
+
+      <label>Imagen destacada</label>
+      <input id="imagenFile" type="file" accept="image/*" />
+      <div id="previewImagen" class="preview"></div>
+
+      <label>Contenido</label>
+      <div id="quillEditor" style="height:320px;background:white;"></div>
+
+      <h3>SEO</h3>
+      <label>SEO - Título</label>
+      <input id="seoTitle" type="text" placeholder="Título para motores de búsqueda" />
+
+      <label>SEO - Descripción</label>
+      <textarea id="seoDescription" rows="3" placeholder="Descripción (meta description)"></textarea>
+
+      <label>Estado</label>
+      <select id="activo">
+        <option value="false">Borrador</option>
+        <option value="true">Publicado</option>
+      </select>
+
+      <div class="actions">
+        <button type="submit" class="btn">Guardar artículo</button>
+        <button type="button" id="btnPreview" class="btn outlined">Vista previa</button>
+        <button type="button" id="btnLoad" class="btn">Cargar artículo (para editar)</button>
+      </div>
+    </form>
+
+    <hr>
+    <h2>Artículos existentes</h2>
+    <div id="postsTable">Cargando...</div>
+  </div>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script type="module" src="js/admin-blog.js"></script>
+</body>
+</html>
