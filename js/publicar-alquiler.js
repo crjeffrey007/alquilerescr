@@ -36,7 +36,7 @@ document.getElementById("btnSubirFotos").addEventListener("click", () => {
       uploadPreset: CLOUDINARY_UPLOAD_PRESET,
       sources: ["local", "camera"],
       multiple: true,
-      folder: "alquileres",
+      folder: "alquilerescr",
     },
     (error, result) => {
       if (!error && result && result.event === "success") {
