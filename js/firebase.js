@@ -1,6 +1,6 @@
-/* js/firebase.js */
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBKdQaX27zlOWU0xwCRJPscaQR5FiqD80",
+  apiKey: "AIzaSyBKdQaX27zlOWU0xwCRJPscaQR5FiqjD80",
   authDomain: "inmobiliaria-cr.firebaseapp.com",
   projectId: "inmobiliaria-cr",
   storageBucket: "inmobiliaria-cr.firebasestorage.app",
