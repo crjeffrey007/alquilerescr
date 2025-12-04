@@ -1,7 +1,7 @@
 // ===============================================
 // CONFIGURA AQUÍ TU URL DE STRAPI
 // ===============================================
-const API_URL = "https://TU-STRAPI.onrender.com"; 
+const API_URL = "https://ancient-desire-f9d9cc7407.strapiapp.com"; 
 // Ejemplo: const API_URL = "https://mi-api-strapi.onrender.com";
 
 
