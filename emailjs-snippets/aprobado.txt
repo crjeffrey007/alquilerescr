@@ -1,4 +1,0 @@
-Template: aprobado
-Variables: email, titulo
-Body:
-Tu anuncio '{{titulo}}' ha sido aprobado.

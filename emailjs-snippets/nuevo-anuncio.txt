@@ -1,4 +1,0 @@
-Template: nuevo-anuncio
-Variables: to_email, tipo, titulo, email
-Body:
-Nuevo anuncio: {{tipo}}\nTítulo: {{titulo}}\nEmail: {{email}}
